@@ -5,8 +5,8 @@ class Nota:
     def __init__(self,porcentaje,valor,id,estudiante,grupo):
         self.set_porcentaje(porcentaje)
         self.set_valor(valor)
-        self.set_id(id)'''el id es el numero de la nota, ejemplo: la nota #5 que
-         se saca en calculo diferencial'''
+        self.set_id(id)"""el id es el numero de la nota, ejemplo: la nota #5 que
+         se saca en calculo diferencial"""
         self.set_estudiante(estudiante)
         self.set_grupo(grupo)
 
@@ -41,7 +41,13 @@ class Nota:
         return self._grupo
 
     def to_string(self):
-        return "{0}( {1}: {2}, {3}: {4}, Id: {5})".format(Mensajes.mensa["not"],Mensajes.mensa["por"],self.getPorcentaje(),Mensajes.mensa["val"],self.getValor(),self.get_id())
+        return "{0}( {1}: {2}, {3}: {4}, Id: {5})".format(
+            Mensajes.mensa["not"],Mensajes.mensa["por"],
+            self.getPorcentaje(),
+            Mensajes.mensa["val"],
+            self.getValor(),
+            self.get_id()
+        )
 
     @staticmethod
     def buscar_nota(lista,doc_estudiante,id_materia,num_grupo):
@@ -59,11 +65,11 @@ class Nota:
         nota.get_grupo().get_materia().get_id(),
         nota.get_grupo().get_numero())):
             return Mensajes.mensa["err"]
-        elif(not(nota.get_grupo() in nota.get_estudiante().getMatricula())):
+        elif(not(nota.get_grupo() in nota.get_estudiante().get_matricula())):
             return Mensajes.mensa["err"]
         else:
             lista.append(nota)
-            nota.get_estudiante().getNota().append(nota)
+            nota.get_estudiante().get_nota().append(nota)
             nota.get_grupo().get_notas().append(nota)
             return Mensajes.mensa["reg"]
 
@@ -71,7 +77,7 @@ class Nota:
     def eliminar(lista,doc_estudiante,id_materia,num_grupo):
          nota = Nota.buscar_nota(lista,doc_estudiante,id_materia,num_grupo)
          if(nota):
-             nota.get_estudiante().getNota().remove(nota)
+             nota.get_estudiante().get_nota().remove(nota)
              nota.get_grupo().get_notas().remove(nota)
              lista.remove(nota)
              return Mensajes.mensa["eli"]

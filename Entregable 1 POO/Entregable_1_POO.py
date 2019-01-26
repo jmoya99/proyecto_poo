@@ -8,6 +8,7 @@ from Estudiante import Estudiante as Es
 from Nota import Nota as No
 import os
 
+
 class Main:
 
     materias = []
@@ -21,11 +22,11 @@ class Main:
     @staticmethod
     def run():
         Ma.cargar_materias(Main.materias)
-        Main.crearDatosFicticios()
+        Main.crear_datos_ficticios()
         Main.principal()
 
     @staticmethod
-    def crearDatosFicticios():
+    def crear_datos_ficticios():
         #Materia
         if(len(Main.materias) == 0):
             Ma.registrar(Ma(1,"Programación Orientada a Objetos",3),Main.materias)
@@ -94,22 +95,22 @@ class Main:
             if(op == 1):
                 usu = str(input(Me.mensa["ing Usu"]))
                 con = str(input(Me.mensa["ing Con"]))
-                tipUsuario = Pe.login(Main.estudiantes,Main.administradores,Main.profesores,usu,con)
-                if(tipUsuario != -1):
-                    print(Me.mensa["bie"]+" "+Pe.buscarPersona(Main.estudiantes+Main.profesores+Main.administradores,usu).getNombre())
-                    if(tipUsuario == 0):
-                        Main.menuAdministrador()
-                    elif(tipUsuario == 1):
-                        Main.menuEstudiante()
-                    elif(tipUsuario == 2):
-                        Main.menuProfesor()
+                tip_usuario = Pe.login(Main.estudiantes,Main.administradores,Main.profesores,usu,con)
+                if(tip_usuario != -1):
+                    print(Me.mensa["bie"]+" "+Pe.buscar_persona(Main.estudiantes+Main.profesores+Main.administradores,usu).get_nombre())
+                    if(tip_usuario == 0):
+                        Main.menu_administrador()
+                    elif(tip_usuario == 1):
+                        Main.menu_estudiante()
+                    elif(tip_usuario == 2):
+                        Main.menu_profesor()
                 else:
                     print(Me.mensa["err"])
             elif(op == 2):
                 os._exit(0)
 
     @staticmethod
-    def menuAdministrador():
+    def menu_administrador():
         while True:
             opc = int(input(Me.mensa["opcAdmin"]))
             if(opc == 6):
@@ -127,7 +128,7 @@ class Main:
                         print(Es.registrar(Main.estudiantes,Main.administradores,Main.profesores,est))
                     elif(op == 2):
                         id = input(Me.mensa["ide"]+" "+Me.mensa["o"]+" "+Me.mensa["cor"]+": ")
-                        est = Pe.buscarPersona(Main.estudiantes,id)
+                        est = Pe.buscar_persona(Main.estudiantes,id)
                         if(est):
                             print(est.to_string())
                         else:
@@ -136,7 +137,7 @@ class Main:
                         break
                     elif(op == 3):
                         id = input(Me.mensa["ide"]+" "+Me.mensa["o"]+" "+Me.mensa["cor"]+": ")
-                        est = Pe.buscarPersona(Main.estudiantes,id)
+                        est = Pe.buscar_persona(Main.estudiantes,id)
                         if(est):
                             print("1. "+Me.mensa["nom"]+"\n2. "+Me.mensa["ide"]+"\n3. "+Me.mensa["cor"]+"\n4. "+Me.mensa["con"])
                             o = int(input())
@@ -148,10 +149,10 @@ class Main:
                                 print(est.set_identificacion(ide,Main.administradores+Main.estudiantes+Main.profesores))
                             if(o == 3):
                                 cor = input(Me.mensa["cor"]+": ")
-                                print(est.setCorreo(cor,Main.administradores+Main.estudiantes+Main.profesores))
+                                print(est.set_correo(cor,Main.administradores+Main.estudiantes+Main.profesores))
                             if(o == 4):
                                 con = input(Me.mensa["con"]+": ")
-                                print(est.setClave(con))
+                                print(est.set_clave(con))
                         else:
                             print(Me.mensa["err"])
                     elif(op == 4):
@@ -173,7 +174,7 @@ class Main:
                         print(Pr.registrar(Main.estudiantes,Main.administradores,Main.profesores,pro))
                     elif(op == 2):
                         id = input(Me.mensa["ide"]+" "+Me.mensa["o"]+" "+Me.mensa["cor"]+": ")
-                        pro = Pe.buscarPersona(Main.profesores,id)
+                        pro = Pe.buscar_persona(Main.profesores,id)
                         if(pro):
                             print(pro.to_string())
                         else:
@@ -182,7 +183,7 @@ class Main:
                         break
                     elif(op == 3):
                         id = input(Me.mensa["ide"]+" "+Me.mensa["o"]+" "+Me.mensa["cor"]+": ")
-                        pro = Pe.buscarPersona(Main.profesores,id)
+                        pro = Pe.buscar_persona(Main.profesores,id)
                         if(pro):
                             print("1. "+Me.mensa["nom"]+"\n2. "+Me.mensa["ide"]+"\n3. "+Me.mensa["cor"]+"\n4. "+Me.mensa["con"])
                             o = int(input())
@@ -194,10 +195,10 @@ class Main:
                                 print(pro.set_identificacion(ide,Main.administradores+Main.estudiantes+Main.profesores))
                             if(o == 3):
                                 cor = input(Me.mensa["cor"]+": ")
-                                print(pro.setCorreo(cor,Main.administradores+Main.estudiantes+Main.profesores))
+                                print(pro.set_correo(cor,Main.administradores+Main.estudiantes+Main.profesores))
                             if(o == 4):
                                 con = input(Me.mensa["con"]+": ")
-                                print(pro.setClave(con))
+                                print(pro.set_clave(con))
                         else:
                             print(Me.mensa["err"])
                     elif(op == 4):
@@ -219,7 +220,7 @@ class Main:
                         print(Pe.registrar(Main.estudiantes,Main.administradores,Main.profesores,adm))
                     elif(op == 2):
                         id = input(Me.mensa["ide"]+" "+Me.mensa["o"]+" "+Me.mensa["cor"]+": ")
-                        adm = Pe.buscarPersona(Main.administradores,id)
+                        adm = Pe.buscar_persona(Main.administradores,id)
                         if(adm):
                             print(adm.to_string())
                         else:
@@ -228,7 +229,7 @@ class Main:
                         break
                     elif(op == 3):
                         id = input(Me.mensa["ide"]+" "+Me.mensa["o"]+" "+Me.mensa["cor"]+": ")
-                        adm = Pe.buscarPersona(Main.administradores,id)
+                        adm = Pe.buscar_persona(Main.administradores,id)
                         if(adm):
                             print("1. "+Me.mensa["nom"]+"\n2. "+Me.mensa["ide"]+"\n3. "+Me.mensa["cor"]+"\n4. "+Me.mensa["con"])
                             o = int(input())
@@ -240,10 +241,10 @@ class Main:
                                 print(adm.set_identificacion(ide,Main.administradores+Main.estudiantes+Main.profesores))
                             if(o == 3):
                                 cor = input(Me.mensa["cor"]+": ")
-                                print(adm.setCorreo(cor,Main.administradores+Main.estudiantes+Main.profesores))
+                                print(adm.set_correo(cor,Main.administradores+Main.estudiantes+Main.profesores))
                             if(o == 4):
                                 con = input(Me.mensa["con"]+": ")
-                                print(adm.setClave(con))
+                                print(adm.set_clave(con))
                         else:
                             print(Me.mensa["err"])
                     elif(op == 4):
@@ -302,7 +303,7 @@ class Main:
                     if(op == 1):
                         num = input(Me.mensa["num"]+": ")
                         mat = Ma.buscar_materia(Main.materias,input(Me.mensa["id"]+" "+Me.mensa["mat"]+": "))
-                        pro = pro = Pe.buscarPersona(Main.profesores,input(Me.mensa["idePro"]+": "))
+                        pro = pro = Pe.buscar_persona(Main.profesores,input(Me.mensa["idePro"]+": "))
                         gru = Gr(num,mat,pro)
                         print(Gr.registrar(gru,Main.grupos))
                     elif(op == 2):
@@ -327,7 +328,7 @@ class Main:
                                 mat = Ma.buscar_materia(Main.materias,input(Me.mensa["id"]+" "+Me.mensa["mat"]+": "))
                                 print(gru.set_materia(mat))
                             elif(o == 3):
-                                pro = Pe.buscarPersona(Main.profesores,input(Me.mensa["idePro"]+": "))
+                                pro = Pe.buscar_persona(Main.profesores,input(Me.mensa["idePro"]+": "))
                                 print(gru.set_profesor(pro))
                         else:
                             print(Me.mensa["err"])
@@ -348,11 +349,11 @@ class Main:
                         break
 
     @staticmethod
-    def menuEstudiante():
+    def menu_estudiante():
         None
 
     @staticmethod
-    def menuProfesor():
+    def menu_profesor():
         None
 
 

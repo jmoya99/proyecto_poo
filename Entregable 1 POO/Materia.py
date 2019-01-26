@@ -79,13 +79,13 @@ class Materia:
         return gru
 
     @staticmethod
-    def eliminar(id,listMaterias,listGrupos,listMatricula,listNota):
-        materia = Materia.buscar_materia(listMaterias,id)
+    def eliminar(id,list_materias,list_grupos,list_matricula,list_nota):
+        materia = Materia.buscar_materia(list_materias,id)
         if(materia):
             id = materia.get_id()
-            G.eliminar_por_materia(listGrupos,id,listMatricula,listNota)
-            listMaterias.remove(materia)
-            Materia.guardar_cambios(listMaterias)
+            G.eliminar_por_materia(list_grupos,id,list_matricula,list_nota)
+            list_materias.remove(materia)
+            Materia.guardar_cambios(list_materias)
             return Mensajes.mensa["eli"]
         else:
             return Mensajes.mensa["err"]

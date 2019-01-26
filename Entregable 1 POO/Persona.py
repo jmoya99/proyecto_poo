@@ -3,25 +3,25 @@ from Mensajes import Mensajes
 class Persona:
 
     def __init__(self,nombre,identidicacion,correo,clave):
-        self.setNombre(nombre)
-        self.setIdentificacion(identidicacion)
-        self.setCorreo(correo)
-        self.setClave(clave)
+        self.set_nombre(nombre)
+        self.set_identificacion(identidicacion)
+        self.set_correo(correo)
+        self.set_clave(clave)
 
-    def setNombre(self,nombre):
+    def set_nombre(self,nombre):
         if(nombre):
             self._nombre = nombre
             return Mensajes.mensa["mod"]
         return Mensajes.mensa["err"]
 
-    def getNombre(self):
+    def get_nombre(self):
         return self._nombre
 
-    def setIdentificacion(self,identificacion,lista = None):
+    def set_identificacion(self,identificacion,lista = None):
         if(not lista):
             lista = []
         if(identificacion):
-            if(not Persona.buscarPersona(lista,identificacion)):
+            if(not Persona.buscar_persona(lista,identificacion)):
                 self._identificacion = identificacion
                 return Mensajes.mensa["mod"]
         return Mensajes.mensa["err"]
@@ -29,11 +29,11 @@ class Persona:
     def getIdentificacion(self):
         return self._identificacion
 
-    def setCorreo(self,correo,lista = None):
+    def set_correo(self,correo,lista = None):
         if(not lista):
             lista = []
         if(correo):
-            if(not Persona.buscarPersona(lista,correo)):
+            if(not Persona.buscar_persona(lista,correo)):
                 self._correo = correo
                 return Mensajes.mensa["mod"]
         return Mensajes.mensa["err"]
@@ -41,7 +41,7 @@ class Persona:
     def getCorreo(self):
         return self._correo
 
-    def setClave(self,clave):
+    def set_clave(self,clave):
         if(clave):
             self._clave = clave
             return Mensajes.mensa["mod"]
@@ -50,11 +50,11 @@ class Persona:
     def getClave(self):
         return self._clave
 
-    def toString(self):
-        return "{0}({1}: {2},{3}: {4},{5}: {6},{7}: {8})".format(Mensajes.mensa["usu"],Mensajes.mensa["nom"],self.getNombre(),Mensajes.mensa["ide"],self.getIdentificacion(),Mensajes.mensa["cor"],self.getCorreo(),Mensajes.mensa["con"],self.getClave())
+    def to_string(self):
+        return "{0}({1}: {2},{3}: {4},{5}: {6},{7}: {8})".format(Mensajes.mensa["usu"],Mensajes.mensa["nom"],self.get_nombre(),Mensajes.mensa["ide"],self.getIdentificacion(),Mensajes.mensa["cor"],self.getCorreo(),Mensajes.mensa["con"],self.getClave())
 
     @staticmethod
-    def buscarPersona(listPersonas,id):
+    def buscar_persona(listPersonas,id):
         for p in listPersonas:
             if((p.getIdentificacion() == id or p.getCorreo() == id) and id):
                 return p
@@ -62,7 +62,7 @@ class Persona:
 
     @staticmethod
     def registrar(listEstu,listAdmin,listProfe,persona,tip=-1):#tip se refiere al tipo de usuario que es
-        if(Persona.buscarPersona(listAdmin+listEstu+listProfe,persona.getIdentificacion())):
+        if(Persona.buscar_persona(listAdmin+listEstu+listProfe,persona.getIdentificacion())):
             return Mensajes.mensa["err"]
         else:
             if(tip == 0):#estudiante
@@ -89,7 +89,7 @@ class Persona:
 
     @staticmethod
     def eliminar(lista,identificacion):
-        per = Persona.buscarPersona(lista,identificacion)
+        per = Persona.buscar_persona(lista,identificacion)
         if(per):
             lista.remove(per)
             return Mensajes.mensa["eli"]

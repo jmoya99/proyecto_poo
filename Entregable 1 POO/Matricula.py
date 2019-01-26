@@ -74,5 +74,5 @@ class Matricula:
         for i in range(0,len(lista)):
             if(lista[i-borr].getEstudiante().getIdentificacion() == estu):
                 gru = lista[i-borr].getGrupo()
-                Matricula.cancelar(lista,estu,gru.setNumero(),gru.getMateria().getId())
+                Matricula.cancelar(lista,estu,gru.set_numero(),gru.getMateria().getId())
                 borr += 1

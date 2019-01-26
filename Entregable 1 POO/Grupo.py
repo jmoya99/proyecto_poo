@@ -5,17 +5,17 @@ from Nota import Nota
 class Grupo:
     
     def __init__(self,numero,materia,profesor):
-        self.setNumero(numero)
-        self.setMateria(materia)
-        self.setProfesor(profesor)
+        self.set_numero(numero)
+        self.set_materia(materia)
+        self.set_profesor(profesor)
         self._notas = []
         self._matricula = []
 
-    def setNumero(self,numero,materia = None,lista = None):
+    def set_numero(self,numero,materia = None,lista = None):
         if(not lista):
             lista = []
         if(numero):
-            if(not Grupo.buscarGrupo(lista,numero,materia)):
+            if(not Grupo.buscar_grupo(lista,numero,materia)):
                 self._numero = numero
                 return Mensajes.mensa["mod"]
         return Mensajes.mensa["err"] 
@@ -23,7 +23,7 @@ class Grupo:
     def getNumero(self):
         return self._numero
 
-    def setMateria(self,materia):
+    def set_materia(self,materia):
         if(materia):
             self._materia = materia
             return Mensajes.mensa["mod"]
@@ -33,7 +33,7 @@ class Grupo:
     def getMateria(self):
         return self._materia
 
-    def setProfesor(self,profesor):
+    def set_profesor(self,profesor):
         if(profesor):
             self._profesor = profesor
             return Mensajes.mensa["mod"]
@@ -61,11 +61,11 @@ class Grupo:
     def getMatricula(self):
         return self._matricula
 
-    def toString(self):
-        return "{0}( {1}: {2}, {3}: {4}, {5}: {6})".format(Mensajes.mensa["gru"],Mensajes.mensa["num"],self.getNumero(),Mensajes.mensa["mat"],self.getMateria().toString(1),Mensajes.mensa["pro"],self.getProfesor().toString())
+    def to_string(self):
+        return "{0}( {1}: {2}, {3}: {4}, {5}: {6})".format(Mensajes.mensa["gru"],Mensajes.mensa["num"],self.getNumero(),Mensajes.mensa["mat"],self.getMateria().to_string(1),Mensajes.mensa["pro"],self.getProfesor().to_string())
         
     @staticmethod
-    def buscarGrupo(lista,num,IdMateria):
+    def buscar_grupo(lista,num,IdMateria):
         for gr in lista:
             if(gr.getNumero() == num and IdMateria == gr.getMateria().getId()):
                 return gr
@@ -73,7 +73,7 @@ class Grupo:
 
     @staticmethod
     def registrar(grupo,lista):
-        if(Grupo.buscarGrupo(lista,grupo.getNumero(),grupo.getMateria().getId()) or not(grupo.getProfesor())):
+        if(Grupo.buscar_grupo(lista,grupo.getNumero(),grupo.getMateria().getId()) or not(grupo.getProfesor())):
             return Mensajes.mensa["err"]
         else:
             lista.append(grupo)
@@ -82,7 +82,7 @@ class Grupo:
 
     @staticmethod
     def eliminar(lista,num,idMateria,listMatricula,listNota):
-         grupo = Grupo.buscarGrupo(lista,num,idMateria)
+         grupo = Grupo.buscar_grupo(lista,num,idMateria)
          if(grupo):
              Nota.eliminarPorGrupo(listNota,num,idMateria)
              Matricula.eliminarPorGrupo(listMatricula,num,idMateria)

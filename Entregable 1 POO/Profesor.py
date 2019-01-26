@@ -6,10 +6,10 @@ class Profesor(Persona):
         super().__init__(nombre,identidicacion,correo,clave)
         self._grupos = []
 
-    def setGrupos(self,grupos):
+    def set_grupos(self,grupos):
         self._grupos = grupos
 
-    def getGrupos(self):
+    def get_grupos(self):
         return self._grupos
 
     @staticmethod

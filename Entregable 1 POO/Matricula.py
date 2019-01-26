@@ -3,57 +3,57 @@ from Mensajes import Mensajes
 class Matricula:
 
     def __init__(self,semestre,estudiante,grupo):
-        self.setSemestre(semestre)
-        self.setEstudiante(estudiante)
-        self.setGrupo(grupo)
+        self.set_semestre(semestre)
+        self.set_estudiante(estudiante)
+        self.set_grupo(grupo)
         self._notaFinal = 0.0
 
-    def setNotaFinal(self,nota):
+    def set_notafinal(self,nota):
         self._notaFinal = nota
 
-    def getNotaFinal(self):
+    def get_notafinal(self):
         return self._notaFinal
 
-    def setSemestre(self,semestre):
+    def set_semestre(self,semestre):
         self._semestre = semestre
 
-    def getSemestre(self):
+    def get_semestre(self):
         return self._semestre
 
-    def setEstudiante(self,estudiante):
+    def set_estudiante(self,estudiante):
         self._estudiante = estudiante
 
-    def getEstudiante(self):
+    def get_estudiante(self):
         return self._estudiante
 
-    def setGrupo(self,grupo):
+    def set_grupo(self,grupo):
         self._grupo = grupo
 
-    def getGrupo(self):
+    def get_grupo(self):
         return self._grupo
 
     @staticmethod
-    def buscarMatricula(listMatricula,idEstudiante,IdMateria):
+    def buscar_matricula(listMatricula,idEstudiante,IdMateria):
         for ma in listMatricula:
-            gr = ma.getGrupo()
-            if(ma.getEstudiante().getIdentificacion() == idEstudiante and gr.getMateria().getId()):
+            gr = ma.get_grupo()
+            if(ma.get_estudiante().get_identificacion() == idEstudiante and gr.get_materia().get_id()):
                 return ma
         return None
 
     @staticmethod
     def matricular(listMatricula,matr):
-        gr = matr.getGrupo()
-        if(Matricula.buscarMatricula(listMatricula,matr.getEstudiante().getIdentificacion(),gr.getMateria().getId())):
+        gr = matr.get_grupo()
+        if(Matricula.buscar_matricula(listMatricula,matr.get_estudiante().get_identificacion(),gr.get_materia().get_id())):
             return Mensajes.mensa["err"]
         else:
             listMatricula.append(matr)
-            matr.getGrupo().getMatricula().append(matr)
-            matr.getEstudiante().getMatricula().append(matr)
+            matr.get_grupo().get_matricula().append(matr)
+            matr.get_estudiante().get_matricula().append(matr)
             return Mensajes.mensa["reg"]
 
     @staticmethod
     def cancelar(listMatricula,idEstudiante,numGrupo,IdMateria):
-        mat = Matricula.buscarMatricula(listMatricula,idEstudiante,numGrupo,IdMateria)
+        mat = Matricula.buscar_matricula(listMatricula,idEstudiante,numGrupo,IdMateria)
         if(mat):
             listMatricula.remove(mat)
             return Mensajes.mensa["eli"]
@@ -61,18 +61,18 @@ class Matricula:
             return Mensajes.mensa["err"]
 
     @staticmethod
-    def eliminarPorGrupo(lista,numGrupo,idMateria):
+    def eliminar_por_grupo(lista,numGrupo,idMateria):
         borr = 0
         for i in range(0,len(lista)):
-            if(lista[i-borr].getGrupo().getNumero() == numGrupo and lista[i-borr].getGrupo().getMateria().getId() == idMateria):
-                Matricula.cancelar(lista,lista[idEstudiante-borr].getEstudiante().getIdentificacion(),numGrupo,idMateria)
+            if(lista[i-borr].get_grupo().get_numero() == numGrupo and lista[i-borr].get_grupo().get_materia().get_id() == idMateria):
+                Matricula.cancelar(lista,lista[idEstudiante-borr].get_estudiante().get_identificacion(),numGrupo,idMateria)
                 borr += 1
 
     @staticmethod
-    def eliminarPorEstudiante(lista,estu):
+    def eliminar_por_estudiante(lista,estu):
         borr = 0
         for i in range(0,len(lista)):
-            if(lista[i-borr].getEstudiante().getIdentificacion() == estu):
-                gru = lista[i-borr].getGrupo()
-                Matricula.cancelar(lista,estu,gru.setNumero(),gru.getMateria().getId())
+            if(lista[i-borr].get_estudiante().get_identificacion() == estu):
+                gru = lista[i-borr].get_grupo()
+                Matricula.cancelar(lista,estu,gru.set_numero(),gru.get_materia().get_id())
                 borr += 1

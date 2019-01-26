@@ -10,10 +10,10 @@ class Estudiante(Persona):
         self._nota = []
         self._matricula = []
 
-    def setMateria(self,materia):
+    def set_materia(self,materia):
         self._materia = materia
 
-    def getMateria(self):
+    def get_materia(self):
         return self._materia
 
     def setNota(self,nota):
@@ -22,16 +22,16 @@ class Estudiante(Persona):
     def getNota(self):
         return self._nota
 
-    def setMatricula(self,matricula):
+    def set_matricula(self,matricula):
         self._matricula = matricula
 
-    def getMatricula(self):
+    def get_matricula(self):
         return self._matricula
 
     @staticmethod
     def eliminar(estudiante,listEstu,listNotas,listMatri):
-        Matricula.eliminarPorEstudiante(listMatri,estudiante)
-        Nota.eliminarPorEstudiante(listEstu,estudiante)
+        Matricula.eliminar_por_estudiante(listMatri,estudiante)
+        Nota.eliminar_por_estudiante(listEstu,estudiante)
         return Persona.eliminar(listEstu,estudiante)
 
     @staticmethod

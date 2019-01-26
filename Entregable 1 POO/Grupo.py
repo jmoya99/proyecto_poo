@@ -65,9 +65,9 @@ class Grupo:
         return "{0}( {1}: {2}, {3}: {4}, {5}: {6})".format(Mensajes.mensa["gru"],Mensajes.mensa["num"],self.get_numero(),Mensajes.mensa["mat"],self.get_materia().to_string(1),Mensajes.mensa["pro"],self.get_profesor().to_string())
 
     @staticmethod
-    def buscar_grupo(lista,num,IdMateria):
+    def buscar_grupo(lista,num,id_materia):
         for gr in lista:
-            if(gr.get_numero() == num and IdMateria == gr.get_materia().get_id()):
+            if(gr.get_numero() == num and id_materia == gr.get_materia().get_id()):
                 return gr
         return None
 
@@ -81,11 +81,11 @@ class Grupo:
             return Mensajes.mensa["reg"]
 
     @staticmethod
-    def eliminar(lista,num,idMateria,listMatricula,listNota):
-         grupo = Grupo.buscar_grupo(lista,num,idMateria)
+    def eliminar(lista,num,id_materia,list_matricula,list_nota):
+         grupo = Grupo.buscar_grupo(lista,num,id_materia)
          if(grupo):
-             Nota.eliminar_por_grupo(listNota,num,idMateria)
-             Matricula.eliminar_por_grupo(listMatricula,num,idMateria)
+             Nota.eliminar_por_grupo(list_nota,num,id_materia)
+             Matricula.eliminar_por_grupo(list_matricula,num,id_materia)
              grupo.get_materia().get_grupos().remove(grupo)
              lista.remove(grupo)
              return Mensajes.mensa["eli"]
@@ -93,17 +93,17 @@ class Grupo:
              return Mensajes.mensa["err"]
 
     @staticmethod
-    def mostrar_grupos(lista,idMateria = -1):
+    def mostrar_grupos(lista,id_materia = -1):
         grupos = ""
         for gr in lista:
-            if(idMateria == -1 or idMateria == gr.get_materia().get_id()):
+            if(id_materia == -1 or id_materia == gr.get_materia().get_id()):
                 grupos += gr.to_string()+"\n"
         return grupos
 
     @staticmethod
-    def eliminar_por_materia(lista,idMateria,listMatricula,listNota):
+    def eliminar_por_materia(lista,id_materia,list_matricula,list_nota):
         borr = 0
         for i in range(0,len(lista)):
-                if(lista[i-borr].get_materia().get_id() == idMateria):
-                    Grupo.eliminar(lista,lista[i-borr].get_numero(),idMateria,listMatricula,listNota)
+                if(lista[i-borr].get_materia().get_id() == id_materia):
+                    Grupo.eliminar(lista,lista[i-borr].get_numero(),id_materia,list_matricula,list_nota)
                     borr += 1

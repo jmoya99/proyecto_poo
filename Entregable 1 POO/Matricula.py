@@ -53,7 +53,7 @@ class Matricula:
 
     @staticmethod
     def cancelar(list_matricula,id_estudiante,num_grupo,id_materia):
-        mat = Matricula.buscar_matricula(list_matricula,id_estudiante,num_grupo,id_materia)
+        mat = Matricula.buscar_matricula(list_matricula,id_estudiante,id_materia)
         if(mat):
             list_matricula.remove(mat)
             return Mensajes.mensa["eli"]

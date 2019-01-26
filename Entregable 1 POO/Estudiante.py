@@ -2,7 +2,6 @@ from Persona import Persona
 from Matricula import Matricula
 from Nota import Nota
 
-
 class Estudiante(Persona):
 
     def __init__(self,nombre,identidicacion,correo,clave):

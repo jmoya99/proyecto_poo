@@ -113,3 +113,4 @@ class Persona:
         for i in lista:
             per += i.to_string()+"\n"
         return per
+

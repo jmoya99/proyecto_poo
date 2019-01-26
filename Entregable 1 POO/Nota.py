@@ -107,3 +107,4 @@ class Nota:
                 gru = lista[i-borr].get_grupo()
                 Nota.eliminar(lista,estudiante,gru.get_numero(),gru.get_materia().get_id())
                 borr += 1
+

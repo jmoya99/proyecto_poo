@@ -107,3 +107,4 @@ class Grupo:
                 if(lista[i-borr].get_materia().get_id() == id_materia):
                     Grupo.eliminar(lista,lista[i-borr].get_numero(),id_materia,list_matricula,list_nota)
                     borr += 1
+

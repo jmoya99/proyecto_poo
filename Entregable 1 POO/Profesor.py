@@ -15,3 +15,4 @@ class Profesor(Persona):
     @staticmethod
     def registrar(list_estu,list_admin,list_profe,profesor):
         return Persona.registrar(list_estu,list_admin,list_profe,profesor,1)
+

@@ -22,3 +22,4 @@ class Mensajes:
            "CASEGru": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. List all\n6. List by subject\n7. Go back"}
 
     mensa = {}
+

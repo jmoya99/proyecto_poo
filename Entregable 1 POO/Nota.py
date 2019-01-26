@@ -5,8 +5,7 @@ class Nota:
     def __init__(self,porcentaje,valor,id,estudiante,grupo):
         self.set_porcentaje(porcentaje)
         self.set_valor(valor)
-        self.set_id(id)'''el id es el numero de la nota, ejemplo: la nota #5 que
-         se saca en calculo diferencial'''
+        self.set_id(id)#el id es el numero de la nota, ejemplo: la nota #5 que se saca en calculo diferencial
         self.set_estudiante(estudiante)
         self.set_grupo(grupo)
 
@@ -41,7 +40,7 @@ class Nota:
         return self._grupo
 
     def to_string(self):
-        return "{0}( {1}: {2}, {3}: {4}, Id: {5})".format(Mensajes.mensa["not"],Mensajes.mensa["por"],self.getPorcentaje(),Mensajes.mensa["val"],self.getValor(),self.get_id())
+        return "{0}( {1}: {2}, {3}: {4}, Id: {5})".format(Mensajes.mensa["not"],Mensajes.mensa["por"],self.get_porcentaje(),Mensajes.mensa["val"],self.get_valor(),self.get_id())
 
     @staticmethod
     def buscar_nota(lista,doc_estudiante,id_materia,num_grupo):
@@ -59,7 +58,7 @@ class Nota:
         nota.get_grupo().get_materia().get_id(),
         nota.get_grupo().get_numero())):
             return Mensajes.mensa["err"]
-        elif(not(nota.get_grupo() in nota.get_estudiante().getMatricula())):
+        elif(not(nota.get_grupo() in nota.get_estudiante().get_matricula())):
             return Mensajes.mensa["err"]
         else:
             lista.append(nota)
@@ -101,13 +100,10 @@ class Nota:
                 borr += 1
 
     @staticmethod
-    def eliminar_por_estudiante(lista,estudiante):
+    def eliminar_por_estudiante(lista,estu):
         borr = 0
         for i in range(0,len(lista)):
             if(lista[i-borr].get_estudiante().get_identificacion() == estu):
                 gru = lista[i-borr].get_grupo()
-                Nota.eliminar(lista,
-                estudiante,
-                gru.get_numero(),
-                gru.get_materia().get_id())
+                Nota.eliminar(lista,estudiante,gru.get_numero(),gru.get_materia().get_id())
                 borr += 1

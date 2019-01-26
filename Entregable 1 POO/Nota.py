@@ -42,8 +42,9 @@ class Nota:
 
     def to_string(self):
         return "{0}( {1}: {2}, {3}: {4}, Id: {5})".format(
-            Mensajes.mensa["not"],Mensajes.mensa["por"],
-            self.getPorcentaje(),
+            Mensajes.mensa["not"],
+            Mensajes.mensa["por"],
+            self.get_porcentaje(),
             Mensajes.mensa["val"],
             self.getValor(),
             self.get_id()

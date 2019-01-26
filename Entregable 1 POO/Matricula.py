@@ -69,7 +69,7 @@ class Matricula:
                 borr += 1
 
     @staticmethod
-    def eliminarPorEstudiante(lista,estu):
+    def eliminar_por_estudiante(lista,estu):
         borr = 0
         for i in range(0,len(lista)):
             if(lista[i-borr].getEstudiante().getIdentificacion() == estu):

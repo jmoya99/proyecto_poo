@@ -4,94 +4,94 @@ from Mensajes import Mensajes
 class Materia:
 
     def __init__(self,id,nombre,creditos):
-        self.setId(id)
-        self.setNombre(nombre)
-        self.setCreditos(creditos)
+        self.set_id(id)
+        self.set_nombre(nombre)
+        self.set_creditos(creditos)
         self._grupos = []
 
-    def setId(self,id,lista = None):
+    def set_id(self,id,lista = None):
         if(not lista):
             lista = []
         if(id):
-            if(not Materia.buscarMateria(lista,id)):
+            if(not Materia.buscar_materia(lista,id)):
                 self._id = id
                 return Mensajes.mensa["mod"]
         return Mensajes.mensa["err"]
 
-    def getId(self):
+    def get_id(self):
         return self._id
 
-    def setNombre(self,nombre):
+    def set_nombre(self,nombre):
         if(nombre):
             self._nombre = nombre
             return Mensajes.mensa["mod"]
         return Mensajes.mensa["err"]
 
-    def getNombre(self):
+    def get_nombre(self):
         return self._nombre
 
-    def setCreditos(self,creditos):
+    def set_creditos(self,creditos):
         if(creditos):
             self._creditos = creditos
             return Mensajes.mensa["mod"]
         return Mensajes.mensa["err"]
 
-    def getCreditos(self):
+    def get_creditos(self):
         return self._creditos
 
-    def setGrupos(self,grupos):
+    def set_grupos(self,grupos):
         if(grupos):
             self._grupos = grupos
             return Mensajes.mensa["mod"]
         return Mensajes.mensa["err"]
 
-    def getGrupos(self):
+    def get_grupos(self):
         return self._grupos
 
-    def toString(self,tip = 0):
+    def to_string(self,tip = 0):
         if(tip == 0):
             grupos = ""
-            for g in self.getGrupos():
-                grupos += g.getNumero()+", "
+            for g in self.get_grupos():
+                grupos += g.get_numero()+", "
             grupos = grupos[0:len(grupos)-2]
-            return "{0}( {1}: {2}, {3}: {4}, {5}: {6}, {7}s: [{8}])".format(Mensajes.mensa["mat"],Mensajes.mensa["id"],self.getId(),Mensajes.mensa["nom"],self.getNombre(),Mensajes.mensa["cre"],self.getCreditos(),Mensajes.mensa["gru"],grupos)
-        return "{0}( {1}: {2}, {3}: {4}, {5}: {6})".format(Mensajes.mensa["mat"],Mensajes.mensa["id"],self.getId(),Mensajes.mensa["nom"],self.getNombre(),Mensajes.mensa["cre"],self.getCreditos())
+            return "{0}( {1}: {2}, {3}: {4}, {5}: {6}, {7}s: [{8}])".format(Mensajes.mensa["mat"],Mensajes.mensa["id"],self.get_id(),Mensajes.mensa["nom"],self.get_nombre(),Mensajes.mensa["cre"],self.get_creditos(),Mensajes.mensa["gru"],grupos)
+        return "{0}( {1}: {2}, {3}: {4}, {5}: {6})".format(Mensajes.mensa["mat"],Mensajes.mensa["id"],self.get_id(),Mensajes.mensa["nom"],self.get_nombre(),Mensajes.mensa["cre"],self.get_creditos())
 
     @staticmethod
-    def mostrarMaterias(lista):
+    def mostrar_materias(lista):
         materias = ""
         for i in lista:
-            materias += i.toString()+"\n"
+            materias += i.to_string()+"\n"
         return materias
 
     @staticmethod
-    def buscarMateria(lista,id):
+    def buscar_materia(lista,id):
         for m in lista:
-            if(m.getId() == id or m.getNombre() == id):
+            if(m.get_id() == id or m.get_nombre() == id):
                 return m
         return None
 
     @staticmethod
-    def mostrarGrupos(lista):
+    def mostrar_grupos(lista):
         gru = ""
         for g in lista:
-            gru += g.toString()+"\n"
+            gru += g.to_string()+"\n"
         return gru
 
     @staticmethod
-    def eliminar(id,listMaterias,listGrupos,listMatricula,listNota):
-        materia = Materia.buscarMateria(listMaterias,id)
+    def eliminar(id,list_materias,list_grupos,list_matricula,list_nota):
+        materia = Materia.buscar_materia(list_materias,id)
         if(materia):
-            id = materia.getId()
-            G.eliminarPorMateria(listGrupos,id,listMatricula,listNota)
-            listMaterias.remove(materia)
-            Materia.guardarCambios(listMaterias)
+            id = materia.get_id()
+            G.eliminar_por_materia(list_grupos,id,list_matricula,list_nota)
+            list_materias.remove(materia)
+            Materia.guardar_cambios(list_materias)
             return Mensajes.mensa["eli"]
         else:
             return Mensajes.mensa["err"]
 
     @staticmethod
-    def cargarMaterias(lista):
+    def cargar_materias(lista):
         inf = ""
         ini = 0
         fin = 0
@@ -106,19 +106,19 @@ class Materia:
             lista.append(Materia(mat[0],mat[1],mat[2]))
 
     @staticmethod
-    def guardarCambios(lista):
+    def guardar_cambios(lista):
         file = open("materia.txt","w")
         file.write("")
         for i in lista:
-            file.write("<{0},{1},{2}>".format(i.getId(),i.getNombre(),i.getCreditos()))
+            file.write("<{0},{1},{2}>".format(i.get_id(),i.get_nombre(),i.get_creditos()))
         file.close()
-      
+
     @staticmethod
     def registrar(materia,lista):
-        if(Materia.buscarMateria(lista,materia.getId())):
+        if(Materia.buscar_materia(lista,materia.get_id())):
             return Mensajes.mensa["err"]
         else:
             lista.append(materia)
-            Materia.guardarCambios(lista)
+            Materia.guardar_cambios(lista)
             return Mensajes.mensa["reg"]
 

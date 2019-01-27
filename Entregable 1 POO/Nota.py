@@ -3,98 +3,108 @@ from Mensajes import Mensajes
 class Nota:
 
     def __init__(self,porcentaje,valor,id,estudiante,grupo):
-        self.setPorcentaje(porcentaje)
-        self.setValor(valor)
-        self.setId(id)#el id es el numero de la nota, ejemplo: la nota #5 que se saca en calculo diferencial
-        self.setEstudiante(estudiante)
-        self.setGrupo(grupo)
+        self.set_porcentaje(porcentaje)#porcentaje de validez, ej 20
+        self.set_valor(valor)#porcentaje numerico ej, 4,5
+        self.set_id(id)#el id es el numero de la nota, ejemplo: la nota #5 que se saca en calculo diferencial
+        self.set_estudiante(estudiante)
+        self.set_grupo(grupo)
 
-    def setPorcentaje(self,porcentaje):
+    def set_porcentaje(self,porcentaje):
         self._porcentaje = porcentaje
 
-    def getPorcentaje(self):
+    def get_porcentaje(self):
         return self._porcentaje
 
-    def setValor(self,valor):
+    def set_valor(self,valor):
         self._valor = valor
 
-    def getValor(self):
+    def get_valor(self):
         return self._valor
 
-    def setId(self,id):
+    def set_id(self,id):
         self._id = id
 
-    def getId(self):
+    def get_id(self):
         return self._id
 
-    def setEstudiante(self,estudiante):
+    def set_estudiante(self,estudiante):
         self._estudiante = estudiante
 
-    def getEstudiante(self):
+    def get_estudiante(self):
         return self._estudiante
 
-    def setGrupo(self,grupo):
+    def set_grupo(self,grupo):
         self._grupo = grupo
 
-    def getGrupo(self):
+    def get_grupo(self):
         return self._grupo
 
-    def toString(self):
-        return "{0}( {1}: {2}, {3}: {4}, Id: {5})".format(Mensajes.mensa["not"],Mensajes.mensa["por"],self.getPorcentaje(),Mensajes.mensa["val"],self.getValor(),self.getId())
+    def to_string(self):
+        return "{0}( {1}: {2}, {3}: {4}, Id: {5})".format(Mensajes.mensa["not"],Mensajes.mensa["por"],self.get_porcentaje(),Mensajes.mensa["val"],self.get_valor(),self.get_id())
 
     @staticmethod
-    def buscarNota(lista,docEstudiante,IdMateria,numGrupo):
+    def buscar_nota(lista,doc_estudiante,id_materia,num_grupo):
         for nota in lista:
-            if(nota.getEstudiante().getIdentificacion() == docEstudiante and nota.getGrupo().getNumero() == numGrupo and nota.getGrupo().getMateria().getId() == IdMateria):
+            if(nota.get_estudiante().get_identificacion() == doc_estudiante
+            and nota.get_grupo().get_numero() == num_grupo
+            and nota.get_grupo().get_materia().get_id() == id_materia):
                 return nota
         return None
 
     @staticmethod
     def registrar(nota,lista):
-        if(Nota.buscarNota(lista,nota.getEstudiante(),nota.getGrupo().getMateria().getId(),nota.getGrupo().getNumero())):
+        if(Nota.buscar_nota(lista,
+        nota.get_estudiante(),
+        nota.get_grupo().get_materia().get_id(),
+        nota.get_grupo().get_numero())):
             return Mensajes.mensa["err"]
-        elif(not(nota.getGrupo() in nota.getEstudiante().getMatricula())):
+        elif(not(nota.get_grupo() in nota.get_estudiante().get_matricula())):
             return Mensajes.mensa["err"]
         else:
             lista.append(nota)
-            nota.getEstudiante().getNota().append(nota)
-            nota.getGrupo().getNotas().append(nota)
+            nota.get_estudiante().getNota().append(nota)
+            nota.get_grupo().get_notas().append(nota)
             return Mensajes.mensa["reg"]
 
     @staticmethod
-    def eliminar(lista,docEstudiante,IdMateria,numGrupo):
-         nota = Nota.buscarNota(lista,docEstudiante,IdMateria,numGrupo)
+    def eliminar(lista,doc_estudiante,id_materia,num_grupo):
+         nota = Nota.buscar_nota(lista,doc_estudiante,id_materia,num_grupo)
          if(nota):
-             nota.getEstudiante().getNota().remove(nota)
-             nota.getGrupo().getNotas().remove(nota)
+             nota.get_estudiante().getNota().remove(nota)
+             nota.get_grupo().get_notas().remove(nota)
              lista.remove(nota)
              return Mensajes.mensa["eli"]
          else:
              return Mensajes.mensa["err"]
 
     @staticmethod
-    def mostrarNotas(lista,est = -1,gru = -1,mat = -1):
+    def mostrar_notas(lista,est = -1,gru = -1,mat = -1):
         notas = ""
         for no in lista:
-            a = no.getGrupo()
-            if((est == -1 or est == no.getEstudiante().getIdentificacion()) and (gru == -1 or (gru == a.getNumero() and mat == a.getMateria().getId()))):
+            a = no.get_grupo()
+            if((est == -1 or est == no.get_estudiante().get_identificacion())
+            and (gru == -1 or (gru == a.get_numero()
+            and mat == a.get_materia().get_id()))):
                 notas += no.toString()+"\n"
         return notas
 
     @staticmethod
-    def eliminarPorGrupo(lista,numGrupo,idMateria):
+    def eliminar_por_grupo(lista,num_grupo,id_materia):
         borr = 0
         for i in range(0,len(lista)):
-            if(lista[i-borr].getGrupo().getNumero() == numGrupo and lista[i-borr].getGrupo().getMateria().getId() == idMateria):
-                Nota.eliminar(lista,lista[idEstudiante-borr].getEstudiante().getIdentificacion(),idMateria,numGrupo)
+            if(lista[i-borr].get_grupo().get_numero() == num_grupo
+            and lista[i-borr].get_grupo().get_materia().get_id() == id_materia):
+                Nota.eliminar(lista,
+                lista[idEstudiante-borr].get_estudiante().get_identificacion(),
+                id_materia,num_grupo)
                 borr += 1
 
     @staticmethod
-    def eliminarPorEstudiante(lista,estudiante):
+    def eliminar_por_estudiante(lista,estu):
         borr = 0
         for i in range(0,len(lista)):
-            if(lista[i-borr].getEstudiante().getIdentificacion() == estu):
-                gru = lista[i-borr].getGrupo()
-                Nota.eliminar(lista,estudiante,gru.getNumero(),gru.getMateria().getId())
+            if(lista[i-borr].get_estudiante().get_identificacion() == estu):
+                gru = lista[i-borr].get_grupo()
+                Nota.eliminar(lista,estudiante,gru.get_numero(),gru.get_materia().get_id())
                 borr += 1
 

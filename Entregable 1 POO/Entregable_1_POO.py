@@ -307,7 +307,7 @@ class Main:
                         gru = Gr(num,mat,pro)
                         print(Gr.registrar(gru,Main.grupos))
                     elif(op == 2):
-                        num = input(Gr.mensa["num"]+": ")
+                        num = input(Me.mensa["num"]+": ")
                         mat = input(Me.mensa["id"]+" "+Me.mensa["mat"]+": ")
                         gru = Gr.buscar_grupo(Main.grupos,num,mat)
                         if(gru):
@@ -333,7 +333,7 @@ class Main:
                         else:
                             print(Me.mensa["err"])
                     elif(op == 4):
-                        num = input(Gr.mensa["num"]+": ")
+                        num = input(Me.mensa["num"]+": ")
                         mat = input(Me.mensa["id"]+" "+Me.mensa["mat"]+": ")
                         gru = Gr.buscar_grupo(Main.grupos,num,mat)
                         print(Gr.eliminar(Main.grupos,num,mat,Main.matriculas,Main.notas))

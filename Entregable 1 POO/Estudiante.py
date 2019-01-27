@@ -2,7 +2,6 @@ from Persona import Persona
 from Matricula import Matricula
 from Nota import Nota
 
-
 class Estudiante(Persona):
 
     def __init__(self,nombre,identidicacion,correo,clave):
@@ -32,7 +31,7 @@ class Estudiante(Persona):
     @staticmethod
     def eliminar(estudiante,list_estu,list_notas,list_matri):
         Matricula.eliminar_por_estudiante(list_matri,estudiante)
-        Nota.eliminar_por_estudiante(list_estu,estudiante)
+        Nota.eliminar_por_estudiante(list_notas,estudiante)
         return Persona.eliminar(list_estu,estudiante)
 
     @staticmethod

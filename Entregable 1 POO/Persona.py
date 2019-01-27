@@ -52,15 +52,10 @@ class Persona:
 
     def to_string(self):
         return "{0}({1}: {2},{3}: {4},{5}: {6},{7}: {8})".format(
-        Mensajes.mensa["usu"],
-        Mensajes.mensa["nom"],
-        self.get_nombre(),
-        Mensajes.mensa["ide"],
-        self.get_identificacion(),
-        Mensajes.mensa["cor"],
-        self.get_correo(),
-        Mensajes.mensa["con"],
-        self.get_clave())
+            Mensajes.mensa["usu"],
+            Mensajes.mensa["nom"],self.get_nombre(),Mensajes.mensa["ide"],
+            self.get_identificacion(),Mensajes.mensa["cor"],self.get_correo(),
+            Mensajes.mensa["con"],self.get_clave())
 
     @staticmethod
     def buscar_persona(list_personas,id):

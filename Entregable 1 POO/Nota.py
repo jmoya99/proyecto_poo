@@ -5,8 +5,9 @@ class Nota:
     def __init__(self,porcentaje,valor,id,estudiante,grupo):
         self.set_porcentaje(porcentaje)
         self.set_valor(valor)
-        self.set_id(id)"""el id es el numero de la nota, ejemplo: la nota #5 que
-         se saca en calculo diferencial"""
+        self.set_id(id)
+        #el id es el numero de la nota, ejemplo: la nota #5 que
+         #se saca en calculo diferencial
         self.set_estudiante(estudiante)
         self.set_grupo(grupo)
 
@@ -108,13 +109,10 @@ class Nota:
                 borr += 1
 
     @staticmethod
-    def eliminar_por_estudiante(lista,estudiante):
+    def eliminar_por_estudiante(lista,estu):
         borr = 0
         for i in range(0,len(lista)):
             if(lista[i-borr].get_estudiante().get_identificacion() == estu):
                 gru = lista[i-borr].get_grupo()
-                Nota.eliminar(lista,
-                estudiante,
-                gru.get_numero(),
-                gru.get_materia().get_id())
+                Nota.eliminar(lista,estudiante,gru.get_numero(),gru.get_materia().get_id())
                 borr += 1

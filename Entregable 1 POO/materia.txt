@@ -1,1 +1,1 @@
-<2,ecu,5><1,calculo,4><3,Estructura de datos,3><4,BioEstadistica,4>
+<5,ecu,5><1,calculo,4><3,Estructura de datos,3><4,BioEstadistica,4>

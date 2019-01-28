@@ -3,11 +3,17 @@ from Mensajes import Mensajes
 class Nota:
 
     def __init__(self,porcentaje,valor,id,estudiante,grupo):
+<<<<<<< HEAD
         self.set_porcentaje(porcentaje)
         self.set_valor(valor)
         self.set_id(id)
         #el id es el numero de la nota, ejemplo: la nota #5 que
          #se saca en calculo diferencial
+=======
+        self.set_porcentaje(porcentaje)#porcentaje de validez, ej 20
+        self.set_valor(valor)#porcentaje numerico ej, 4,5
+        self.set_id(id)#el id es el numero de la nota, ejemplo: la nota #5 que se saca en calculo diferencial
+>>>>>>> 5bde101c590656e64373477e646f629bf8cf6e8b
         self.set_estudiante(estudiante)
         self.set_grupo(grupo)
 

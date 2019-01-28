@@ -37,6 +37,9 @@
     <Compile Include="Estudiante.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Operaciones.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Profesor.py">
       <SubType>Code</SubType>
     </Compile>

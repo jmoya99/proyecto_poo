@@ -6,13 +6,18 @@ class Matricula:
         self.set_semestre(semestre)
         self.set_estudiante(estudiante)
         self.set_grupo(grupo)
-        self._notaFinal = 0.0
+        self._nota_final = 0.0
 
-    def set_notafinal(self,nota):
-        self._notaFinal = nota
+    def set_nota_final(self,nota):
+        self._nota_final = nota
 
     def get_notafinal(self):
-        return self._notaFinal
+        notas = self.get_grupo().get_notas()
+        acu = 0
+        for no in notas:
+            acu += (no.get_valor()*no.get_porcentaje())/100
+        self.set_nota_final(round(acu,1))
+        return self._nota_final
 
     def set_semestre(self,semestre):
         self._semestre = semestre
@@ -53,7 +58,7 @@ class Matricula:
 
     @staticmethod
     def cancelar(list_matricula,id_estudiante,num_grupo,id_materia):
-        mat = Matricula.buscar_matricula(list_matricula,id_estudiante,num_grupo,id_materia)
+        mat = Matricula.buscar_matricula(list_matricula,id_estudiante,id_materia)
         if(mat):
             list_matricula.remove(mat)
             return Mensajes.mensa["eli"]
@@ -74,5 +79,5 @@ class Matricula:
         for i in range(0,len(lista)):
             if(lista[i-borr].get_estudiante().get_identificacion() == estu):
                 gru = lista[i-borr].get_grupo()
-                Matricula.cancelar(lista,estu,gru.set_numero(),gru.get_materia().get_id())
+                Matricula.cancelar(lista,estu,gru.get_numero(),gru.get_materia().get_id())
                 borr += 1

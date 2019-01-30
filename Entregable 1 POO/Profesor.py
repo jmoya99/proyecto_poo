@@ -2,8 +2,8 @@ from Persona import Persona
 
 class Profesor(Persona):
 
-    def __init__(self,nombre,identidicacion,correo,clave):
-        super().__init__(nombre,identidicacion,correo,clave)
+    def __init__(self,nombre,identificacion,correo,clave):
+        super().__init__(nombre,identificacion,correo,clave)
         self._grupos = []
 
     def set_grupos(self,grupos):
@@ -13,6 +13,6 @@ class Profesor(Persona):
         return self._grupos
 
     @staticmethod
-    def registrar(listEstu,listAdmin,listProfe,profesor):
-        return Persona.registrar(listEstu,listAdmin,listProfe,profesor,1)
+    def registrar(list_estu,list_admin,list_profe,profesor):
+        return Persona.registrar(list_estu,list_admin,list_profe,profesor,1)
 

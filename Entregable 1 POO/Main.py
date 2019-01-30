@@ -8,6 +8,7 @@ from Estudiante import Estudiante as Es
 from Nota import Nota as No
 from Operaciones import Operaciones as Op
 from random import *
+from Excel import reporteEXCEL
 import os
 
 
@@ -54,7 +55,7 @@ class Main:
         Es.registrar(Main.estudiantes,Main.administradores,Main.profesores,es2)
         es3 = Es("Juan Diego Marin Rogriguez","246","platano@unal.edu.co","banano")
         Es.registrar(Main.estudiantes,Main.administradores,Main.profesores,es3)
-        es4 = Es("Juan Felipe Usuga Munera","791","jfusum@unal.edu.co","1234")
+        es4 = Es("Juan Felipe Usuga Villegas","791","jfusum@unal.edu.co","1234")
         Es.registrar(Main.estudiantes,Main.administradores,Main.profesores,es4)
         #Grupo
         gr1 = Gr("1",mat1,pr2)
@@ -127,6 +128,25 @@ class Main:
                         print(Me.mensa["err"])
                 else:
                     print(Me.mensa["err"])
+            elif(op==4):
+                usu = str(input(Me.mensa["ing Usu"]))
+                usuario = Pe.buscar_persona(Main.administradores+Main.estudiantes+Main.profesores,usu)
+                if(usuario):
+                    for grupo in Main.grupos:
+                        titulo = "Notas Grupo #" + grupo.get_numero()
+                        cabecera = ("Nombre Estudiante", "Nota", "Porcentaje", "Materia")
+                        registros = []
+                        nombreEXCEL = titulo
+                        for nota in Main.notas:
+                            if (nota.get_grupo() == grupo):
+                                registros.append((nota.get_estudiante().get_nombre(), nota.get_valor(), nota.get_porcentaje(), grupo.get_materia().get_nombre()))
+                        # print(titulo)
+                        # print(cabecera)
+                        # print(registros)
+                        # print(nombreEXCEL)
+                        reporte = reporteEXCEL(titulo, cabecera, registros, nombreEXCEL).Exportar()
+                        #print(reporte)
+
 
     @staticmethod
     def menu_administrador():

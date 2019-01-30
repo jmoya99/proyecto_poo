@@ -5,7 +5,7 @@ class Mensajes:
            "usu": "Usuario","ide": "Identificación","cor": "Correo","con": "Contraseña",
            "not": "Nota", "por": "Porcentaje", "val": "Valor","ing Usu":"Ingrese su identificación o correo electronico: ",
            "ing Con": "Ingrese su contraseña: ","bie": "Bienvenido","o": "o",
-           "opc1": "1. Iniciar sesión\n2. Cerrar aplicación\n3. Recuperar contraseña\n",
+           "opc1": "1. Iniciar sesión\n2. Cerrar aplicación\n3. Recuperar contraseña\n4. Generar informe de notas en excel\n",
            "opcAdmin":"1. Estudiante\n2. Profesor\n3. Administrador\n4. Materia\n5. Grupo\n6. Cerrar sesion\n",
            "CASE": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar \n6. Volver",
            "CASEGru": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar todo\n6. Listar por materia \n7. Volver",
@@ -22,6 +22,5 @@ class Mensajes:
            "CASE": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. To list\n6. Go back",
            "CASEGru": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. List all\n6. List by subject\n7. Go back",
            "codi": "Code: ", "recu": "Password recovery", "nuecon": "New Password: "}
-    
-    mensa = {}
 
+    mensa = {}

@@ -112,21 +112,26 @@ class Main:
             elif(op == 2):
                 os._exit(0)
             elif(op == 3):
-                usu = str(input(Me.mensa["ing Usu"]))
-                usuario = Pe.buscar_persona(Main.administradores+Main.estudiantes+Main.profesores,usu)
-                if(usuario):
-                    cod = ""
-                    for i in range(0,4):
-                        cod += str(randrange(10))+choice("qwertyuiopasdfghjklñzxcvbnm")
-                    Op.enviar_correo_electronico(usuario.get_correo(),Me.mensa["recu"],Me.mensa["codi"]+cod)
-                    codigo = input(Me.mensa["codi"])
-                    if(codigo == cod):
-                        contraseña = input(Me.mensa["nuecon"])
-                        print(usuario.set_clave(contraseña))
-                    else:
-                        print(Me.mensa["err"])
+                recuperar_contraseña()
+ 
+
+    @staticmethod
+    def recuperar_contraseña(usuario):
+        usu = str(input(Me.mensa["ing Usu"]))
+        usuario = Pe.buscar_persona(Main.administradores+Main.estudiantes+Main.profesores,usu)
+        if(usuario):
+            cod = ""
+            for i in range(0,4):
+                cod += str(randrange(10))+choice("qwertyuiopasdfghjklñzxcvbnm")
+                Op.enviar_correo_electronico(usuario.get_correo(),Me.mensa["recu"],Me.mensa["codi"]+cod)
+                codigo = input(Me.mensa["codi"])
+                if(codigo == cod):
+                    contraseña = input(Me.mensa["nuecon"])
+                    print(usuario.set_clave(contraseña))
                 else:
                     print(Me.mensa["err"])
+        else:
+            print(Me.mensa["err"])
 
     @staticmethod
     def menu_administrador():

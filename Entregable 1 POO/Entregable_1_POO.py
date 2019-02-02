@@ -50,7 +50,7 @@ class Main:
         #Estudiante
         es1 = Es("Juan Pablo Moya Alarcón","789","jmoya@unal.edu.co","clave")
         Es.registrar(Main.estudiantes,Main.administradores,Main.profesores,es1)
-        es2 = Es("Julian Ospina Murguetio","135","jospm@unal.edu.co","anime")
+        es2 = Es("Julian Ospina Murguetio","135","juospinam@unal.edu.co","anime")
         Es.registrar(Main.estudiantes,Main.administradores,Main.profesores,es2)
         es3 = Es("Juan Diego Marin Rogriguez","246","platano@unal.edu.co","banano")
         Es.registrar(Main.estudiantes,Main.administradores,Main.profesores,es3)
@@ -106,7 +106,7 @@ class Main:
                     elif(tip_usuario == 1):
                         Main.menu_estudiante()
                     elif(tip_usuario == 2):
-                        Main.menu_profesor()
+                        Main.menu_profesor(Pe.buscar_persona(Main.estudiantes+Main.profesores+Main.administradores,usu))
                 else:
                     print(Me.mensa["err"])
             elif(op == 2):
@@ -372,9 +372,17 @@ class Main:
         None
 
     @staticmethod
-    def menu_profesor():
-        None
-
+    def menu_profesor(profesor):
+        while(True):
+            opc = int(input(Me.mensa["opcProf"]))
+            if(opc==1):
+                nom=input(Me.mensa["nom"]+": ")
+                fech=input(Me.mensa["Fech"]+": ")
+                det=input(Me.mensa["Det"]+": ")
+                gru=input(Me.mensa["gru"]+": ")
+                Pr.encontrar_correos(profesor,gru,nom,fech,det)                   
+            else:
+                break
 
 if __name__ == "__main__":
     print(Me.esp["idi"])

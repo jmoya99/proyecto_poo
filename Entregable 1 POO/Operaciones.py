@@ -1,6 +1,8 @@
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from Persona import Persona 
+
 
 """
     Correo: saan.unal@gmail.com
@@ -23,4 +25,3 @@ class Operaciones:
         server.login(msg['From'],password)
         server.sendmail(msg['From'],msg['To'],msg.as_string())
         server.quit()
-        return "Correo enviado"

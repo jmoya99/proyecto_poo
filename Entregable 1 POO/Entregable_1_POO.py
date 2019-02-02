@@ -54,7 +54,7 @@ class Main:
         Es.registrar(Main.estudiantes,Main.administradores,Main.profesores,es2)
         es3 = Es("Juan Diego Marin Rogriguez","246","platano@unal.edu.co","banano")
         Es.registrar(Main.estudiantes,Main.administradores,Main.profesores,es3)
-        es4 = Es("Juan Felipe Usuga Munera","791","jfusum@unal.edu.co","1234")
+        es4 = Es("Juan Felipe Usuga Munera","791","usuga@unal.edu.co","1234")
         Es.registrar(Main.estudiantes,Main.administradores,Main.profesores,es4)
         #Grupo
         gr1 = Gr("1",mat1,pr2)
@@ -381,11 +381,12 @@ class Main:
         while(True):
             opc = int(input(Me.mensa["opcProf"]))
             if(opc==1):
-                nom=input(Me.mensa["nom"]+": ")
+                asun=input(Me.mensa["nom"]+": ")
                 fech=input(Me.mensa["Fech"]+": ")
                 det=input(Me.mensa["Det"]+": ")
+                mat=input(Me.mensa["mat"]+": ")
                 gru=input(Me.mensa["gru"]+": ")
-                Pr.encontrar_correos(profesor,gru,nom,fech,det)                   
+                Pr.encontrar_correos_y_enviar(profesor,gru,asun,mat,fech,profesor.get_nombre(),det)                   
             else:
                 break
 

@@ -127,7 +127,7 @@ class Main:
                         print(Me.mensa["err"])
                 else:
                     print(Me.mensa["err"])
-
+ 
     @staticmethod
     def menu_administrador():
         while True:

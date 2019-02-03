@@ -22,6 +22,7 @@ class Mensajes:
            "CASE": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. To list\n6. Go back",
            "CASEGru": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. List all\n6. List by subject\n7. Go back",
            "codi": "Code: ", "recu": "Password recovery", "nuecon": "New Password: "}
-    
+
     mensa = {}
 
+    opc = {"1": "registro" , "2" : "modifico" , "3": "borro", "borro" : "se le borro la nota llamada "}

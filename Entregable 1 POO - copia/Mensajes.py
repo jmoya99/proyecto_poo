@@ -13,7 +13,7 @@ class Mensajes:
            "opcProf": "1. Nota\n2. Grupo\n3. Materia\n4. Cerrar sesion\n",
            "CASE": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar \n6. Volver",
            "CASEGru": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar todo\n6. Listar por materia \n7. Volver",
-           "codi": "Codigo: ", "recu": "Recuperación de contraseña", "nuecon": "Nueva Contraseña: ", "menuEstu": "1. Nota\n2. Matrícula\n3. Grupo\n4. Materia\n5. Salir\n"}
+           "codi": "Codigo: ", "recu": "Recuperación de contraseña", "nuecon": "Nueva Contraseña: "}
 
     ing = {"mat": "Subject", "idi": "1 for Spanish, 2 for English", "id": "Id", "idePro": "Teacher identification",
            "numGrp": "Group Number: ", "ideNot": "Score Identification: ", "reporte": "Report Generated",
@@ -29,6 +29,6 @@ class Mensajes:
            "opcProf": "1. Score\n2. Group\n3. Matter\n4. Log Out\n",
            "CASE": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. To list\n6. Go back",
            "CASEGru": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. List all\n6. List by subject\n7. Go back",
-           "codi": "Code: ", "recu": "Password recovery", "nuecon": "New Password: ", "menuEstu": "1. Score\n2. Registry\n3. Group\n4. Matter\n5. Salir\n"}
+           "codi": "Code: ", "recu": "Password recovery", "nuecon": "New Password: "}
 
     mensa = {}

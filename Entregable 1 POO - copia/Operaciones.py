@@ -10,7 +10,7 @@ from arrow import utcnow
     Correo: saan.unal@gmail.com
     Contraseña: SAAN12345
 """
-# Template de excelTtomado de:
+# Tomado de...
 # Nombre:       reporteEXCEL.py
 # Autor:        Miguel Andres Garcia Niño
 # Creado:       03 de Agosto 2018

@@ -113,8 +113,8 @@ class Main:
                 tip_usuario = Pe.login(
                     Main.estudiantes, Main.administradores, Main.profesores, usu, con)
                 if(tip_usuario != -1):
-                    print(Me.mensa["bie"] + " " + Pe.buscar_persona(Main.estudiantes
-                                                                    + Main.profesores + Main.administradores, usu).get_nombre())
+                    print(Me.mensa["bie"] + " " + Pe.buscar_persona(Main.estudiantes +
+                                                                    Main.profesores + Main.administradores, usu).get_nombre())
                     if(tip_usuario == 0):
                         Main.menu_administrador()
                     elif(tip_usuario == 1):
@@ -180,8 +180,8 @@ class Main:
                             Me.mensa["ide"] + " " + Me.mensa["o"] + " " + Me.mensa["cor"] + ": ")
                         est = Pe.buscar_persona(Main.estudiantes, id)
                         if(est):
-                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"] +
-                                  "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
+                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"]
+                                  + "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
                             o = int(input())
                             if(o == 1):
                                 nom = input(Me.mensa["nom"] + ": ")
@@ -234,8 +234,8 @@ class Main:
                             Me.mensa["ide"] + " " + Me.mensa["o"] + " " + Me.mensa["cor"] + ": ")
                         pro = Pe.buscar_persona(Main.profesores, id)
                         if(pro):
-                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"] +
-                                  "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
+                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"]
+                                  + "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
                             o = int(input())
                             if(o == 1):
                                 nom = input(Me.mensa["nom"] + ": ")
@@ -287,8 +287,8 @@ class Main:
                             Me.mensa["ide"] + " " + Me.mensa["o"] + " " + Me.mensa["cor"] + ": ")
                         adm = Pe.buscar_persona(Main.administradores, id)
                         if(adm):
-                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"] +
-                                  "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
+                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"]
+                                  + "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
                             o = int(input())
                             if(o == 1):
                                 nom = input(Me.mensa["nom"] + ": ")
@@ -372,8 +372,8 @@ class Main:
                         print(Gr.registrar(gru, Main.grupos))
                     elif(op == 2):
                         num = input(Me.mensa["num"] + ": ")
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         gru = Gr.buscar_grupo(Main.grupos, num, mat)
                         if(gru):
                             print(gru.to_string())
@@ -381,8 +381,8 @@ class Main:
                             print(Me.mensa["err"])
                     elif(op == 3):
                         num = input(Me.mensa["num"] + ": ")
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         gru = Gr.buscar_grupo(Main.grupos, num, mat)
                         if(gru):
                             print(
@@ -403,8 +403,8 @@ class Main:
                             print(Me.mensa["err"])
                     elif(op == 4):
                         num = input(Me.mensa["num"] + ": ")
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         gru = Gr.buscar_grupo(Main.grupos, num, mat)
                         print(Gr.eliminar(Main.grupos, num,
                                           mat, Main.matriculas, Main.notas))
@@ -412,8 +412,8 @@ class Main:
                         for gru in Main.grupos:
                             print(gru.to_string())
                     elif(op == 6):
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         for gru in Main.grupos:
                             if(gru.get_materia().get_id() == mat):
                                 print(gru.to_string())
@@ -422,23 +422,7 @@ class Main:
 
     @staticmethod
     def menu_estudiante():
-        while True:
-            op = int(input(Me.mensa["menuEstu"]))
-            if op == 1:
-                # Nota
-                pass
-            elif op == 2:
-                # Matricula
-                pass
-            elif op == 3:
-                # Grupo
-                pass
-            elif op == 4:
-                # Materia
-                pass
-            elif op == 5:
-                # Salir
-                break
+        None
 
     @staticmethod
     def menu_profesor():
@@ -553,6 +537,24 @@ class Main:
             elif op == 4:
                 # salir
                 break
+            # if op == 1:
+            #     for grupo in Main.grupos:
+            #         titulo = "Notas Grupo #" + grupo.get_numero()
+            #         cabecera = ("Nombre Estudiante", "Nota",
+            #                     "Porcentaje", "Materia")
+            #         registros = []
+            #         nombreEXCEL = titulo
+            #         for nota in Main.notas:
+            #             if (nota.get_grupo() == grupo):
+            #                 registros.append((nota.get_estudiante().get_nombre(), nota.get_valor(
+            #                 ), nota.get_porcentaje(), grupo.get_materia().get_nombre()))
+            #         # print(titulo)
+            #         # print(cabecera)
+            #         # print(registros)
+            #         # print(nombreEXCEL)
+            #         reporte = Op.exportar(titulo, cabecera, registros,
+            #                               nombreEXCEL)
+            #         # print(reporte)
 
 
 if __name__ == "__main__":

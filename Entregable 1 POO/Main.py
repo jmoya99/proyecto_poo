@@ -454,25 +454,35 @@ class Main:
                         # buscar estudiante
                         es = Es.buscar_persona(
                             Main.estudiantes, input(Me.mensa["ideEstu"]))
-                        # buscar grupo
-                        grp = Gr.buscar_grupo(Main.grupos, input(
-                            Me.mensa["numGrp"]), input(Me.mensa["ideMate"]))
+                        if es:
+                            print(Me.mensa["enc"])
+                            # buscar grupo
+                            grp = Gr.buscar_grupo(Main.grupos, input(
+                                Me.mensa["numGrp"]), input(Me.mensa["ideMate"]))
+                            if grp:
+                                print(Me.mensa["enc"])
+                                n1 = No(float(input(Me.mensa["por"] + ": ")), float(input(
+                                    Me.mensa["val"] + ": ")), input(Me.mensa["ideNot"]), es, grp)
+                                print(No.registrar(n1, Main.notas))
 
-                        n1 = No(input(Me.mensa["por"]), input(
-                            Me.mensa["val"]), input(Me.mensa["ideNot"]), es, grp)
-                        print(No.registrar(n1, Main.notas))
+                            else:
+                                print(Me.mensa["noenc"])
+
+                        else:
+                            print(Me.mensa["noenc"])
 
                     elif opc == 2:
                         n1 = No.buscar_nota(Main.notas, input(Me.mensa["ideEstu"]), input(
                             Me.mensa["ideMate"]), input(Me.mensa["numGrp"]), input(Me.mensa["ideNot"]))
                         if n1:
-                            val = int(input(Me.mensa["val"]))
-                            por = input(Me.mensa["por"])
+                            val = float(input(Me.mensa["val"] + ": "))
+                            por = float(input(Me.mensa["por"] + ": "))
                             index = Main.notas.index(n1)
                             Main.notas[index].set_valor(
                                 n1.get_valor() if val == "" else val)
                             Main.notas[index].set_porcentaje(n1.get_porcentaje()
                                                              if por == "" else por)
+                            print(Me.mensa["mod"])
 
                         else:
                             print(Me.mensa["noenc"])
@@ -500,7 +510,7 @@ class Main:
                             Me.mensa["numGrp"]), input(Me.mensa["ideMate"]))
 
                         if grp:
-                            print(grp)
+                            print(grp.to_string())
                         else:
                             print(Me.mensa["noenc"])
 
@@ -511,14 +521,13 @@ class Main:
                 # Materia
                 while True:
                     opc = int(input(Me.mensa["menuMatt"]))
-                    print("opc")
 
                     if opc == 1:
                         matt = Ma.buscar_materia(
                             Main.materias, input(Me.mensa["ideMate"]))
 
                         if matt:
-                            print(matt)
+                            print(matt.to_string())
                         else:
                             print(Me.mensa["noenc"])
 

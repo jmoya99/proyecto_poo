@@ -78,6 +78,7 @@ class Grupo:
         else:
             lista.append(grupo)
             grupo.get_materia().get_grupos().append(grupo)
+            grupo.get_profesor().get_grupos().append(grupo)
             return Mensajes.mensa["reg"]
 
     @staticmethod

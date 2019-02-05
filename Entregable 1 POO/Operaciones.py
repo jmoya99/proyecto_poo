@@ -168,4 +168,3 @@ class Operaciones:
         server.login(msg['From'], password)
         server.sendmail(msg['From'], msg['To'], msg.as_string())
         server.quit()
-        return "Correo enviado"

@@ -1,4 +1,5 @@
 from Persona import Persona
+from Operaciones import Operaciones
 
 class Profesor(Persona):
 
@@ -15,4 +16,10 @@ class Profesor(Persona):
     @staticmethod
     def registrar(list_estu,list_admin,list_profe,profesor):
         return Persona.registrar(list_estu,list_admin,list_profe,profesor,1)
-
+    @staticmethod
+    def encontrar_correos_y_enviar(prof,gru,asun,mat,fech,nom,det):
+        for i in prof.get_grupos():
+            if(i.get_numero() == gru):
+                for j in i.get_matricula():
+                    corr=j.get_estudiante().get_correo()
+                    Operaciones.enviar_correo_electronico(corr,asun,nom+" \n"+mat+" \nGrupo "+gru+" \nFecha de evento: "+fech+" \n"+det)

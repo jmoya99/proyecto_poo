@@ -6,13 +6,18 @@ class Matricula:
         self.set_semestre(semestre)
         self.set_estudiante(estudiante)
         self.set_grupo(grupo)
-        self._notaFinal = 0.0
+        self._nota_final = 0.0
 
-    def set_notafinal(self,nota):
-        self._notaFinal = nota
+    def set_nota_final(self,nota):
+        self._nota_final = nota
 
     def get_notafinal(self):
-        return self._notaFinal
+        notas = self.get_grupo().get_notas()
+        acu = 0
+        for no in notas:
+            acu += (no.get_valor()*no.get_porcentaje())/100
+        self.set_nota_final(round(acu,1))
+        return self._nota_final
 
     def set_semestre(self,semestre):
         self._semestre = semestre

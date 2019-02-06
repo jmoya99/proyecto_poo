@@ -32,3 +32,6 @@ class Mensajes:
            "codi": "Code: ", "recu": "Password recovery", "nuecon": "New Password: ", "menuEstu": "1. Score\n2. Registry\n3. Group\n4. Matter\n5. Exit\n"}
 
     mensa = {}
+
+    opc = {"1": "registro", "2": "modifico", "3": "borro",
+           "borro": "se le borro la nota llamada "}

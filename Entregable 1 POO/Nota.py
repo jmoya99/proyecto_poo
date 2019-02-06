@@ -118,12 +118,13 @@ class Nota:
                 Nota.eliminar(lista,estudiante,gru.get_numero(),gru.get_materia().get_id())
                 borr += 1
     @staticmethod
-    def enviar_correo_actualizar_nota(opc, id, nota, porcentaje, estudiante):
+    def enviar_correo_actualizar_nota(opc, id, nota, porcentaje, estudiante, materia):
         correo_enviar = estudiante.get_correo()
         cuerpo = ""
         if (Mensajes.opc[opc] == "borro"):
             cuerpo=Mensajes.opc[borro] + id
         else:
-            cuerpo="su nota en " + str(id) + " fue de " + str(nota) + " y vale " + str(porcentaje) + "% de la nota final"
+            cuerpo="su nota en " + str(materia) + " con nombre de "+ str(id) + " fue de " + str(nota) + " y vale " + str(porcentaje) + "% de la nota final"
         asunto="se le " + Mensajes.opc[opc] + " una nota"
         Operaciones.enviar_correo_electronico(correo_enviar, asunto, cuerpo)
+        print(Mensajes.opc["exito"])

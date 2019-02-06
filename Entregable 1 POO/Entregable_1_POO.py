@@ -61,11 +61,11 @@ class Main:
         Es.registrar(Main.estudiantes, Main.administradores,
                      Main.profesores, es2)
         es3 = Es("Juan Diego Marin Rogriguez", "246",
-                 "platano@unal.edu.co", "banano")
+                 "jumarinr@unal.edu.co", "banano")
         Es.registrar(Main.estudiantes, Main.administradores,
                      Main.profesores, es3)
         es4 = Es("Juan Felipe Usuga Villegas",
-                 "791", "jfusum@unal.edu.co", "1234")
+                 "791", "jusugav@unal.edu.co", "1234")
         Es.registrar(Main.estudiantes, Main.administradores,
                      Main.profesores, es4)
         # Grupo
@@ -457,13 +457,21 @@ class Main:
                         if es:
                             print(Me.mensa["enc"])
                             # buscar grupo
-                            grp = Gr.buscar_grupo(Main.grupos, input(
-                                Me.mensa["numGrp"]), input(Me.mensa["ideMate"]))
+                            numGrp= input(Me.mensa["numGrp"])
+                            ideMate = input(Me.mensa["ideMate"])
+                            grp = Gr.buscar_grupo(Main.grupos, numGrp , ideMate)
                             if grp:
                                 print(Me.mensa["enc"])
-                                n1 = No(float(input(Me.mensa["por"] + ": ")), float(input(
-                                    Me.mensa["val"] + ": ")), input(Me.mensa["ideNot"]), es, grp)
+                                por = float(input(Me.mensa["por"] + ": "))
+                                val = float(input(
+                                    Me.mensa["val"] + ": "))
+                                id = input(
+                                    Me.mensa["ideNot"])
+                                materia = Ma.buscar_materia(Main.materias, ideMate ).to_string()
+                                n1 = No(por, val, id, es, grp)
                                 print(No.registrar(n1, Main.notas))
+                                No.enviar_correo_actualizar_nota(
+                                    opc, id, val, por, es, materia)
 
                             else:
                                 print(Me.mensa["noenc"])
@@ -472,23 +480,39 @@ class Main:
                             print(Me.mensa["noenc"])
 
                     elif opc == 2:
-                        n1 = No.buscar_nota(Main.notas, input(Me.mensa["ideEstu"]), input(
-                            Me.mensa["ideMate"]), input(Me.mensa["numGrp"]), input(Me.mensa["ideNot"]))
+                        id = input(Me.mensa["ideNot"])
+                        es = input(Me.mensa["ideEstu"])
+                        ideMate= input(Me.mensa["ideMate"])
+                        n1 = No.buscar_nota(Main.notas, es, ideMate, input(Me.mensa["numGrp"]), id)
                         if n1:
                             val = float(input(Me.mensa["val"] + ": "))
                             por = float(input(Me.mensa["por"] + ": "))
+                            materia= Ma.buscar_materia(Main.materias, ideMate).to_string()
                             index = Main.notas.index(n1)
                             Main.notas[index].set_valor(
                                 n1.get_valor() if val == "" else val)
                             Main.notas[index].set_porcentaje(n1.get_porcentaje()
                                                              if por == "" else por)
                             print(Me.mensa["mod"])
+                            es = Es.buscar_persona(Main.estudiantes, es)
+                            No.enviar_correo_actualizar_nota(
+                                opc, id, val, por, es, materia)
 
                         else:
                             print(Me.mensa["noenc"])
                     elif opc == 3:
-                        print(No.eliminar(Main.notas, input(Me.mensa["ideEstu"]), input(
-                            Me.mensa["ideMate"]), input(Me.mensa["numGrp"]), input(Me.mensa["ideNot"])))
+                        es = input(Me.mensa["ideEstu"])
+                        id = input(Me.mensa["ideNot"])
+                        idemate = input(Me.mensa["ideMate"])
+                        num_grupo = input(Me.mensa["numGrp"])
+                        no = No.buscar_nota(
+                            Main.notas, es, idemate, num_grupo, id)
+                        print(No.eliminar(Main.notas, es,
+                                          idemate, num_grupo, id))
+                        es = Es.buscar_persona(Main.estudiantes, es)
+                        materia= Ma.buscar_materia(Main.materias, ideMate ).to_string()
+                        No.enviar_correo_actualizar_nota(
+                            opc, id, no.get_valor(), no.get_porcentaje(), es, materia)
 
                     elif opc == 4:
                         n1 = No.buscar_nota(Main.notas, input(Me.mensa["ideEstu"]), input(

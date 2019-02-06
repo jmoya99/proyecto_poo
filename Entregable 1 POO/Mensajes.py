@@ -29,6 +29,8 @@ class Mensajes:
            "opcProf": "1. Score\n2. Group\n3. Matter\n4. Log Out\n",
            "CASE": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. To list\n6. Go back", "busgrp": "1. Search group\n2. Exit\n",
            "CASEGru": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. List all\n6. List by subject\n7. Go back",
-           "codi": "Code: ", "recu": "Password recovery", "nuecon": "New Password: ", "menuEstu": "1. Score\n2. Registry\n3. Group\n4. Matter\n5. Exit\n"}
+           "codi": "Code: ", "recu": "Password recovery", "nuecon": "New Password: "}
 
     mensa = {}
+
+    opc = {1: "registro" , 2 : "modifico" , 3: "borro", "borro" : "se le borro la nota llamada ", "exito" : "Se ha enviado un correo al estudiante con la operacion realizada."}

@@ -33,4 +33,4 @@ class Mensajes:
 
     mensa = {}
 
-    opc = {"1": "registro" , "2" : "modifico" , "3": "borro", "borro" : "se le borro la nota llamada "}
+    opc = {1: "registro" , 2 : "modifico" , 3: "borro", "borro" : "se le borro la nota llamada ", "exito" : "Se ha enviado un correo al estudiante con la operacion realizada."}

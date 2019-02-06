@@ -471,7 +471,8 @@ class Main:
                                 n1 = No(por, val, id, es, grp)
                                 print(No.registrar(n1, Main.notas))
                                 No.enviar_correo_actualizar_nota(
-                                    opc, id, val, por, es, materia)
+                                    "registro", id, val, por, es, materia)
+                                print(Me.mensa["emailSatisfactory"])
 
                             else:
                                 print(Me.mensa["noenc"])
@@ -496,7 +497,8 @@ class Main:
                             print(Me.mensa["mod"])
                             es = Es.buscar_persona(Main.estudiantes, es)
                             No.enviar_correo_actualizar_nota(
-                                opc, id, val, por, es, materia)
+                                "modifico", id, val, por, es, materia)
+                            print(Me.mensa["emailSatisfactory"])
 
                         else:
                             print(Me.mensa["noenc"])
@@ -512,7 +514,8 @@ class Main:
                         es = Es.buscar_persona(Main.estudiantes, es)
                         materia= Ma.buscar_materia(Main.materias, ideMate ).to_string()
                         No.enviar_correo_actualizar_nota(
-                            opc, id, no.get_valor(), no.get_porcentaje(), es, materia)
+                            "borro", id, no.get_valor(), no.get_porcentaje(), es, materia)
+                        print(Me.mensa["emailSatisfactory"])
 
                     elif opc == 4:
                         n1 = No.buscar_nota(Main.notas, input(Me.mensa["ideEstu"]), input(

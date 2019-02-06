@@ -121,10 +121,9 @@ class Nota:
     def enviar_correo_actualizar_nota(opc, id, nota, porcentaje, estudiante, materia):
         correo_enviar = estudiante.get_correo()
         cuerpo = ""
-        if (Mensajes.opc[opc] == "borro"):
-            cuerpo=Mensajes.opc["borro"] + id + " de la materia " + str(materia)
+        if (Mensajes.mensa[opc] == "borro" or Mensajes.mensa[opc] == "delete"):
+            cuerpo=Mensajes.mensa["cuerpo_borro"] + id + Mensajes.mensa["cuerpo_borro2"]  + str(materia)
         else:
-            cuerpo="su nota en " + str(materia) + " con nombre de "+ str(id) + " fue de " + str(nota) + " y vale " + str(porcentaje) + "% de la nota final"
-        asunto="se le " + Mensajes.opc[opc] + " una nota"
+            cuerpo= Mensajes.mensa["cuerpo_resto"] + str(materia) + Mensajes.mensa["cuerpo_resto2"]+str(id) + Mensajes.mensa["cuerpo_resto3"] + str(nota) + Mensajes.mensa["cuerpo_resto4"] + str(porcentaje) + Mensajes.mensa["cuerpo_resto5"]
+        asunto=Mensajes.mensa["asunto"] + Mensajes.mensa[opc] + Mensajes.mensa["asunto2"]
         Operaciones.enviar_correo_electronico(correo_enviar, asunto, cuerpo)
-        print(Mensajes.opc["exito"])

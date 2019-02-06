@@ -13,7 +13,12 @@ class Mensajes:
            "opcProf": "1. Nota\n2. Grupo\n3. Materia\n4. Cerrar sesion\n",
            "CASE": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar \n6. Volver", "busgrp": "1. Buscar grupo\n2. Salir\n",
            "CASEGru": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar todo\n6. Listar por materia \n7. Volver",
-           "codi": "Codigo: ", "recu": "Recuperación de contraseña", "nuecon": "Nueva Contraseña: ", "menuEstu": "1. Nota\n2. Matrícula\n3. Grupo\n4. Materia\n5. Salir\n"}
+           "codi": "Codigo: ", "recu": "Recuperación de contraseña", "nuecon": "Nueva Contraseña: ", "menuEstu": "1. Nota\n2. Matrícula\n3. Grupo\n4. Materia\n5. Salir\n",
+           "registro": "registro", "modifico": "modifico", "borro": "borro", "cuerpo_borro": "se le borro la nota llamada ",
+           "cuerpo_borrado2" : " de la materia ", "cuerpo_resto" : "su nota en ", "cuerpo_resto2" :"con nombre de ",
+           "cuerpo_resto3" : " fue de ", "cuerpo_resto4" : " y vale ", "cuerpo_resto5" : " % de la nota final",
+           "asunto" : "se le ", "asunto2": " una nota",
+           "emailSatisfactory": "Se ha enviado un correo al estudiante con la operacion realizada."}
 
     ing = {"mat": "Subject", "idi": "1 for Spanish, 2 for English", "id": "Id", "idePro": "Teacher identification",
            "numGrp": "Group Number: ", "ideNot": "Score Identification: ", "reporte": "Report Generated", "reportErr": "Error unexpected: Permission Denied",
@@ -29,9 +34,11 @@ class Mensajes:
            "opcProf": "1. Score\n2. Group\n3. Matter\n4. Log Out\n",
            "CASE": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. To list\n6. Go back", "busgrp": "1. Search group\n2. Exit\n",
            "CASEGru": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. List all\n6. List by subject\n7. Go back",
-           "codi": "Code: ", "recu": "Password recovery", "nuecon": "New Password: "}
+           "codi": "Code: ", "recu": "Password recovery", "nuecon": "New Password: ",
+           "registro": "register", "modifico": "modify", "borro": "delete", "cuerpo_borro": "Was deleted your score called ",
+           "cuerpo_borro2" : " from the signature ", "cuerpo_resto" : "Your note in ", "cuerpo_resto2" :"with name ",
+           "cuerpo_resto3" : " was ", "cuerpo_resto4" : " and has ", "cuerpo_resto5" : " % from the final signature score",
+           "asunto" : "it's had been ", "asunto2": " a score",
+           "emailSatisfactory": "We have send an email with the operation made"}
 
     mensa = {}
-
-    opc = {1: "registro", 2: "modifico", 3: "borro", "borro": "se le borro la nota llamada ",
-           "exito": "Se ha enviado un correo al estudiante con la operacion realizada."}

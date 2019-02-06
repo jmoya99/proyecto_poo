@@ -122,7 +122,7 @@ class Nota:
         correo_enviar = estudiante.get_correo()
         cuerpo = ""
         if (Mensajes.opc[opc] == "borro"):
-            cuerpo=Mensajes.opc[borro] + id
+            cuerpo=Mensajes.opc["borro"] + id + " de la materia " + str(materia)
         else:
             cuerpo="su nota en " + str(materia) + " con nombre de "+ str(id) + " fue de " + str(nota) + " y vale " + str(porcentaje) + "% de la nota final"
         asunto="se le " + Mensajes.opc[opc] + " una nota"

@@ -3,8 +3,13 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from string import ascii_uppercase
 from openpyxl import Workbook
-from openpyxl.styles import Font, Border, Alignment, Side, PatternFill
+from openpyxl.styles import Font
+from openpyxl.styles import Border
+from openpyxl.styles import Alignment
+from openpyxl.styles import Side
+from openpyxl.styles import PatternFill
 from arrow import utcnow
+from Mensajes import Mensajes as Me
 
 """
     Correo: saan.unal@gmail.com
@@ -138,15 +143,15 @@ class Operaciones:
             libro_trabajo.save("{}.xlsx".format(nombre_excel))
 
          # +----------------------------------------+
-            retornar = "Reporte generado con éxito."
+            retornar = Me.mensa["reporte"]
          # +----------------------------------------+
         except PermissionError:
          # +------------------------------------------------+
-            retornar = "Error inesperado: Permiso denegado."
+            retornar = Me.mensa["reportErr"]
          # +------------------------------------------------+
         except:
          # +-------------------------------+
-            retornar = "Error desconocido."
+            retornar = Me.mensa["err"]
          # +-------------------------------+
         finally:
             # Cerrar el libro de trabajo (Workbook)

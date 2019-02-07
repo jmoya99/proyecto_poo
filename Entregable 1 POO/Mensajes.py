@@ -1,7 +1,7 @@
 class Mensajes:
     esp = {"mat": "Materia", "idi": "1 para Español, 2 para Ingles", "id": "Id", "idePro": "Identificación de profesor",
            "ideEstu": "Identificación del estudiante: ", "ideMate": "Identificación de la materia: ", "menuMatt": "1. Buscar materia\n2. Generar reporte\n3. Salir\n",
-           "numGrp": "Número del grupo: ", "ideNot": "Identificación de la nota: ", "reporte": "Reporte generado",
+           "numGrp": "Número del grupo: ", "ideNot": "Identificación de la nota: ", "reporte": "Reporte generado", "reportErr": "Error inesperado: Permiso denegado.",
            "nom": "Nombre", "cre": "Creditos", "gru": "Grupo", "reg": "Registrado", "mod": "Modificado",
            "err": "Error", "eli": "Eliminado", "num": "Numero", "pro": "Profesor",
            "usu": "Usuario", "ide": "Identificación", "cor": "Correo", "con": "Contraseña",
@@ -16,7 +16,7 @@ class Mensajes:
            "codi": "Codigo: ", "recu": "Recuperación de contraseña", "nuecon": "Nueva Contraseña: ", "menuEstu": "1. Nota\n2. Matrícula\n3. Grupo\n4. Materia\n5. Salir\n"}
 
     ing = {"mat": "Subject", "idi": "1 for Spanish, 2 for English", "id": "Id", "idePro": "Teacher identification",
-           "numGrp": "Group Number: ", "ideNot": "Score Identification: ", "reporte": "Report Generated",
+           "numGrp": "Group Number: ", "ideNot": "Score Identification: ", "reporte": "Report Generated", "reportErr": "Error unexpected: Permission Denied",
            "ideEstu": "Student identification: ", "ideMate": "Matter identification: ", "menuMatt": "1. Search Matter\n2. Generate report\n3. Exit\n",
            "nom": "Name", "cre": "Credits", "gru": "Group", "reg": "Inserted", "mod": "Modified",
            "err": "Error", "eli": "Removed", "num": "Number", "pro": "Teacher",
@@ -33,4 +33,5 @@ class Mensajes:
 
     mensa = {}
 
-    opc = {1: "registro" , 2 : "modifico" , 3: "borro", "borro" : "se le borro la nota llamada ", "exito" : "Se ha enviado un correo al estudiante con la operacion realizada."}
+    opc = {1: "registro", 2: "modifico", 3: "borro", "borro": "se le borro la nota llamada ",
+           "exito": "Se ha enviado un correo al estudiante con la operacion realizada."}

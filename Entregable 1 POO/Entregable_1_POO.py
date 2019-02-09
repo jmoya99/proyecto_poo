@@ -34,7 +34,10 @@ class Main:
             Ma.registrar(
                 Ma(1, "Programación Orientada a Objetos", 3), Main.materias)
         if(len(Main.materias) == 1):
-            Ma.registrar(Ma(2, "Calculo Diferencial", 4), Main.materias)
+            num = 2
+            if(Ma.buscar_materia(Main.materias, 2)):
+                num = 1
+            Ma.registrar(Ma(num, "Calculo Diferencial", 4), Main.materias)
         mat1 = Main.materias[0]
         mat2 = Main.materias[1]
         # Administrador
@@ -113,12 +116,13 @@ class Main:
                 tip_usuario = Pe.login(
                     Main.estudiantes, Main.administradores, Main.profesores, usu, con)
                 if(tip_usuario != -1):
-                    print(Me.mensa["bie"] + " " + Pe.buscar_persona(Main.estudiantes
-                                                                    + Main.profesores + Main.administradores, usu).get_nombre())
+                    print(Me.mensa["bie"] + " " + Pe.buscar_persona(Main.estudiantes +
+                                                                    Main.profesores + Main.administradores, usu).get_nombre())
                     if(tip_usuario == 0):
                         Main.menu_administrador()
                     elif(tip_usuario == 1):
-                        Main.menu_estudiante()
+                        Main.menu_estudiante(
+                            Pe.buscar_persona(Main.estudiantes, usu))
                     elif(tip_usuario == 2):
                         Main.menu_profesor()
                 else:
@@ -126,26 +130,29 @@ class Main:
             elif(op == 2):
                 os._exit(0)
             elif(op == 3):
-                recuperar_contraseña()
+
+                Main.recuperar_contrasena()
 
     @staticmethod
-    def recuperar_contraseña(usuario):
+    def recuperar_contrasena():
         usu = str(input(Me.mensa["ing Usu"]))
         usuario = Pe.buscar_persona(
             Main.administradores + Main.estudiantes + Main.profesores, usu)
         if(usuario):
             cod = ""
             for i in range(0, 4):
+
                 cod += str(randrange(10)) + \
-                    choice("qwertyuiopasdfghjklñzxcvbnm")
-                Op.enviar_correo_electronico(
-                    usuario.get_correo(), Me.mensa["recu"], Me.mensa["codi"] + cod)
-                codigo = input(Me.mensa["codi"])
-                if(codigo == cod):
-                    contraseña = input(Me.mensa["nuecon"])
-                    print(usuario.set_clave(contraseña))
-                else:
-                    print(Me.mensa["err"])
+                           choice("qwertyuiopasdfghjklñzxcvbnm")
+            Op.enviar_correo_electronico(
+                usuario.get_correo(), Me.mensa["recu"], Me.mensa["codi"] + cod)
+            codigo = input(Me.mensa["codi"])
+            print(cod)
+            if(codigo == cod):
+                contraseña = input(Me.mensa["nuecon"])
+                print(usuario.set_clave(contraseña))
+            else:
+                print(Me.mensa["err"])
 
     @staticmethod
     def menu_administrador():
@@ -421,21 +428,81 @@ class Main:
                         break
 
     @staticmethod
-    def menu_estudiante():
+    def menu_estudiante(estu):
         while True:
             op = int(input(Me.mensa["menuEstu"]))
             if op == 1:
-                # Nota
-                pass
+                # Notas: buscar
+                mat = input(Me.mensa["id"] + " " + Me.mensa["mat"] + ": ")
+                gru = input(Me.mensa["numGrp"])
+                grupo = Gr.buscar_grupo(Main.grupos, gru, mat)
+                for no in Main.notas:
+                    if(no.get_grupo() == grupo and no.get_estudiante() == estu):
+                        print(no.to_string())
             elif op == 2:
-                # Matricula
-                pass
+                # Matricula: CASE
+                while True:
+                    o = int(input(Me.mensa["CASE"]))
+                    if(o == 1):
+                        sem = input(Me.mensa["sem"] + ": ")
+                        mat = input(Me.mensa["id"] + " " +
+                                    Me.mensa["mat"] + ": ")
+                        gru = input(Me.mensa["numGrp"])
+                        grupo = Gr.buscar_grupo(Main.grupos, gru, mat)
+                        if(grupo):
+                            matri = M(semestre, estu, grupo)
+                            print(M.matricular(Main.matriculas, matri))
+                        else:
+                            print(Me.mensa["err"])
+                    elif(o == 2):
+                        mat = input(Me.mensa["id"] + " " +
+                                    Me.mensa["mat"] + ": ")
+                        matr = M.buscar_matricula(
+                            Main.matriculas, estu.get_identificacion(), mat)
+                        if(matr):
+                            print(matr.to_string())
+                        else:
+                            print(Me.mensa["err"])
+                    elif(o == 3):
+                        mat = input(Me.mensa["id"] + " " +
+                                    Me.mensa["mat"] + ": ")
+                        matr = M.buscar_matricula(
+                            Main.matriculas, estu.get_identificacion(), mat)
+                        if(matr):
+                            sem = input(Me.mensa["nuSem"] + ": ")
+                            print(matr.set_semestre(sem))
+                        else:
+                            print(Me.mensa["err"])
+                    elif(o == 4):
+                        mat = input(Me.mensa["id"] + " " +
+                                    Me.mensa["mat"] + ": ")
+                        matr = M.buscar_matricula(
+                            Main.matriculas, estu.get_identificacion(), mat)
+                        print(M.cancelar(Main.matriculas,
+                              estu.get_identificacion(), mat))
+                    elif(o == 5):
+                        for matr in Main.matriculas:
+                            print(matr.to_string())
+                    elif(o == 6):
+                        break
             elif op == 3:
                 # Grupo
-                pass
+                mat = input(Me.mensa["id"] + " " + Me.mensa["mat"] + ": ")
+                gru = input(Me.mensa["numGrp"])
+                grupo = Gr.buscar_grupo(Main.grupos, gru, mat)
+                if(grupo):
+                    print(grupo.to_string(1))
+                else:
+                    print(Me.mensa["err"])
             elif op == 4:
                 # Materia
-                pass
+                mat = input(Me.mensa["id"] + " " + Me.mensa["mat"] + ": ")
+                materia = Ma.buscar_materia(Main.materias, mat)
+                if(materia):
+                    print(materia.to_string())
+                else:
+                    print(Me.mensa["err"])
+
             elif op == 5:
                 # Salir
                 break
@@ -457,9 +524,9 @@ class Main:
                         if es:
                             print(Me.mensa["enc"])
                             # buscar grupo
-                            numGrp= input(Me.mensa["numGrp"])
+                            numGrp = input(Me.mensa["numGrp"])
                             ideMate = input(Me.mensa["ideMate"])
-                            grp = Gr.buscar_grupo(Main.grupos, numGrp , ideMate)
+                            grp = Gr.buscar_grupo(Main.grupos, numGrp, ideMate)
                             if grp:
                                 print(Me.mensa["enc"])
                                 por = float(input(Me.mensa["por"] + ": "))
@@ -467,11 +534,13 @@ class Main:
                                     Me.mensa["val"] + ": "))
                                 id = input(
                                     Me.mensa["ideNot"])
-                                materia = Ma.buscar_materia(Main.materias, ideMate ).to_string()
+                                materia = Ma.buscar_materia(
+                                    Main.materias, ideMate).to_string()
                                 n1 = No(por, val, id, es, grp)
                                 print(No.registrar(n1, Main.notas))
                                 No.enviar_correo_actualizar_nota(
-                                    opc, id, val, por, es, materia)
+                                    "registro", id, val, por, es, materia)
+                                print(Me.mensa["emailSatisfactory"])
 
                             else:
                                 print(Me.mensa["noenc"])
@@ -482,12 +551,14 @@ class Main:
                     elif opc == 2:
                         id = input(Me.mensa["ideNot"])
                         es = input(Me.mensa["ideEstu"])
-                        ideMate= input(Me.mensa["ideMate"])
-                        n1 = No.buscar_nota(Main.notas, es, ideMate, input(Me.mensa["numGrp"]), id)
+                        ideMate = input(Me.mensa["ideMate"])
+                        n1 = No.buscar_nota(
+                            Main.notas, es, ideMate, input(Me.mensa["numGrp"]), id)
                         if n1:
                             val = float(input(Me.mensa["val"] + ": "))
                             por = float(input(Me.mensa["por"] + ": "))
-                            materia= Ma.buscar_materia(Main.materias, ideMate).to_string()
+                            materia = Ma.buscar_materia(
+                                Main.materias, ideMate).to_string()
                             index = Main.notas.index(n1)
                             Main.notas[index].set_valor(
                                 n1.get_valor() if val == "" else val)
@@ -496,26 +567,41 @@ class Main:
                             print(Me.mensa["mod"])
                             es = Es.buscar_persona(Main.estudiantes, es)
                             No.enviar_correo_actualizar_nota(
-                                opc, id, val, por, es, materia)
+
+
+<< << << < HEAD
+                                opc, id, val, por, es, materia) ==
+
+
+== == =
+                                "modifico", id, val, por, es, materia)
+                            print(Me.mensa["emailSatisfactory"]) >>
+>>>> > 5258bcee1e6f6c030db244cb1c06c30ef669ba39
 
                         else:
                             print(Me.mensa["noenc"])
                     elif opc == 3:
-                        es = input(Me.mensa["ideEstu"])
-                        id = input(Me.mensa["ideNot"])
-                        idemate = input(Me.mensa["ideMate"])
-                        num_grupo = input(Me.mensa["numGrp"])
-                        no = No.buscar_nota(
+                        es=input(Me.mensa["ideEstu"])
+                        id=input(Me.mensa["ideNot"])
+                        idemate=input(Me.mensa["ideMate"])
+                        num_grupo=input(Me.mensa["numGrp"])
+                        no=No.buscar_nota(
                             Main.notas, es, idemate, num_grupo, id)
                         print(No.eliminar(Main.notas, es,
                                           idemate, num_grupo, id))
-                        es = Es.buscar_persona(Main.estudiantes, es)
-                        materia= Ma.buscar_materia(Main.materias, ideMate ).to_string()
+                        es=Es.buscar_persona(Main.estudiantes, es)
+                        materia=Ma.buscar_materia(
+                            Main.materias, ideMate).to_string()
                         No.enviar_correo_actualizar_nota(
-                            opc, id, no.get_valor(), no.get_porcentaje(), es, materia)
+<< << << < HEAD
+                            opc, id, no.get_valor(), no.get_porcentaje(), es, materia) ==
+== ===
+                            "borro", id, no.get_valor(), no.get_porcentaje(), es, materia)
+                        print(Me.mensa["emailSatisfactory"]) >>
+>>>> > 5258bcee1e6f6c030db244cb1c06c30ef669ba39
 
                     elif opc == 4:
-                        n1 = No.buscar_nota(Main.notas, input(Me.mensa["ideEstu"]), input(
+                        n1=No.buscar_nota(Main.notas, input(Me.mensa["ideEstu"]), input(
                             Me.mensa["ideMate"]), input(Me.mensa["numGrp"]), input(Me.mensa["ideNot"]))
                         if n1:
                             print(n1)
@@ -528,9 +614,9 @@ class Main:
             elif op == 2:
                 # Grupo
                 while True:
-                    opc = int(input(Me.mensa["busgrp"]))
+                    opc=int(input(Me.mensa["busgrp"]))
                     if opc == 1:
-                        grp = Gr.buscar_grupo(Main.grupos, input(
+                        grp=Gr.buscar_grupo(Main.grupos, input(
                             Me.mensa["numGrp"]), input(Me.mensa["ideMate"]))
 
                         if grp:
@@ -544,10 +630,10 @@ class Main:
             elif op == 3:
                 # Materia
                 while True:
-                    opc = int(input(Me.mensa["menuMatt"]))
+                    opc=int(input(Me.mensa["menuMatt"]))
 
                     if opc == 1:
-                        matt = Ma.buscar_materia(
+                        matt=Ma.buscar_materia(
                             Main.materias, input(Me.mensa["ideMate"]))
 
                         if matt:
@@ -556,17 +642,17 @@ class Main:
                             print(Me.mensa["noenc"])
 
                     elif opc == 2:
-                        matt = Ma.buscar_materia(
+                        matt=Ma.buscar_materia(
                             Main.materias, input(Me.mensa["ideMate"]))
 
                         if matt:
-                            titulo = "Reporte de " + matt.get_nombre()
-                            cabecera = (
+                            titulo="Reporte de " + matt.get_nombre()
+                            cabecera=(
                                 "Materia", "Grupo", "Nombre del Estudiante", "Nota", "Porcentaje")
-                            registros = []
-                            nombreEXCEL = "Reporte de " + matt.get_nombre()
+                            registros=[]
+                            nombreEXCEL="Reporte de " + matt.get_nombre()
 
-                            notes_filter = list(filter(lambda nota: list(map(lambda grupo: grupo.get_numero(
+                            notes_filter=list(filter(lambda nota: list(map(lambda grupo: grupo.get_numero(
                             ) == nota.get_grupo().get_numero(), matt.get_grupos())), Main.notas))
 
                             for nota in notes_filter:
@@ -591,9 +677,9 @@ class Main:
 if __name__ == "__main__":
     print(Me.esp["idi"])
     print(Me.ing["idi"])
-    idi = input()
+    idi=input()
     if(idi == "1"):
-        Me.mensa = Me.esp
+        Me.mensa=Me.esp
     else:
-        Me.mensa = Me.ing
+        Me.mensa=Me.ing
     Main.run()

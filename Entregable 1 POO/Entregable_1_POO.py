@@ -34,7 +34,10 @@ class Main:
             Ma.registrar(
                 Ma(1, "Programación Orientada a Objetos", 3), Main.materias)
         if(len(Main.materias) == 1):
-            Ma.registrar(Ma(2, "Calculo Diferencial", 4), Main.materias)
+            num = 2
+            if(Ma.buscar_materia(Main.materias,2)):
+                num = 1
+            Ma.registrar(Ma(num, "Calculo Diferencial", 4), Main.materias)
         mat1 = Main.materias[0]
         mat2 = Main.materias[1]
         # Administrador
@@ -118,7 +121,7 @@ class Main:
                     if(tip_usuario == 0):
                         Main.menu_administrador()
                     elif(tip_usuario == 1):
-                        Main.menu_estudiante()
+                        Main.menu_estudiante(Pe.buscar_persona(Main.estudiantes,usu))
                     elif(tip_usuario == 2):
                         Main.menu_profesor()
                 else:
@@ -126,26 +129,25 @@ class Main:
             elif(op == 2):
                 os._exit(0)
             elif(op == 3):
-                recuperar_contraseña()
+                Main.recuperar_contrasena()
 
     @staticmethod
-    def recuperar_contraseña(usuario):
+    def recuperar_contrasena():
         usu = str(input(Me.mensa["ing Usu"]))
         usuario = Pe.buscar_persona(
             Main.administradores + Main.estudiantes + Main.profesores, usu)
         if(usuario):
             cod = ""
             for i in range(0, 4):
-                cod += str(randrange(10)) + \
-                    choice("qwertyuiopasdfghjklñzxcvbnm")
-                Op.enviar_correo_electronico(
-                    usuario.get_correo(), Me.mensa["recu"], Me.mensa["codi"] + cod)
-                codigo = input(Me.mensa["codi"])
-                if(codigo == cod):
-                    contraseña = input(Me.mensa["nuecon"])
-                    print(usuario.set_clave(contraseña))
-                else:
-                    print(Me.mensa["err"])
+                cod += str(randrange(10)) + choice("qwertyuiopasdfghjklñzxcvbnm")
+            Op.enviar_correo_electronico(usuario.get_correo(), Me.mensa["recu"], Me.mensa["codi"] + cod)
+            codigo = input(Me.mensa["codi"])
+            print(cod)
+            if(codigo == cod):
+                contraseña = input(Me.mensa["nuecon"])
+                print(usuario.set_clave(contraseña))
+            else:
+                print(Me.mensa["err"])
 
     @staticmethod
     def menu_administrador():
@@ -421,21 +423,72 @@ class Main:
                         break
 
     @staticmethod
-    def menu_estudiante():
+    def menu_estudiante(estu):
         while True:
             op = int(input(Me.mensa["menuEstu"]))
             if op == 1:
-                # Nota
-                pass
+                # Notas: buscar
+                mat = input(Me.mensa["id"]+" "+Me.mensa["mat"]+": ")
+                gru = input(Me.mensa["numGrp"])
+                grupo = Gr.buscar_grupo(Main.grupos,gru,mat)
+                for no in Main.notas:
+                    if(no.get_grupo() == grupo and no.get_estudiante() == estu):
+                        print(no.to_string())
             elif op == 2:
-                # Matricula
-                pass
+                # Matricula: CASE
+                while True:
+                    o = int(input(Me.mensa["CASE"]))
+                    if(o == 1):
+                        sem = input(Me.mensa["sem"]+": ")
+                        mat = input(Me.mensa["id"]+" "+Me.mensa["mat"]+": ")
+                        gru = input(Me.mensa["numGrp"])
+                        grupo = Gr.buscar_grupo(Main.grupos,gru,mat)
+                        if(grupo):
+                            matri = M(semestre,estu,grupo)
+                            print(M.matricular(Main.matriculas,matri))
+                        else:
+                            print(Me.mensa["err"])
+                    elif(o == 2):
+                        mat = input(Me.mensa["id"]+" "+Me.mensa["mat"]+": ")
+                        matr = M.buscar_matricula(Main.matriculas,estu.get_identificacion(),mat)
+                        if(matr):
+                            print(matr.to_string())
+                        else:
+                            print(Me.mensa["err"])
+                    elif(o == 3):
+                        mat = input(Me.mensa["id"]+" "+Me.mensa["mat"]+": ")
+                        matr = M.buscar_matricula(Main.matriculas,estu.get_identificacion(),mat)
+                        if(matr):
+                            sem = input(Me.mensa["nuSem"]+": ")
+                            print(matr.set_semestre(sem))
+                        else:
+                            print(Me.mensa["err"])
+                    elif(o == 4):
+                        mat = input(Me.mensa["id"]+" "+Me.mensa["mat"]+": ")
+                        matr = M.buscar_matricula(Main.matriculas,estu.get_identificacion(),mat)
+                        print(M.cancelar(Main.matriculas,estu.get_identificacion(),mat))
+                    elif(o == 5):
+                        for matr in Main.matriculas:
+                            print(matr.to_string())
+                    elif(o == 6):
+                        break
             elif op == 3:
-                # Grupo
-                pass
+                #Grupo
+                mat = input(Me.mensa["id"]+" "+Me.mensa["mat"]+": ")
+                gru = input(Me.mensa["numGrp"])
+                grupo = Gr.buscar_grupo(Main.grupos,gru,mat)
+                if(grupo):
+                    print(grupo.to_string(1))
+                else:
+                    print(Me.mensa["err"])
             elif op == 4:
-                # Materia
-                pass
+                #Materia
+                mat = input(Me.mensa["id"]+" "+Me.mensa["mat"]+": ")
+                materia = Ma.buscar_materia(Main.materias,mat)
+                if(materia):
+                    print(materia.to_string())
+                else:
+                    print(Me.mensa["err"])
             elif op == 5:
                 # Salir
                 break

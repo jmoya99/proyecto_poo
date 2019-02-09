@@ -4,7 +4,6 @@ from Operaciones import Operaciones
 class Nota:
 
     def __init__(self,porcentaje,valor,id,estudiante,grupo):
-
         self.set_porcentaje(porcentaje)
         self.set_valor(valor)
         self.set_id(id)
@@ -14,31 +13,67 @@ class Nota:
         self.set_grupo(grupo)
 
     def set_porcentaje(self,porcentaje):
-        self._porcentaje = porcentaje
+        if(porcentaje):
+            self._porcentaje = porcentaje
+            return Mensajes.mensa["mod"]
+        return Mensajes.mensa["err"]
 
     def get_porcentaje(self):
         return self._porcentaje
 
     def set_valor(self,valor):
-        self._valor = valor
+        if(valor):
+            self._valor = valor
+            return Mensajes.mensa["mod"]
+        return Mensajes.mensa["err"]
 
     def get_valor(self):
         return self._valor
 
-    def set_id(self,id):
-        self._id = id
+    def set_id(self,id,lista=None):
+        if(id):
+            if(lista == None):
+                self._id = id
+                return Mensajes.mensa["mod"]
+            elif(Nota.buscar_nota(lista,self.get_estudiante().get_identificacion(),
+                                    self.get_grupo().get_materia().get_id(),self.get_grupo().get_numero(),id)):
+                return Mensajes.mensa["err"]
+            else:
+                self._id = id
+                return Mensajes.mensa["mod"]
+        return Mensajes.mensa["err"]
 
     def get_id(self):
         return self._id
 
-    def set_estudiante(self,estudiante):
-        self._estudiante = estudiante
+    def set_estudiante(self,estudiante,lista=None):
+        if(estudiante):
+            if(lista == None):
+                self._estudiante = estudiante
+                return Mensajes.mensa["mod"]
+            elif(Nota.buscar_nota(lista,estudiante.get_identificacion(),self.get_grupo().get_materia().get_id(),
+                                self.get_grupo().get_numero(),self.get_id())):
+                return Mensajes.mensa["err"]
+            else:
+                self._estudiante = estudiante
+                return Mensajes.mensa["mod"]
+        return Mensajes.mensa["err"]
 
     def get_estudiante(self):
         return self._estudiante
 
-    def set_grupo(self,grupo):
-        self._grupo = grupo
+    def set_grupo(self,grupo,lista=None):
+        if(grupo):
+            if(lista == None):
+                self._grupo = grupo
+                return Mensajes.mensa["mod"]
+            elif(Nota.buscar_nota(lista,self.get_estudiante().get_identificacion(),grupo.get_materia().get_id(),
+                                grupo,self.get_id())):
+                return Mensajes.mensa["err"]
+            else:
+                self._grupo = grupo
+                return Mensajes.mensa["mod"]
+        return Mensajes.mensa["err"]
 
     def get_grupo(self):
         return self._grupo
@@ -49,7 +84,7 @@ class Nota:
             Mensajes.mensa["por"],
             self.get_porcentaje(),
             Mensajes.mensa["val"],
-            self.getValor(),
+            self.get_valor(),
             self.get_id()
         )
 

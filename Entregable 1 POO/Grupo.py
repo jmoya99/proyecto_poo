@@ -61,7 +61,9 @@ class Grupo:
     def get_matricula(self):
         return self._matricula
 
-    def to_string(self):
+    def to_string(self,x=0):
+        if(x != 0):
+            return "{0}( {1}: {2}, {3}: {4}, {5}: {6})".format(Mensajes.mensa["gru"],Mensajes.mensa["num"],self.get_numero(),Mensajes.mensa["mat"],self.get_materia().to_string(1),Mensajes.mensa["pro"],self.get_profesor().get_nombre())
         return "{0}( {1}: {2}, {3}: {4}, {5}: {6})".format(Mensajes.mensa["gru"],Mensajes.mensa["num"],self.get_numero(),Mensajes.mensa["mat"],self.get_materia().to_string(1),Mensajes.mensa["pro"],self.get_profesor().to_string())
 
     @staticmethod

@@ -163,8 +163,8 @@ class Nota:
         cuerpo = ""
 
         if (Mensajes.mensa[opc] == "borro" or Mensajes.mensa[opc] == "delete"):
-                cuerpo = Mensajes.mensa["cuerpo_borro"] + id + \
-                    Mensajes.mensa["cuerpo_borro2"] + str(materia)
+            cuerpo = Mensajes.mensa["cuerpo_borro"] + id + \
+                Mensajes.mensa["cuerpo_borro2"] + str(materia)
         else:
             cuerpo = Mensajes.mensa["cuerpo_resto"] + str(materia) + Mensajes.mensa["cuerpo_resto2"] + str(
                 id) + Mensajes.mensa["cuerpo_resto3"] + str(nota) + Mensajes.mensa["cuerpo_resto4"] + str(porcentaje) + Mensajes.mensa["cuerpo_resto5"]

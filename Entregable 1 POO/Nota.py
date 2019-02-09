@@ -1,11 +1,15 @@
 from Mensajes import Mensajes
+from Operaciones import Operaciones
 
 class Nota:
 
     def __init__(self,porcentaje,valor,id,estudiante,grupo):
-        self.set_porcentaje(porcentaje)#porcentaje de validez, ej 20
-        self.set_valor(valor)#porcentaje numerico ej, 4,5
-        self.set_id(id)#el id es el numero de la nota, ejemplo: la nota #5 que se saca en calculo diferencial
+
+        self.set_porcentaje(porcentaje)
+        self.set_valor(valor)
+        self.set_id(id)
+        #el id es el numero de la nota, ejemplo: la nota #5 que
+         #se saca en calculo diferencial
         self.set_estudiante(estudiante)
         self.set_grupo(grupo)
 
@@ -40,14 +44,22 @@ class Nota:
         return self._grupo
 
     def to_string(self):
-        return "{0}( {1}: {2}, {3}: {4}, Id: {5})".format(Mensajes.mensa["not"],Mensajes.mensa["por"],self.get_porcentaje(),Mensajes.mensa["val"],self.get_valor(),self.get_id())
+        return "{0}( {1}: {2}, {3}: {4}, Id: {5})".format(
+            Mensajes.mensa["not"],
+            Mensajes.mensa["por"],
+            self.get_porcentaje(),
+            Mensajes.mensa["val"],
+            self.getValor(),
+            self.get_id()
+        )
 
     @staticmethod
-    def buscar_nota(lista,doc_estudiante,id_materia,num_grupo):
+    def buscar_nota(lista,doc_estudiante,id_materia,num_grupo,id):
         for nota in lista:
             if(nota.get_estudiante().get_identificacion() == doc_estudiante
             and nota.get_grupo().get_numero() == num_grupo
-            and nota.get_grupo().get_materia().get_id() == id_materia):
+            and nota.get_grupo().get_materia().get_id() == id_materia
+            and nota.get_id() == id):
                 return nota
         return None
 
@@ -56,21 +68,19 @@ class Nota:
         if(Nota.buscar_nota(lista,
         nota.get_estudiante(),
         nota.get_grupo().get_materia().get_id(),
-        nota.get_grupo().get_numero())):
-            return Mensajes.mensa["err"]
-        elif(not(nota.get_grupo() in nota.get_estudiante().get_matricula())):
+        nota.get_grupo().get_numero(),nota.get_id())):
             return Mensajes.mensa["err"]
         else:
             lista.append(nota)
-            nota.get_estudiante().getNota().append(nota)
+            nota.get_estudiante().get_nota().append(nota)
             nota.get_grupo().get_notas().append(nota)
             return Mensajes.mensa["reg"]
 
     @staticmethod
-    def eliminar(lista,doc_estudiante,id_materia,num_grupo):
-         nota = Nota.buscar_nota(lista,doc_estudiante,id_materia,num_grupo)
+    def eliminar(lista,doc_estudiante,id_materia,num_grupo,id):
+         nota = Nota.buscar_nota(lista,doc_estudiante,id_materia,num_grupo,id)
          if(nota):
-             nota.get_estudiante().getNota().remove(nota)
+             nota.get_estudiante().get_nota().remove(nota)
              nota.get_grupo().get_notas().remove(nota)
              lista.remove(nota)
              return Mensajes.mensa["eli"]
@@ -107,4 +117,13 @@ class Nota:
                 gru = lista[i-borr].get_grupo()
                 Nota.eliminar(lista,estudiante,gru.get_numero(),gru.get_materia().get_id())
                 borr += 1
-
+    @staticmethod
+    def enviar_correo_actualizar_nota(opc, id, nota, porcentaje, estudiante, materia):
+        correo_enviar = estudiante.get_correo()
+        cuerpo = ""
+        if (Mensajes.mensa[opc] == "borro" or Mensajes.mensa[opc] == "delete"):
+            cuerpo=Mensajes.mensa["cuerpo_borro"] + id + Mensajes.mensa["cuerpo_borro2"]  + str(materia)
+        else:
+            cuerpo= Mensajes.mensa["cuerpo_resto"] + str(materia) + Mensajes.mensa["cuerpo_resto2"]+str(id) + Mensajes.mensa["cuerpo_resto3"] + str(nota) + Mensajes.mensa["cuerpo_resto4"] + str(porcentaje) + Mensajes.mensa["cuerpo_resto5"]
+        asunto=Mensajes.mensa["asunto"] + Mensajes.mensa[opc] + Mensajes.mensa["asunto2"]
+        Operaciones.enviar_correo_electronico(correo_enviar, asunto, cuerpo)

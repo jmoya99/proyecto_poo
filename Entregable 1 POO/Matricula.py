@@ -9,33 +9,51 @@ class Matricula:
         self._nota_final = 0.0
 
     def set_nota_final(self,nota):
-        self._nota_final = nota
+        if(nota):
+            self._nota_final = nota
+            return Mensajes.mensa["mod"]
+        return Mensajes.mensa["err"]
 
     def get_notafinal(self):
         notas = self.get_grupo().get_notas()
         acu = 0
         for no in notas:
-            acu += (no.get_valor()*no.get_porcentaje())/100
+            if(no.get_estudiante() == self.get_estudiante()):
+                acu += (no.get_valor()*no.get_porcentaje())/100
         self.set_nota_final(round(acu,1))
         return self._nota_final
 
     def set_semestre(self,semestre):
-        self._semestre = semestre
+        if(semestre):
+            self._semestre = semestre
+            return Mensajes.mensa["mod"]
+        return Mensajes.mensa["err"]
 
     def get_semestre(self):
         return self._semestre
 
     def set_estudiante(self,estudiante):
-        self._estudiante = estudiante
+        if(estudiante):
+            self._estudiante = estudiante
+            return Mensajes.mensa["mod"]
+        return Mensajes.mensa["err"]
 
     def get_estudiante(self):
         return self._estudiante
 
     def set_grupo(self,grupo):
-        self._grupo = grupo
+        if(grupo):
+            self._grupo = grupo
+            return Mensajes.mensa["mod"]
+        return Mensajes.mensa["err"]
 
     def get_grupo(self):
         return self._grupo
+
+    def to_string(self):
+        return "{0}: {1}, {2}: {3}, {4}{5}, {6}: {7}".format(Mensajes.mensa["sem"],self.get_semestre(),Mensajes.mensa["notFinal"],
+                                                               self.get_notafinal(),Mensajes.mensa["numGrp"],self.get_grupo().get_numero(),
+                                                               Mensajes.mensa["id"]+" "+Mensajes.mensa["mat"],self.get_grupo().get_materia().get_id())
 
     @staticmethod
     def buscar_matricula(list_matricula,id_estudiante,id_materia):
@@ -57,7 +75,7 @@ class Matricula:
             return Mensajes.mensa["reg"]
 
     @staticmethod
-    def cancelar(list_matricula,id_estudiante,num_grupo,id_materia):
+    def cancelar(list_matricula,id_estudiante,id_materia):
         mat = Matricula.buscar_matricula(list_matricula,id_estudiante,id_materia)
         if(mat):
             list_matricula.remove(mat)

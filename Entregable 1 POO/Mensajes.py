@@ -23,7 +23,7 @@ class Mensajes:
 
     ing = {"mat": "Subject", "idi": "1 for Spanish, 2 for English", "id": "Id", "idePro": "Teacher identification",
            "numGrp": "Group Number: ", "ideNot": "Score Identification: ", "reporte": "Report Generated", "reportErr": "Error unexpected: Permission Denied",
-           "ideEstu": "Student identification: ", "ideMate": "Matter identification: ", "menuMatt": "1. Search Matter\n2. Generate report\n3. Exit\n",
+           "ideEstu": "Student identification: ", "ideMate": "Subject identification: ", "menuMatt": "1. Search Subject\n2. Generate report\n3. Exit\n",
            "nom": "Name", "cre": "Credits", "gru": "Group", "reg": "Inserted", "mod": "Modified",
            "err": "Error", "eli": "Removed", "num": "Number", "pro": "Teacher", "notFinal": "Final note","fech": "Date", "det":"Details",
            "usu": "User", "ide": "Identification", "cor": "Email", "con": "Password", "Nonotas":"Subject without grades","Nogrup":"Subject without groups",
@@ -31,7 +31,7 @@ class Mensajes:
            "opnot": "1. Insert\n2. Modify\n3.Delete\n4. Search\n5. Exit\n", "noenc": "Not found", "CorrE":"Email sent","Noestnot": "Student without grades",
            "ing Con": "Enter your password: ", "bie": "Welcome", "o": "or", "enc": "Found","Nomatric":"Group without enrollment",
            "opc1": "1. Log in\n2. Close application\n3. Recover password\n", "nuSem": "New semester",
-           "opcAdmin": "1. Student\n2. Professor\n3. Administrator\n4. Matter\n5. Group\n6. Log Out\n",
+           "opcAdmin": "1. Student\n2. Professor\n3. Administrator\n4. Subject\n5. Group\n6. Log Out\n",
            "opcProf": "1. Score\n2. Group\n3. Subject\n4. New event\n5. Log Out\n",
            "CASE": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. To list\n6. Go back\n", "busgrp": "1. Search group\n2. Exit\n",
            "CASEest": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. To list\n6 Students who are losing\n7 Go back\n",

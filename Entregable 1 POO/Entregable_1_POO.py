@@ -218,7 +218,7 @@ class Main:
                     elif(op == 6):
                          for i in Main.materias:
                             print(Me.mensa["_"])
-                            print(i.get_id(),i.get_nombre())
+                            print(Me.mensa["ideMate"],i.get_id())
                             n= i.get_grupos()
                             if(len(n)!=0):
                                 for j in n:
@@ -470,13 +470,13 @@ class Main:
                                         a[0]=j
                                 mayor = max(a.keys())
                                 if(mayor!=0):
-                                    print(i.get_id(),i.get_nombre()+"\n"+Me.mensa["gru"]+": "+a[mayor].get_numero())
+                                    print(Me.mensa["ideMate"],i.get_id()+"\n"+Me.mensa["gru"]+": "+a[mayor].get_numero())
                                     print(Me.mensa["_"])
                                 else:
-                                    print(i.get_id(),i.get_nombre()+"\n"+Me.mensa["Nonotas"])
+                                    print(Me.mensa["ideMate"],i.get_id()+"\n"+Me.mensa["Nonotas"])
                                     print(Me.mensa["_"])
                             else:
-                                print(i.get_id(),i.get_nombre()+"\n"+Me.mensa["Nogrup"])
+                                print(Me.mensa["ideMate"],i.get_id()+"\n"+Me.mensa["Nogrup"])
                                 print(Me.mensa["_"])
                     elif(op == 8):
                         break

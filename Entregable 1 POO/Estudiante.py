@@ -5,8 +5,8 @@ from Nota import Nota
 
 class Estudiante(Persona):
 
-    def __init__(self, nombre, identidicacion, correo, clave):
-        super().__init__(nombre, identidicacion, correo, clave)
+    def __init__(self, nombre, identificacion, correo, clave):
+        super().__init__(nombre, identificacion, correo, clave)
         self._materia = []
         self._nota = []
         self._matricula = []

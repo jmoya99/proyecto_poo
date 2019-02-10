@@ -163,7 +163,7 @@ class Main:
                 break
             elif(opc == 1):
                 while True:
-                    print(Me.mensa["CASE"])
+                    print(Me.mensa["CASEest"])
                     op = int(input())
                     if(op == 1):
                         nom = input(Me.mensa["nom"] + ": ")
@@ -181,7 +181,7 @@ class Main:
                             print(est.to_string())
                         else:
                             print(Me.mensa["err"])
-                    elif(op == 6):
+                    elif(op == 7):
                         break
                     elif(op == 3):
                         id = input(
@@ -215,6 +215,36 @@ class Main:
                     elif(op == 5):
                         for est in Main.estudiantes:
                             print(est.to_string())
+                    elif(op == 6):
+                         for i in Main.materias:
+                            print(Me.mensa["_"])
+                            print(i.get_id(),i.get_nombre())
+                            n= i.get_grupos()
+                            if(len(n)!=0):
+                                for j in n:
+                                    m=j.get_matricula()
+                                    if(len(m)!=0):
+                                        for k in m:
+                                            o=k.get_estudiante().get_nota()
+                                            if(len(o)!=0):
+                                                sum=0
+                                                sum2=0
+                                                for l in o:
+                                                    sum+=((l.get_porcentaje()/100)*l.get_valor())
+                                                    sum2+=(l.get_porcentaje()/100)
+                                                prom=sum/sum2
+                                                if(prom<3):
+                                                    print(k.get_estudiante().get_identificacion(), k.get_estudiante().get_nombre())
+                                            else:
+                                                print(Me.mensa["Noestnot"])
+                                                print(Me.mensa["_"])
+                                    else:
+                                        print(Me.mensa["Nomatric"])
+                                        print(Me.mensa["_"])
+                            else:
+                                print(Me.mensa["Nogrup"])
+                                print(Me.mensa["_"])
+
             elif(opc == 2):
                 while True:
                     print(Me.mensa["CASE"])
@@ -440,13 +470,13 @@ class Main:
                                         a[0]=j
                                 mayor = max(a.keys())
                                 if(mayor!=0):
-                                    print(i.get_nombre()+"\n"+Me.mensa["gru"]+": "+a[mayor].get_numero())
+                                    print(i.get_id(),i.get_nombre()+"\n"+Me.mensa["gru"]+": "+a[mayor].get_numero())
                                     print(Me.mensa["_"])
                                 else:
-                                    print(i.get_nombre()+"\n"+Me.mensa["Nonotas"])
+                                    print(i.get_id(),i.get_nombre()+"\n"+Me.mensa["Nonotas"])
                                     print(Me.mensa["_"])
                             else:
-                                print(Me.mensa["Nogrup"])
+                                print(i.get_id(),i.get_nombre()+"\n"+Me.mensa["Nogrup"])
                                 print(Me.mensa["_"])
                     elif(op == 8):
                         break

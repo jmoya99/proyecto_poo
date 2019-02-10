@@ -1,5 +1,6 @@
 from Persona import Persona
 from Operaciones import Operaciones
+from Mensajes import Mensajes
 
 class Profesor(Persona):
 
@@ -22,4 +23,5 @@ class Profesor(Persona):
             if(i.get_numero() == gru):
                 for j in i.get_matricula():
                     corr=j.get_estudiante().get_correo()
-                    Operaciones.enviar_correo_electronico(corr,asun,nom+" \n"+mat+" \nGrupo "+gru+" \nFecha de evento: "+fech+" \n"+det)
+                    Operaciones.enviar_correo_electronico(corr,asun,nom+" \n"+mat+" \n"+Mensajes.mensa["gru"]+": "+gru+" \n"+Mensajes.mensa["fech"]+": " +fech+" \n"+det)
+        return Mensajes.mensa["CorrE"]

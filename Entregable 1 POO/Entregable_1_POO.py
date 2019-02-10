@@ -60,7 +60,7 @@ class Main:
         Es.registrar(Main.estudiantes, Main.administradores,
                      Main.profesores, es1)
         es2 = Es("Julian Ospina Murguetio", "135",
-                 "jospm@unal.edu.co", "anime")
+                 "juospinam@unal.edu.co", "anime")
         Es.registrar(Main.estudiantes, Main.administradores,
                      Main.profesores, es2)
         es3 = Es("Juan Diego Marin Rogriguez", "246",
@@ -124,7 +124,8 @@ class Main:
                         Main.menu_estudiante(
                             Pe.buscar_persona(Main.estudiantes, usu))
                     elif(tip_usuario == 2):
-                        Main.menu_profesor()
+                        Main.menu_profesor(Pe.buscar_persona(Main.estudiantes +
+                                                                    Main.profesores + Main.administradores, usu))
                 else:
                     print(Me.mensa["err"])
             elif(op == 2):
@@ -425,6 +426,29 @@ class Main:
                             if(gru.get_materia().get_id() == mat):
                                 print(gru.to_string())
                     elif(op == 7):
+                        for i in Main.materias:
+                            n= i.get_grupos()
+                            if(len(n)!=0):
+                                a={}
+                                for j in n:
+                                    m=0
+                                    if(len(j.get_notas())!=0):
+                                        for k in j.get_notas():
+                                            m += k.get_valor()
+                                        a[m/len(j.get_notas())]=j
+                                    else:
+                                        a[0]=j
+                                mayor = max(a.keys())
+                                if(mayor!=0):
+                                    print(i.get_nombre()+"\n"+Me.mensa["gru"]+": "+a[mayor].get_numero())
+                                    print(Me.mensa["_"])
+                                else:
+                                    print(i.get_nombre()+"\n"+Me.mensa["Nonotas"])
+                                    print(Me.mensa["_"])
+                            else:
+                                print(Me.mensa["Nogrup"])
+                                print(Me.mensa["_"])
+                    elif(op == 8):
                         break
 
     @staticmethod
@@ -508,7 +532,7 @@ class Main:
                 break
 
     @staticmethod
-    def menu_profesor():
+    def menu_profesor(profesor):
         while True:
 
             op = int(input(Me.mensa["opcProf"]))
@@ -656,8 +680,15 @@ class Main:
 
                     elif opc == 3:
                         break
-
             elif op == 4:
+                #nuevo evento
+                asun=input(Me.mensa["nom"]+": ")
+                fech=input(Me.mensa["fech"]+": ")
+                det=input(Me.mensa["det"]+": ")
+                mat=input(Me.mensa["mat"]+": ")
+                gru=input(Me.mensa["gru"]+": ")
+                print(Pr.encontrar_correos_y_enviar(profesor,gru,asun,mat,fech,profesor.get_nombre(),det))  
+            elif op == 5:
                 # salir
                 break
 

@@ -164,6 +164,8 @@ class Main:
                 print(usuario.set_clave(contraseña))
             else:
                 print(Me.mensa["err"])
+        else:
+            print(Me.mensa["err"])
 
     @staticmethod
     def menu_administrador():
@@ -571,8 +573,19 @@ class Main:
                     print(materia.to_string())
                 else:
                     print(Me.mensa["err"])
-
             elif op == 5:
+                while True:
+                    print(Me.mensa["modi"])
+                    o = int(input(Me.mensa["opUsu"]))
+                    if(o == 1):
+                        nom = input(Me.mensa["nom"]+": ")
+                        print(estu.set_nombre(nom))
+                    elif(o == 2):
+                        cla = input(Me.mensa["con"]+": ")
+                        print(estu.set_clave(cla))
+                    elif(o == 3):
+                        break
+            elif op == 6:
                 # Salir
                 break
 

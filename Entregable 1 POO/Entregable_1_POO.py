@@ -22,6 +22,18 @@ class Main:
     notas = []
 
     @staticmethod
+    def mejores_notas(id_materia, id_grupo):
+        for grupo in Main.grupos:
+            if (grupo.get_materia().get_id() == id_materia):
+                if(grupo.get_numero()== id_grupo):
+                    lista_notas = grupo.get_notas()
+                    lista_notas.sort(key=lambda x: x._valor, reverse=True)
+                    print(Me.mensa["mejores_notas"])
+                    for nota in range(0,3):
+                        print(Me.mensa[nota+1] + Me.mensa["cuerpo_best"] +
+                        lista_notas[nota].to_string() + Me.mensa["cuerpo_best2"] + lista_notas[nota].get_estudiante().to_string())
+
+    @staticmethod
     def run():
         Ma.cargar_materias(Main.materias)
         Main.crear_datos_ficticios()
@@ -727,9 +739,13 @@ class Main:
                 print(Pr.encontrar_correos_y_enviar(Main.grupos, gru,
                                                     asun, mat, fech, profesor.get_nombre(), det))
             elif op == 5:
-                # salir
-                break
+                id_materia = input(Me.mensa["ideMate"])
+                id_grupo = input(Me.mensa["numGrp"])
+                Main.mejores_notas(id_materia, id_grupo)
 
+            elif op ==6:
+                #salir
+                break
 
 if __name__ == "__main__":
     print(Me.esp["idi"])

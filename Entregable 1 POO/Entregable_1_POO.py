@@ -646,7 +646,7 @@ class Main:
                         n1 = No.buscar_nota(Main.notas, input(Me.mensa["ideEstu"]), input(
                             Me.mensa["ideMate"]), input(Me.mensa["numGrp"]), input(Me.mensa["ideNot"]))
                         if n1:
-                            print(n1)
+                            print(n1.to_string())
                         else:
                             print(Me.mensa["noenc"])
 
@@ -717,11 +717,27 @@ class Main:
                 det=input(Me.mensa["det"]+": ")
                 mat=input(Me.mensa["mat"]+": ")
                 gru=input(Me.mensa["gru"]+": ")
-                print(Pr.encontrar_correos_y_enviar(profesor,gru,asun,mat,fech,profesor.get_nombre(),det))  
-            elif op == 5:
-                # salir
-                break
+                print(Pr.encontrar_correos_y_enviar(profesor,gru,asun,mat,fech,profesor.get_nombre(),det))
 
+            elif op == 5:
+                id_grupo = input(Me.mensa["ideMate"])
+                num_materia = input(Me.mensa["numGrp"])
+                id_profesor= input("confirme su id de docente: ")
+                notas_por_grupo=Gr(id_grupo, num_materia, id_profesor)
+                lista_notas = notas_por_grupo.get_notas()
+                for grupos in Main.grupos:
+                    print(grupos.get_materia().get_id())
+
+
+
+
+
+
+
+
+            elif op ==6:
+                #salir
+                break
 
 if __name__ == "__main__":
     print(Me.esp["idi"])

@@ -10,7 +10,7 @@ class Mensajes:
            "ing Con": "Ingrese su contraseña: ", "bie": "Bienvenido", "o": "o", "enc": "Encontrad@", "Nomatric":"Grupo sin matricula",
            "opc1": "1. Iniciar sesión\n2. Cerrar aplicación\n3. Recuperar contraseña\n",
            "opcAdmin": "1. Estudiante\n2. Profesor\n3. Administrador\n4. Materia\n5. Grupo\n6. Cerrar sesion\n",
-           "opcProf": "1. Nota\n2. Grupo\n3. Materia\n4. Nuevo evento\n5. Cerrar sesion\n", "nuSem": "Nuevo semestre ",
+           "opcProf": "1. Nota\n2. Grupo\n3. Materia\n4. Nuevo evento\n5. Mejores estudiantes\n6. Cerrar sesion\n", "nuSem": "Nuevo semestre ",
            "CASE": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar \n6. Volver\n", "busgrp": "1. Buscar grupo\n2. Salir\n",
            "CASEGru": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar todo\n6. Listar por materia \n7. Mostrar mejor grupo por materia \n8. Volver\n",
            "CASEest": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar \n6. Estudiantes que van perdiendo\n7. Volver\n",

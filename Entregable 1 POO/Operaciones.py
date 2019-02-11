@@ -2,13 +2,13 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from string import ascii_uppercase
-from openpyxl import Workbook
-from openpyxl.styles import Font
-from openpyxl.styles import Border
-from openpyxl.styles import Alignment
-from openpyxl.styles import Side
-from openpyxl.styles import PatternFill
-from arrow import utcnow
+#from openpyxl import Workbook
+#from openpyxl.styles import Font
+#from openpyxl.styles import Border
+#from openpyxl.styles import Alignment
+#from openpyxl.styles import Side
+#from openpyxl.styles import PatternFill
+#from arrow import utcnow
 from Mensajes import Mensajes as Me
 
 """

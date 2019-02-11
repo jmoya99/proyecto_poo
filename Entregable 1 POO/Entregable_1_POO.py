@@ -117,7 +117,6 @@ class Main:
         No.registrar(n7, Main.notas)
         No.registrar(n8, Main.notas)
         No.registrar(n9, Main.notas)
-
     @staticmethod
     def principal():
         while(True):
@@ -228,7 +227,7 @@ class Main:
                             print(est.to_string())
                     elif(op == 6):
                         for i in Main.materias:
-                            print(Me.mensa["_"])
+                            print("__________________________")
                             print(Me.mensa["ideMate"], i.get_id())
                             n = i.get_grupos()
                             if(len(n) != 0):
@@ -250,13 +249,13 @@ class Main:
                                                     ), k.get_estudiante().get_nombre())
                                             else:
                                                 print(Me.mensa["Noestnot"])
-                                                print(Me.mensa["_"])
+                                                print("__________________________")
                                     else:
                                         print(Me.mensa["Nomatric"])
-                                        print(Me.mensa["_"])
+                                        print("__________________________")
                             else:
                                 print(Me.mensa["Nogrup"])
-                                print(Me.mensa["_"])
+                                print("__________________________")
 
             elif(opc == 2):
                 while True:
@@ -485,15 +484,15 @@ class Main:
                                 if(mayor != 0):
                                     print(Me.mensa["ideMate"], i.get_id(
                                     ) + "\n" + Me.mensa["gru"] + ": " + a[mayor].get_numero())
-                                    print(Me.mensa["_"])
+                                    print("__________________________")
                                 else:
                                     print(Me.mensa["ideMate"], i.get_id(
                                     ) + "\n" + Me.mensa["Nonotas"])
-                                    print(Me.mensa["_"])
+                                    print("__________________________")
                             else:
                                 print(Me.mensa["ideMate"], i.get_id(
                                 ) + "\n" + Me.mensa["Nogrup"])
-                                print(Me.mensa["_"])
+                                print("__________________________")
                     elif(op == 8):
                         break
 

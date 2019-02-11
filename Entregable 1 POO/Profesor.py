@@ -22,10 +22,9 @@ class Profesor(Persona):
     @staticmethod
     def encontrar_correos_y_enviar(lista, gru, asun, mat, fech, nom, det):
         for i in lista:
-            print(lista)
             if(i.get_numero() == gru and i.get_materia().get_id() == mat):
                 for j in i.get_matricula():
                     corr = j.get_estudiante().get_correo()
                     Operaciones.enviar_correo_electronico(
-                        corr, asun, nom + " \n" + mat + " \n" + Mensajes.mensa["gru"] + ": " + gru + " \n" + Mensajes.mensa["fech"] + ": " + fech + " \n" + det)
+                        corr, asun, nom + " \n" +Mensajes.mensa["ideMate"]+" "+mat + " \n" + Mensajes.mensa["gru"] + ": " + gru + " \n" + Mensajes.mensa["fech"] + ": " + fech + " \n" + det)
         return Mensajes.mensa["CorrE"]

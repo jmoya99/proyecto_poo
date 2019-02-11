@@ -59,7 +59,7 @@ class Matricula:
     def buscar_matricula(list_matricula,id_estudiante,id_materia):
         for ma in list_matricula:
             gr = ma.get_grupo()
-            if(ma.get_estudiante().get_identificacion() == id_estudiante and gr.get_materia().get_id()):
+            if(ma.get_estudiante().get_identificacion() == id_estudiante and gr.get_materia().get_id() == id_materia):
                 return ma
         return None
 

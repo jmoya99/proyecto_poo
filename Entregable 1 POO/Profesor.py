@@ -2,26 +2,30 @@ from Persona import Persona
 from Operaciones import Operaciones
 from Mensajes import Mensajes
 
+
 class Profesor(Persona):
 
-    def __init__(self,nombre,identificacion,correo,clave):
-        super().__init__(nombre,identificacion,correo,clave)
+    def __init__(self, nombre, identificacion, correo, clave):
+        super().__init__(nombre, identificacion, correo, clave)
         self._grupos = []
 
-    def set_grupos(self,grupos):
+    def set_grupos(self, grupos):
         self._grupos = grupos
 
     def get_grupos(self):
         return self._grupos
 
     @staticmethod
-    def registrar(list_estu,list_admin,list_profe,profesor):
-        return Persona.registrar(list_estu,list_admin,list_profe,profesor,1)
+    def registrar(list_estu, list_admin, list_profe, profesor):
+        return Persona.registrar(list_estu, list_admin, list_profe, profesor, 1)
+
     @staticmethod
-    def encontrar_correos_y_enviar(prof,gru,asun,mat,fech,nom,det):
-        for i in prof.get_grupos():
-            if(i.get_numero() == gru):
+    def encontrar_correos_y_enviar(lista, gru, asun, mat, fech, nom, det):
+        for i in lista:
+            print(lista)
+            if(i.get_numero() == gru and i.get_materia().get_id() == mat):
                 for j in i.get_matricula():
-                    corr=j.get_estudiante().get_correo()
-                    Operaciones.enviar_correo_electronico(corr,asun,nom+" \n"+mat+" \n"+Mensajes.mensa["gru"]+": "+gru+" \n"+Mensajes.mensa["fech"]+": " +fech+" \n"+det)
+                    corr = j.get_estudiante().get_correo()
+                    Operaciones.enviar_correo_electronico(
+                        corr, asun, nom + " \n" + mat + " \n" + Mensajes.mensa["gru"] + ": " + gru + " \n" + Mensajes.mensa["fech"] + ": " + fech + " \n" + det)
         return Mensajes.mensa["CorrE"]

@@ -95,7 +95,7 @@ class Nota:
             if(nota.get_estudiante().get_identificacion() == doc_estudiante
             and nota.get_grupo().get_numero() == num_grupo
             and nota.get_grupo().get_materia().get_id() == id_materia
-               and nota.get_id() == id):
+               and int(nota.get_id()) == int(id)):
                 return nota
         return None
 

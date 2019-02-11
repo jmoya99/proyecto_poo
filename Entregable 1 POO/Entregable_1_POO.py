@@ -116,16 +116,16 @@ class Main:
                 tip_usuario = Pe.login(
                     Main.estudiantes, Main.administradores, Main.profesores, usu, con)
                 if(tip_usuario != -1):
-                    print(Me.mensa["bie"] + " " + Pe.buscar_persona(Main.estudiantes +
-                                                                    Main.profesores + Main.administradores, usu).get_nombre())
+                    print(Me.mensa["bie"] + " " + Pe.buscar_persona(Main.estudiantes
+                                                                    + Main.profesores + Main.administradores, usu).get_nombre())
                     if(tip_usuario == 0):
                         Main.menu_administrador()
                     elif(tip_usuario == 1):
                         Main.menu_estudiante(
                             Pe.buscar_persona(Main.estudiantes, usu))
                     elif(tip_usuario == 2):
-                        Main.menu_profesor(Pe.buscar_persona(Main.estudiantes +
-                                                                    Main.profesores + Main.administradores, usu))
+                        Main.menu_profesor(Pe.buscar_persona(Main.estudiantes
+                                                             + Main.profesores + Main.administradores, usu))
                 else:
                     print(Me.mensa["err"])
             elif(op == 2):
@@ -148,7 +148,6 @@ class Main:
             Op.enviar_correo_electronico(
                 usuario.get_correo(), Me.mensa["recu"], Me.mensa["codi"] + cod)
             codigo = input(Me.mensa["codi"])
-            print(cod)
             if(codigo == cod):
                 contraseña = input(Me.mensa["nuecon"])
                 print(usuario.set_clave(contraseña))
@@ -188,8 +187,8 @@ class Main:
                             Me.mensa["ide"] + " " + Me.mensa["o"] + " " + Me.mensa["cor"] + ": ")
                         est = Pe.buscar_persona(Main.estudiantes, id)
                         if(est):
-                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"] +
-                                  "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
+                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"]
+                                  + "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
                             o = int(input())
                             if(o == 1):
                                 nom = input(Me.mensa["nom"] + ": ")
@@ -216,25 +215,27 @@ class Main:
                         for est in Main.estudiantes:
                             print(est.to_string())
                     elif(op == 6):
-                         for i in Main.materias:
+                        for i in Main.materias:
                             print(Me.mensa["_"])
-                            print(Me.mensa["ideMate"],i.get_id())
-                            n= i.get_grupos()
-                            if(len(n)!=0):
+                            print(Me.mensa["ideMate"], i.get_id())
+                            n = i.get_grupos()
+                            if(len(n) != 0):
                                 for j in n:
-                                    m=j.get_matricula()
-                                    if(len(m)!=0):
+                                    m = j.get_matricula()
+                                    if(len(m) != 0):
                                         for k in m:
-                                            o=k.get_estudiante().get_nota()
-                                            if(len(o)!=0):
-                                                sum=0
-                                                sum2=0
+                                            o = k.get_estudiante().get_nota()
+                                            if(len(o) != 0):
+                                                sum = 0
+                                                sum2 = 0
                                                 for l in o:
-                                                    sum+=((l.get_porcentaje()/100)*l.get_valor())
-                                                    sum2+=(l.get_porcentaje()/100)
-                                                prom=sum/sum2
-                                                if(prom<3):
-                                                    print(k.get_estudiante().get_identificacion(), k.get_estudiante().get_nombre())
+                                                    sum += ((l.get_porcentaje() / 100) *
+                                                            l.get_valor())
+                                                    sum2 += (l.get_porcentaje() / 100)
+                                                prom = sum / sum2
+                                                if(prom < 3):
+                                                    print(k.get_estudiante().get_identificacion(
+                                                    ), k.get_estudiante().get_nombre())
                                             else:
                                                 print(Me.mensa["Noestnot"])
                                                 print(Me.mensa["_"])
@@ -272,8 +273,8 @@ class Main:
                             Me.mensa["ide"] + " " + Me.mensa["o"] + " " + Me.mensa["cor"] + ": ")
                         pro = Pe.buscar_persona(Main.profesores, id)
                         if(pro):
-                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"] +
-                                  "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
+                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"]
+                                  + "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
                             o = int(input())
                             if(o == 1):
                                 nom = input(Me.mensa["nom"] + ": ")
@@ -325,8 +326,8 @@ class Main:
                             Me.mensa["ide"] + " " + Me.mensa["o"] + " " + Me.mensa["cor"] + ": ")
                         adm = Pe.buscar_persona(Main.administradores, id)
                         if(adm):
-                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"] +
-                                  "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
+                            print("1. " + Me.mensa["nom"] + "\n2. " + Me.mensa["ide"]
+                                  + "\n3. " + Me.mensa["cor"] + "\n4. " + Me.mensa["con"])
                             o = int(input())
                             if(o == 1):
                                 nom = input(Me.mensa["nom"] + ": ")
@@ -410,8 +411,8 @@ class Main:
                         print(Gr.registrar(gru, Main.grupos))
                     elif(op == 2):
                         num = input(Me.mensa["num"] + ": ")
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         gru = Gr.buscar_grupo(Main.grupos, num, mat)
                         if(gru):
                             print(gru.to_string())
@@ -419,8 +420,8 @@ class Main:
                             print(Me.mensa["err"])
                     elif(op == 3):
                         num = input(Me.mensa["num"] + ": ")
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         gru = Gr.buscar_grupo(Main.grupos, num, mat)
                         if(gru):
                             print(
@@ -441,8 +442,8 @@ class Main:
                             print(Me.mensa["err"])
                     elif(op == 4):
                         num = input(Me.mensa["num"] + ": ")
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         gru = Gr.buscar_grupo(Main.grupos, num, mat)
                         print(Gr.eliminar(Main.grupos, num,
                                           mat, Main.matriculas, Main.notas))
@@ -450,33 +451,36 @@ class Main:
                         for gru in Main.grupos:
                             print(gru.to_string())
                     elif(op == 6):
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         for gru in Main.grupos:
                             if(gru.get_materia().get_id() == mat):
                                 print(gru.to_string())
                     elif(op == 7):
                         for i in Main.materias:
-                            n= i.get_grupos()
-                            if(len(n)!=0):
-                                a={}
+                            n = i.get_grupos()
+                            if(len(n) != 0):
+                                a = {}
                                 for j in n:
-                                    m=0
-                                    if(len(j.get_notas())!=0):
+                                    m = 0
+                                    if(len(j.get_notas()) != 0):
                                         for k in j.get_notas():
                                             m += k.get_valor()
-                                        a[m/len(j.get_notas())]=j
+                                        a[m / len(j.get_notas())] = j
                                     else:
-                                        a[0]=j
+                                        a[0] = j
                                 mayor = max(a.keys())
-                                if(mayor!=0):
-                                    print(Me.mensa["ideMate"],i.get_id()+"\n"+Me.mensa["gru"]+": "+a[mayor].get_numero())
+                                if(mayor != 0):
+                                    print(Me.mensa["ideMate"], i.get_id(
+                                    ) + "\n" + Me.mensa["gru"] + ": " + a[mayor].get_numero())
                                     print(Me.mensa["_"])
                                 else:
-                                    print(Me.mensa["ideMate"],i.get_id()+"\n"+Me.mensa["Nonotas"])
+                                    print(Me.mensa["ideMate"], i.get_id(
+                                    ) + "\n" + Me.mensa["Nonotas"])
                                     print(Me.mensa["_"])
                             else:
-                                print(Me.mensa["ideMate"],i.get_id()+"\n"+Me.mensa["Nogrup"])
+                                print(Me.mensa["ideMate"], i.get_id(
+                                ) + "\n" + Me.mensa["Nogrup"])
                                 print(Me.mensa["_"])
                     elif(op == 8):
                         break
@@ -499,8 +503,8 @@ class Main:
                     o = int(input(Me.mensa["CASE"]))
                     if(o == 1):
                         sem = input(Me.mensa["sem"] + ": ")
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         gru = input(Me.mensa["numGrp"])
                         grupo = Gr.buscar_grupo(Main.grupos, gru, mat)
                         if(grupo):
@@ -509,8 +513,8 @@ class Main:
                         else:
                             print(Me.mensa["err"])
                     elif(o == 2):
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         matr = M.buscar_matricula(
                             Main.matriculas, estu.get_identificacion(), mat)
                         if(matr):
@@ -518,8 +522,8 @@ class Main:
                         else:
                             print(Me.mensa["err"])
                     elif(o == 3):
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         matr = M.buscar_matricula(
                             Main.matriculas, estu.get_identificacion(), mat)
                         if(matr):
@@ -528,8 +532,8 @@ class Main:
                         else:
                             print(Me.mensa["err"])
                     elif(o == 4):
-                        mat = input(Me.mensa["id"] + " " +
-                                    Me.mensa["mat"] + ": ")
+                        mat = input(Me.mensa["id"] + " "
+                                    + Me.mensa["mat"] + ": ")
                         matr = M.buscar_matricula(
                             Main.matriculas, estu.get_identificacion(), mat)
                         print(M.cancelar(Main.matriculas,
@@ -606,8 +610,11 @@ class Main:
                         id = input(Me.mensa["ideNot"])
                         es = input(Me.mensa["ideEstu"])
                         ideMate = input(Me.mensa["ideMate"])
+                        numgrup = input(Me.mensa["numGrp"])
+
                         n1 = No.buscar_nota(
-                            Main.notas, es, ideMate, input(Me.mensa["numGrp"]), id)
+                            Main.notas, es, ideMate, numgrup, id)
+
                         if n1:
                             val = float(input(Me.mensa["val"] + ": "))
                             por = float(input(Me.mensa["por"] + ": "))
@@ -637,7 +644,7 @@ class Main:
                                           idemate, num_grupo, id))
                         es = Es.buscar_persona(Main.estudiantes, es)
                         materia = Ma.buscar_materia(
-                            Main.materias, ideMate).to_string()
+                            Main.materias, idemate).to_string()
                         No.enviar_correo_actualizar_nota(
                             "borro", id, no.get_valor(), no.get_porcentaje(), es, materia)
                         print(Me.mensa["emailSatisfactory"])
@@ -646,7 +653,7 @@ class Main:
                         n1 = No.buscar_nota(Main.notas, input(Me.mensa["ideEstu"]), input(
                             Me.mensa["ideMate"]), input(Me.mensa["numGrp"]), input(Me.mensa["ideNot"]))
                         if n1:
-                            print(n1)
+                            print(n1.to_string())
                         else:
                             print(Me.mensa["noenc"])
 
@@ -711,13 +718,14 @@ class Main:
                     elif opc == 3:
                         break
             elif op == 4:
-                #nuevo evento
-                asun=input(Me.mensa["nom"]+": ")
-                fech=input(Me.mensa["fech"]+": ")
-                det=input(Me.mensa["det"]+": ")
-                mat=input(Me.mensa["mat"]+": ")
-                gru=input(Me.mensa["gru"]+": ")
-                print(Pr.encontrar_correos_y_enviar(profesor,gru,asun,mat,fech,profesor.get_nombre(),det))  
+                # nuevo evento
+                asun = input(Me.mensa["nom"] + ": ")
+                fech = input(Me.mensa["fech"] + ": ")
+                det = input(Me.mensa["det"] + ": ")
+                mat = input(Me.mensa["ideMate"])
+                gru = input(Me.mensa["numGrp"])
+                print(Pr.encontrar_correos_y_enviar(Main.grupos, gru,
+                                                    asun, mat, fech, profesor.get_nombre(), det))
             elif op == 5:
                 # salir
                 break

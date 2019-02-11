@@ -14,12 +14,13 @@ class Mensajes:
            "CASE": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar \n6. Volver\n", "busgrp": "1. Buscar grupo\n2. Salir\n",
            "CASEGru": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar todo\n6. Listar por materia \n7. Mostrar mejor grupo por materia \n8. Volver\n",
            "CASEest": "1. Registrar\n2. Consultar\n3. Modificar\n4. Eliminar\n5. Listar \n6. Estudiantes que van perdiendo\n7. Volver\n",
-           "codi": "Codigo: ", "recu": "Recuperación de contraseña", "nuecon": "Nueva Contraseña: ", "menuEstu": "1. Nota\n2. Matrícula\n3. Grupo\n4. Materia\n5. Salir\n",
+           "codi": "Codigo: ", "recu": "Recuperación de contraseña", "nuecon": "Nueva Contraseña: ", "menuEstu": "1. Nota\n2. Matrícula\n3. Grupo\n4. Materia\n5. Usuario\n6. Salir\n",
            "registro": "registro", "modifico": "modifico", "borro": "borro", "cuerpo_borro": "se le borro la nota llamada ",
            "cuerpo_borrado2": " de la materia ", "cuerpo_resto": "su nota en ", "cuerpo_resto2": "con nombre de ",
            "cuerpo_resto3": " fue de ", "cuerpo_resto4": " y vale ", "cuerpo_resto5": " % de la nota final",
            "asunto": "se le ", "asunto2": " una nota", "numNota": "Numero(Id) de la nota", "sem": "Semestre",
-           "emailSatisfactory": "Se ha enviado un correo al estudiante con la operacion realizada."}
+           "emailSatisfactory": "Se ha enviado un correo al estudiante con la operacion realizada.", "modi": "Modificar",
+           "opUsu": "1. Nombre\n2. Contraseña\n3. Volver\n"}
 
     ing = {"mat": "Subject", "idi": "1 for Spanish, 2 for English", "id": "Id", "idePro": "Teacher identification",
            "numGrp": "Group Number: ", "ideNot": "Score Identification: ", "reporte": "Report Generated", "reportErr": "Error unexpected: Permission Denied",
@@ -36,11 +37,12 @@ class Mensajes:
            "CASE": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. To list\n6. Go back\n", "busgrp": "1. Search group\n2. Exit\n",
            "CASEest": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. To list\n6 Students who are losing\n7 Go back\n",
            "CASEGru": "1. Register\n2. Consult\n3. Modify\n4. Delete\n5. List all\n6. List by subject\n7. Show best group by subject\n8. Go back\n",
-           "codi": "Code: ", "recu": "Password recovery", "nuecon": "New Password: ", "menuEstu": "1. Note\n2. Enrollment\n3. Group\n4. Subject\n5. Exit\n",
+           "codi": "Code: ", "recu": "Password recovery", "nuecon": "New Password: ", "menuEstu": "1. Note\n2. Enrollment\n3. Group\n4. Subject\n5. User\n6. Exit\n",
            "registro": "register", "modifico": "modify", "borro": "delete", "cuerpo_borro": "Was deleted your score called ",
            "cuerpo_borro2": " from the signature ", "cuerpo_resto": "Your note in ", "cuerpo_resto2": "with name ",
            "cuerpo_resto3": " was ", "cuerpo_resto4": " and has ", "cuerpo_resto5": " % from the final signature score",
            "asunto": "it's had been ", "asunto2": " a score", "numNota": "Number(Id) of the note", "sem": "Semester",
-           "emailSatisfactory": "We have send an email with the operation made"}
+           "emailSatisfactory": "We have send an email with the operation made", "modi": "Modify",
+           "opUsu": "1. Name\n2. Password\n3. Exit\n"}
 
     mensa = {}

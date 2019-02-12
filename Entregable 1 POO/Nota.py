@@ -168,6 +168,27 @@ class Nota:
         else:
             cuerpo = Mensajes.mensa["cuerpo_resto"] + str(materia) + Mensajes.mensa["cuerpo_resto2"] + str(
                 id) + Mensajes.mensa["cuerpo_resto3"] + str(nota) + Mensajes.mensa["cuerpo_resto4"] + str(porcentaje) + Mensajes.mensa["cuerpo_resto5"]
-        asunto = Mensajes.mensa["asunto"] + \
-            Mensajes.mensa[opc] + Mensajes.mensa["asunto2"]
+        asunto = Mensajes.mensa["asunto"] + Mensajes.mensa[opc] + Mensajes.mensa["asunto2"]
         Operaciones.enviar_correo_electronico(correo_enviar, asunto, cuerpo)
+
+    @staticmethod
+    def mejores_notas(lista_grupos, id_materia, id_grupo):
+        for grupo in lista_grupos:
+            if (grupo.get_materia().get_id() == id_materia):
+                if(grupo.get_numero()== id_grupo):
+                    lista_notas = grupo.get_notas()
+                    lista_notas.sort(key=lambda x: x._valor, reverse=True)
+                    if (len(lista_notas)<3 and len(lista_notas)>0):
+                        print(Mensajes.mensa["mejores_notas1"] + str(len(lista_notas)) + Mensajes.mensa["mejores_notas2"])
+                        contador = 0
+                        for nota in lista_notas:
+                            contador +=1
+                            print(Mensajes.mensa[contador] + Mensajes.mensa["cuerpo_best"] +
+                            str(lista_notas[contador-1].get_valor()) + Mensajes.mensa["cuerpo_best2"] + lista_notas[contador-1].get_estudiante().get_nombre())
+                    elif(len(lista_notas)>=3):
+                        print(Mensajes.mensa["mejores_notas"])
+                        for nota in range(0,3):
+                            print(Mensajes.mensa[nota+1] + Mensajes.mensa["cuerpo_best"] +
+                            str(lista_notas[nota].get_valor()) + Mensajes.mensa["cuerpo_best2"] + lista_notas[nota].get_estudiante().get_nombre())
+                    else:
+                        print(Mensajes.mensa["No_estudiantes"])

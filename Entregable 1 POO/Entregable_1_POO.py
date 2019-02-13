@@ -22,18 +22,6 @@ class Main:
     notas = []
 
     @staticmethod
-    def mejores_notas(id_materia, id_grupo):
-        for grupo in Main.grupos:
-            if (grupo.get_materia().get_id() == id_materia):
-                if(grupo.get_numero()== id_grupo):
-                    lista_notas = grupo.get_notas()
-                    lista_notas.sort(key=lambda x: x._valor, reverse=True)
-                    print(Me.mensa["mejores_notas"])
-                    for nota in range(0,3):
-                        print(Me.mensa[nota+1] + Me.mensa["cuerpo_best"] +
-                        lista_notas[nota].to_string() + Me.mensa["cuerpo_best2"] + lista_notas[nota].get_estudiante().to_string())
-
-    @staticmethod
     def run():
         Ma.cargar_materias(Main.materias)
         Main.crear_datos_ficticios()
@@ -618,7 +606,7 @@ class Main:
                                 id = input(
                                     Me.mensa["ideNot"])
                                 materia = Ma.buscar_materia(
-                                    Main.materias, ideMate).to_string()
+                                    Main.materias, ideMate).get_nombre()
                                 n1 = No(por, val, id, es, grp)
                                 print(No.registrar(n1, Main.notas))
                                 No.enviar_correo_actualizar_nota(
@@ -644,7 +632,7 @@ class Main:
                             val = float(input(Me.mensa["val"] + ": "))
                             por = float(input(Me.mensa["por"] + ": "))
                             materia = Ma.buscar_materia(
-                                Main.materias, ideMate).to_string()
+                                Main.materias, ideMate).get_nombre()
                             index = Main.notas.index(n1)
                             Main.notas[index].set_valor(
                                 n1.get_valor() if val == "" else val)
@@ -669,7 +657,7 @@ class Main:
                                           idemate, num_grupo, id))
                         es = Es.buscar_persona(Main.estudiantes, es)
                         materia = Ma.buscar_materia(
-                            Main.materias, idemate).to_string()
+                            Main.materias, idemate).get_nombre()
                         No.enviar_correo_actualizar_nota(
                             "borro", id, no.get_valor(), no.get_porcentaje(), es, materia)
                         print(Me.mensa["emailSatisfactory"])
@@ -754,7 +742,8 @@ class Main:
             elif op == 5:
                 id_materia = input(Me.mensa["ideMate"])
                 id_grupo = input(Me.mensa["numGrp"])
-                Main.mejores_notas(id_materia, id_grupo)
+                lista_grupos = Main.grupos
+                No.mejores_notas(lista_grupos, id_materia, id_grupo)
 
             elif op ==6:
                 #salir

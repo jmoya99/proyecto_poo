@@ -117,6 +117,7 @@ class Main:
         No.registrar(n7, Main.notas)
         No.registrar(n8, Main.notas)
         No.registrar(n9, Main.notas)
+
     @staticmethod
     def principal():
         while(True):

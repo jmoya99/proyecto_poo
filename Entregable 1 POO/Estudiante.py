@@ -1,6 +1,7 @@
 from Persona import Persona
 from Matricula import Matricula
 from Nota import Nota
+from Mensajes import Mensajes as Me
 
 
 class Estudiante(Persona):
@@ -38,3 +39,29 @@ class Estudiante(Persona):
     @staticmethod
     def registrar(list_estu, list_admin, list_profe, estudiante):
         return Persona.registrar(list_estu, list_admin, list_profe, estudiante, 0)
+    @staticmethod
+    def van_perdiendo(i):
+         n = i.get_grupos()
+         if(len(n) != 0):
+            for j in n:
+              m = j.get_matricula()
+              if(len(m) != 0):
+                for k in m:
+                    o = k.get_estudiante().get_nota()
+                    if(len(o) != 0):
+                        sum = 0
+                        sum2 = 0
+                        for l in o:
+                            sum += ((l.get_porcentaje() / 100) *
+                            l.get_valor())
+                            sum2 += (l.get_porcentaje() / 100)
+                            prom = sum / sum2
+                            if(prom < 3):
+                                return k.get_estudiante().get_identificacion()+" "+k.get_estudiante().get_nombre()+"\n"+"__________________________"
+                    else:
+                       return(Me.mensa["Noestnot"]+"\n"+"__________________________")
+                               
+              else:
+                return(Me.mensa["Nomatric"]+"\n"+"__________________________")
+         else:
+            return(Me.mensa["Nogrup"]+"\n"+"__________________________")

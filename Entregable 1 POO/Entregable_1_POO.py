@@ -229,33 +229,7 @@ class Main:
                         for i in Main.materias:
                             print("__________________________")
                             print(Me.mensa["ideMate"], i.get_id())
-                            n = i.get_grupos()
-                            if(len(n) != 0):
-                                for j in n:
-                                    m = j.get_matricula()
-                                    if(len(m) != 0):
-                                        for k in m:
-                                            o = k.get_estudiante().get_nota()
-                                            if(len(o) != 0):
-                                                sum = 0
-                                                sum2 = 0
-                                                for l in o:
-                                                    sum += ((l.get_porcentaje() / 100) *
-                                                            l.get_valor())
-                                                    sum2 += (l.get_porcentaje() / 100)
-                                                prom = sum / sum2
-                                                if(prom < 3):
-                                                    print(k.get_estudiante().get_identificacion(
-                                                    ), k.get_estudiante().get_nombre())
-                                            else:
-                                                print(Me.mensa["Noestnot"])
-                                                print("__________________________")
-                                    else:
-                                        print(Me.mensa["Nomatric"])
-                                        print("__________________________")
-                            else:
-                                print(Me.mensa["Nogrup"])
-                                print("__________________________")
+                            print(van_perdiendo(i))
 
             elif(opc == 2):
                 while True:
@@ -469,30 +443,7 @@ class Main:
                                 print(gru.to_string())
                     elif(op == 7):
                         for i in Main.materias:
-                            n = i.get_grupos()
-                            if(len(n) != 0):
-                                a = {}
-                                for j in n:
-                                    m = 0
-                                    if(len(j.get_notas()) != 0):
-                                        for k in j.get_notas():
-                                            m += k.get_valor()
-                                        a[m / len(j.get_notas())] = j
-                                    else:
-                                        a[0] = j
-                                mayor = max(a.keys())
-                                if(mayor != 0):
-                                    print(Me.mensa["ideMate"], i.get_id(
-                                    ) + "\n" + Me.mensa["gru"] + ": " + a[mayor].get_numero())
-                                    print("__________________________")
-                                else:
-                                    print(Me.mensa["ideMate"], i.get_id(
-                                    ) + "\n" + Me.mensa["Nonotas"])
-                                    print("__________________________")
-                            else:
-                                print(Me.mensa["ideMate"], i.get_id(
-                                ) + "\n" + Me.mensa["Nogrup"])
-                                print("__________________________")
+                            print(Gr.mejores_grupos(i))
                     elif(op == 8):
                         break
 

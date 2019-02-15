@@ -113,3 +113,23 @@ class Grupo:
                 Grupo.eliminar(
                     lista, lista[i - borr].get_numero(), id_materia, list_matricula, list_nota)
                 borr += 1
+    @staticmethod
+    def mejores_grupos(i):
+        n = i.get_grupos()
+        if(len(n)!=0):
+            a={}
+            for j in n:
+                m=0
+                if(len(j.get_notas())!=0):
+                    for k in j.get_notas():
+                        m+=k.get_valor()
+                    a[m/len(j.get_notas())] = j
+                else:
+                    a[0]=j
+            mayor =max(a.keys())
+            if(mayor!=0):
+                return Mensajes.mensa["ideMate"]+i.get_id()+"\n"+Mensajes.mensa["gru"]+": "+a[mayor].get_numero()+"\n __________________________"
+            else:
+                return Mensajes.mensa["ideMate"]+i.get_id()+"\n"+Mensajes.mensa["Nonotas"]+"\n __________________________"
+        else:
+            return Mensajes.mensa["ideMate"]+i.get_id()+"\n"+Mensajes.mensa["Nogrup"]+"\n __________________________"

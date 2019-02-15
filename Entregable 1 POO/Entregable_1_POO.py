@@ -246,39 +246,7 @@ class Main:
                         for i in Main.materias:
                             print("__________________________")
                             print(Me.mensa["ideMate"], i.get_id())
-<<<<<<< HEAD
-                            print(van_perdiendo(i))
-=======
-                            n = i.get_grupos()
-                            if(len(n) != 0):
-                                for j in n:
-                                    m = j.get_matricula()
-                                    if(len(m) != 0):
-                                        for k in m:
-                                            o = k.get_estudiante().get_nota()
-                                            if(len(o) != 0):
-                                                sum = 0
-                                                sum2 = 0
-                                                for l in o:
-                                                    sum += ((l.get_porcentaje() / 100) *
-                                                            l.get_valor())
-                                                    sum2 += (l.get_porcentaje() / 100)
-                                                prom = sum / sum2
-                                                if(prom < 3):
-                                                    print(k.get_estudiante().get_identificacion(
-                                                    ), k.get_estudiante().get_nombre())
-                                            else:
-                                                print(Me.mensa["Noestnot"])
-                                                print(
-                                                    "__________________________")
-                                    else:
-                                        print(Me.mensa["Nomatric"])
-                                        print("__________________________")
-                            else:
-                                print(Me.mensa["Nogrup"])
-                                print("__________________________")
->>>>>>> 4c2f28583f5905a6c96e945006ff977613b40fdc
-
+                            print(Es.van_perdiendo(i))
             elif(opc == 2):
                 while True:
                     print(Me.mensa["CASE"])

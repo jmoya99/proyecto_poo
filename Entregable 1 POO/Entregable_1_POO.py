@@ -157,6 +157,32 @@ class Main:
             print(Me.mensa["err"])
 
     @staticmethod
+    def generar_reporte_en_excel():
+        matt = Ma.buscar_materia(
+            Main.materias, input(Me.mensa["ideMate"]))
+
+        if matt:
+            titulo = "Reporte de " + matt.get_nombre()
+            cabecera = (
+                "Materia", "Grupo", "Nombre del Estudiante", "Nota", "Porcentaje")
+            registros = []
+            nombreEXCEL = "Reporte de " + matt.get_nombre()
+
+            notes_filter = list(filter(lambda nota: list(map(lambda grupo: grupo.get_numero(
+            ) == nota.get_grupo().get_numero(), matt.get_grupos())), Main.notas))
+
+            for nota in notes_filter:
+                registros.append((matt.get_nombre(), nota.get_grupo().get_numero(), nota.get_estudiante(
+                ).get_nombre(), nota.get_valor(), nota.get_porcentaje()))
+
+            # Generación del excel
+            Op.exportar_excel(
+                titulo, cabecera, registros, nombreEXCEL)
+            print(Me.mensa["reporte"])
+        else:
+            print(Me.mensa["noenc"])
+
+    @staticmethod
     def menu_administrador():
         while True:
             opc = int(input(Me.mensa["opcAdmin"]))
@@ -240,7 +266,8 @@ class Main:
                                                     ), k.get_estudiante().get_nombre())
                                             else:
                                                 print(Me.mensa["Noestnot"])
-                                                print("__________________________")
+                                                print(
+                                                    "__________________________")
                                     else:
                                         print(Me.mensa["Nomatric"])
                                         print("__________________________")
@@ -567,10 +594,10 @@ class Main:
                     print(Me.mensa["modi"])
                     o = int(input(Me.mensa["opUsu"]))
                     if(o == 1):
-                        nom = input(Me.mensa["nom"]+": ")
+                        nom = input(Me.mensa["nom"] + ": ")
                         print(estu.set_nombre(nom))
                     elif(o == 2):
-                        cla = input(Me.mensa["con"]+": ")
+                        cla = input(Me.mensa["con"] + ": ")
                         print(estu.set_clave(cla))
                     elif(o == 3):
                         break
@@ -704,29 +731,7 @@ class Main:
                             print(Me.mensa["noenc"])
 
                     elif opc == 2:
-                        matt = Ma.buscar_materia(
-                            Main.materias, input(Me.mensa["ideMate"]))
-
-                        if matt:
-                            titulo = "Reporte de " + matt.get_nombre()
-                            cabecera = (
-                                "Materia", "Grupo", "Nombre del Estudiante", "Nota", "Porcentaje")
-                            registros = []
-                            nombreEXCEL = "Reporte de " + matt.get_nombre()
-
-                            notes_filter = list(filter(lambda nota: list(map(lambda grupo: grupo.get_numero(
-                            ) == nota.get_grupo().get_numero(), matt.get_grupos())), Main.notas))
-
-                            for nota in notes_filter:
-                                registros.append((matt.get_nombre(), nota.get_grupo().get_numero(), nota.get_estudiante(
-                                ).get_nombre(), nota.get_valor(), nota.get_porcentaje()))
-
-                            # Generación del excel
-                            Op.exportar_excel(
-                                titulo, cabecera, registros, nombreEXCEL)
-                            print(Me.mensa["reporte"])
-                        else:
-                            print(Me.mensa["noenc"])
+                        Main.generar_reporte_en_excel()
 
                     elif opc == 3:
                         break
@@ -745,9 +750,20 @@ class Main:
                 lista_grupos = Main.grupos
                 No.mejores_notas(lista_grupos, id_materia, id_grupo)
 
-            elif op ==6:
-                #salir
+            elif op == 6:
+                # cambiar contraseña
+                profesor.set_clave(input(Me.mensa["cambContr"]))
+                pass
+
+            elif op == 7:
+                # cambiar nombre
+                profesor.set_nombre(input(Me.mensa["cambNombre"]))
+                pass
+
+            elif op == 8:
+                # salir
                 break
+
 
 if __name__ == "__main__":
     print(Me.esp["idi"])

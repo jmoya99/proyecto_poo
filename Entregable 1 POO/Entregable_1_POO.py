@@ -296,7 +296,7 @@ class Main:
                     elif(op == 4):
                         id = input(
                             Me.mensa["ide"] + " " + Me.mensa["o"] + " " + Me.mensa["cor"] + ": ")
-                        print(Pe.eliminar(Main.profesores, id))
+                        print(Pr.eliminar(Main.profesores, id))
                     elif(op == 5):
                         for pro in Main.profesores:
                             print(pro.to_string())

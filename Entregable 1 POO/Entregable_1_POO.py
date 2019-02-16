@@ -450,7 +450,7 @@ class Main:
                                           mat, Main.matriculas, Main.notas))
                     elif(op == 5):
                         for gru in Main.grupos:
-                            print(gru.to_string())
+                            print(gru.to_string(1))
                     elif(op == 6):
                         mat = input(Me.mensa["id"] + " "
                                     + Me.mensa["mat"] + ": ")
@@ -486,7 +486,7 @@ class Main:
                         gru = input(Me.mensa["numGrp"])
                         grupo = Gr.buscar_grupo(Main.grupos, gru, mat)
                         if(grupo):
-                            matri = M(semestre, estu, grupo)
+                            matri = M(sem, estu, grupo)
                             print(M.matricular(Main.matriculas, matri))
                         else:
                             print(Me.mensa["err"])
@@ -518,7 +518,8 @@ class Main:
                                          estu.get_identificacion(), mat))
                     elif(o == 5):
                         for matr in Main.matriculas:
-                            print(matr.to_string())
+                            if(estu == matr.get_estudiante()):
+                                print(matr.to_string())
                     elif(o == 6):
                         break
             elif op == 3:
@@ -658,7 +659,7 @@ class Main:
                             Me.mensa["numGrp"]), input(Me.mensa["ideMate"]))
 
                         if grp:
-                            print(grp.to_string())
+                            print(grp.to_string(1))
                         else:
                             print(Me.mensa["noenc"])
 

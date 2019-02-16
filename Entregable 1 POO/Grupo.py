@@ -76,13 +76,15 @@ class Grupo:
 
     @staticmethod
     def registrar(grupo, lista):
-        if(Grupo.buscar_grupo(lista, grupo.get_numero(), grupo.get_materia().get_id()) or not(grupo.get_profesor())):
-            return Mensajes.mensa["err"]
-        else:
-            lista.append(grupo)
-            grupo.get_materia().get_grupos().append(grupo)
-            grupo.get_profesor().get_grupos().append(grupo)
-            return Mensajes.mensa["reg"]
+        if(grupo.get_materia()):
+            if(Grupo.buscar_grupo(lista, grupo.get_numero(), grupo.get_materia().get_id()) or not(grupo.get_profesor())):
+                return Mensajes.mensa["err"]
+            else:
+                lista.append(grupo)
+                grupo.get_materia().get_grupos().append(grupo)
+                grupo.get_profesor().get_grupos().append(grupo)
+                return Mensajes.mensa["reg"]
+        return Mensajes.mensa["err"]
 
     @staticmethod
     def eliminar(lista, num, id_materia, list_matricula, list_nota):
@@ -113,23 +115,24 @@ class Grupo:
                 Grupo.eliminar(
                     lista, lista[i - borr].get_numero(), id_materia, list_matricula, list_nota)
                 borr += 1
+
     @staticmethod
     def mejores_grupos(i):
         n = i.get_grupos()
-        if(len(n)!=0):
-            a={}
+        if(len(n) != 0):
+            a = {}
             for j in n:
-                m=0
-                if(len(j.get_notas())!=0):
+                m = 0
+                if(len(j.get_notas()) != 0):
                     for k in j.get_notas():
-                        m+=k.get_valor()
-                    a[m/len(j.get_notas())] = j
+                        m += k.get_valor()
+                    a[m / len(j.get_notas())] = j
                 else:
-                    a[0]=j
-            mayor =max(a.keys())
-            if(mayor!=0):
-                return Mensajes.mensa["ideMate"]+i.get_id()+"\n"+Mensajes.mensa["gru"]+": "+a[mayor].get_numero()+"\n __________________________"
+                    a[0] = j
+            mayor = max(a.keys())
+            if(mayor != 0):
+                return Mensajes.mensa["ideMate"] + i.get_id() + "\n" + Mensajes.mensa["gru"] + ": " + a[mayor].get_numero() + "\n __________________________"
             else:
-                return Mensajes.mensa["ideMate"]+i.get_id()+"\n"+Mensajes.mensa["Nonotas"]+"\n __________________________"
+                return Mensajes.mensa["ideMate"] + i.get_id() + "\n" + Mensajes.mensa["Nonotas"] + "\n __________________________"
         else:
-            return Mensajes.mensa["ideMate"]+i.get_id()+"\n"+Mensajes.mensa["Nogrup"]+"\n __________________________"
+            return Mensajes.mensa["ideMate"] + i.get_id() + "\n" + Mensajes.mensa["Nogrup"] + "\n __________________________"

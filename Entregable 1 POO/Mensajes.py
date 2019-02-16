@@ -26,7 +26,7 @@ class Mensajes:
            "mejores_notas": "Esta es la lista de las 3 mejores notas de la asignatura en general",
            "mejores_notas1": "Esta es la lista de las ", "mejores_notas2": " mejores notas de la asignatura en general",
            1: "Primero. ", 2: "Segundo. ", 3: "Tercero. ", "cuerpo_best": "con la nota de ", "cuerpo_best2": ", lograda por ",
-           "No_estudiantes": "No hay notas registradas en esta asignatura todavia"}
+           "No_estudiantes": "No hay notas registradas en esta asignatura todavia", "noSePuede": "El profesor no se puede eliminar, el profesor tiene grupos"}
 
     ing = {"mat": "Subject", "idi": "1 for Spanish, 2 for English", "id": "Id", "idePro": "Teacher identification",
            "numGrp": "Group Number: ", "ideNot": "Score Identification: ", "reporte": "Report Generated", "reportErr": "Error unexpected: Permission Denied",
@@ -55,6 +55,6 @@ class Mensajes:
            "mejores_notas": "This is the list of the three first scores in the signature",
            "mejores_notas1": "This is the list of the ", "mejores_notas2": " best scores in the signature",
            1: "First. ", 2: "Second. ", 3: "Third. ", "cuerpo_best": "with the score of ", "cuerpo_best2": ", reached by ",
-           "No_estudiantes": "There's no socres registered in this signature yet"}
+           "No_estudiantes": "There's no socres registered in this signature yet", "noSePuede": "The teacher can not be eliminated, the teacher has groups"}
 
     mensa = {}

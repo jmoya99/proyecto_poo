@@ -93,6 +93,7 @@ class Grupo:
             Nota.eliminar_por_grupo(list_nota, num, id_materia)
             Matricula.eliminar_por_grupo(list_matricula, num, id_materia)
             grupo.get_materia().get_grupos().remove(grupo)
+            grupo.get_profesor().get_grupos().remove(grupo)
             lista.remove(grupo)
             return Mensajes.mensa["eli"]
         else:

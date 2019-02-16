@@ -81,6 +81,8 @@ class Matricula:
         mat = Matricula.buscar_matricula(
             list_matricula, id_estudiante, id_materia)
         if(mat):
+            mat.get_grupo().get_matricula().remove(mat)
+            mat.get_estudiante().get_matricula().remove(mat)
             list_matricula.remove(mat)
             return Mensajes.mensa["eli"]
         else:

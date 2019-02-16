@@ -16,6 +16,14 @@ class Profesor(Persona):
         return self._grupos
 
     @staticmethod
+    def eliminar(lista,identificacion):
+        pro = Persona.buscar_persona(lista,identificacion)
+        if(pro):
+            if(len(pro.get_grupos()) > 0):
+                return Mensajes.mensa["noSePuede"]
+        return Persona.eliminar(lista, identificacion)
+
+    @staticmethod
     def registrar(list_estu, list_admin, list_profe, profesor):
         return Persona.registrar(list_estu, list_admin, list_profe, profesor, 1)
 

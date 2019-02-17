@@ -192,3 +192,19 @@ class Nota:
                             str(lista_notas[nota].get_valor()) + Mensajes.mensa["cuerpo_best2"] + lista_notas[nota].get_estudiante().get_nombre())
                     else:
                         print(Mensajes.mensa["No_estudiantes"])
+    @staticmethod
+    def porcentaje_diferente_100(materia, id_grupo, estudiante, porcentaje):
+        grupos = materia.get_grupos()
+        for grupo in grupos:
+            if (grupo.get_numero() == id_grupo):
+                sum = 0
+                notas = grupo.get_notas()
+                for nota in notas:
+                    if (nota.get_estudiante().get_identificacion() == estudiante):
+                        sum = sum + nota.get_porcentaje()
+                total = sum + porcentaje
+                print(total)
+                if (total > 100):
+                    return False
+                else:
+                    return True

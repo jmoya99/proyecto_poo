@@ -203,7 +203,6 @@ class Nota:
                     if (nota.get_estudiante().get_identificacion() == estudiante):
                         sum = sum + nota.get_porcentaje()
                 total = sum + porcentaje
-                print(total)
                 if (total > 100):
                     return False
                 else:

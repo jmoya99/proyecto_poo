@@ -129,8 +129,30 @@ class Main:
             elif(op == 2):
                 os._exit(0)
             elif(op == 3):
-
                 Main.recuperar_contrasena()
+            elif(op == 4):
+                for i in Main.materias:
+                            print("__________________________")
+                            print(Me.mensa["ideMate"], i.get_id())
+                            n = i.get_grupos()
+                            if(len(n) != 0):
+                                for j in n:
+                                    m = j.get_matricula()
+                                    if(len(m) != 0):
+                                        for k in m:
+                                            a=Es.van_perdiendo(k,j)
+                                            if(type(a)==list):
+                                                for N in a:
+                                                    print(N)
+                                            else:
+                                                print(a)
+                                    else:
+                                        print(Me.mensa["Nomatric"]+"\n"+"__________________________")
+                            else:
+                                print(Me.mensa["Nogrup"]+"\n"+"__________________________")
+            elif (op == 5):
+                for i in Main.materias:
+                            print(Gr.mejores_grupos(i))
 
     @staticmethod
     def recuperar_contrasena():
@@ -206,7 +228,7 @@ class Main:
                             print(est.to_string())
                         else:
                             print(Me.mensa["err"])
-                    elif(op == 7):
+                    elif(op == 6):
                         break
                     elif(op == 3):
                         id = input(
@@ -239,27 +261,7 @@ class Main:
                                           Main.notas, Main.matriculas))
                     elif(op == 5):
                         for est in Main.estudiantes:
-                            print(est.to_string())
-                    elif(op == 6):
-                        for i in Main.materias:
-                            print("__________________________")
-                            print(Me.mensa["ideMate"], i.get_id())
-                            n = i.get_grupos()
-                            if(len(n) != 0):
-                                for j in n:
-                                    m = j.get_matricula()
-                                    if(len(m) != 0):
-                                        for k in m:
-                                            a=Es.van_perdiendo(k,j)
-                                            if(type(a)==list):
-                                                for N in a:
-                                                    print(N)
-                                            else:
-                                                print(a)
-                                    else:
-                                        print(Me.mensa["Nomatric"]+"\n"+"__________________________")
-                            else:
-                                print(Me.mensa["Nogrup"]+"\n"+"__________________________")
+                            print(est.to_string())                       
             elif(opc == 2):
                 while True:
                     print(Me.mensa["CASE"])
@@ -471,11 +473,7 @@ class Main:
                             if(gru.get_materia().get_id() == mat):
                                 print(gru.to_string())
                     elif(op == 7):
-                        for i in Main.materias:
-                            print(Gr.mejores_grupos(i))
-                    elif(op == 8):
                         break
-
     @staticmethod
     def menu_estudiante(estu):
         while True:

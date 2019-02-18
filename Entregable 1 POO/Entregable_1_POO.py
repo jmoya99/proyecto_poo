@@ -580,8 +580,9 @@ class Main:
                     opc = int(input(Me.mensa["opnot"]))
                     if opc == 1:
                         # buscar estudiante
+                        estudiante = input(Me.mensa["ideEstu"])
                         es = Es.buscar_persona(
-                            Main.estudiantes, input(Me.mensa["ideEstu"]))
+                            Main.estudiantes, estudiante)
                         if es:
                             print(Me.mensa["enc"])
                             # buscar grupo
@@ -597,11 +598,15 @@ class Main:
                                     Me.mensa["ideNot"])
                                 materia = Ma.buscar_materia(
                                     Main.materias, ideMate).get_nombre()
-                                n1 = No(por, val, id, es, grp)
-                                print(No.registrar(n1, Main.notas))
-                                No.enviar_correo_actualizar_nota(
+                                if (No.porcentaje_diferente_100(Ma.buscar_materia(
+                                    Main.materias, ideMate), numGrp, estudiante, por)):
+                                    n1 = No(por, val, id, es, grp)
+                                    print(No.registrar(n1, Main.notas))
+                                    No.enviar_correo_actualizar_nota(
                                     "registro", id, val, por, es, materia)
-                                print(Me.mensa["emailSatisfactory"])
+                                    print(Me.mensa["emailSatisfactory"])
+                                else:
+                                    print(Me.mensa["ErrorNota"])
 
                             else:
                                 print(Me.mensa["noenc"])
@@ -621,19 +626,22 @@ class Main:
                         if n1:
                             val = float(input(Me.mensa["val"] + ": "))
                             por = float(input(Me.mensa["por"] + ": "))
-                            materia = Ma.buscar_materia(
+                            if (No.porcentaje_diferente_100(Ma.buscar_materia(
+                                Main.materias, ideMate), numGrp, estudiante, por)):
+                                materia = Ma.buscar_materia(
                                 Main.materias, ideMate).get_nombre()
-                            index = Main.notas.index(n1)
-                            Main.notas[index].set_valor(
+                                index = Main.notas.index(n1)
+                                Main.notas[index].set_valor(
                                 n1.get_valor() if val == "" else val)
-                            Main.notas[index].set_porcentaje(n1.get_porcentaje()
+                                Main.notas[index].set_porcentaje(n1.get_porcentaje()
                                                              if por == "" else por)
-                            print(Me.mensa["mod"])
-                            es = Es.buscar_persona(Main.estudiantes, es)
-                            No.enviar_correo_actualizar_nota(
+                                print(Me.mensa["mod"])
+                                es = Es.buscar_persona(Main.estudiantes, es)
+                                No.enviar_correo_actualizar_nota(
                                 "modifico", id, val, por, es, materia)
-                            print(Me.mensa["emailSatisfactory"])
-
+                                print(Me.mensa["emailSatisfactory"])
+                            else:
+                                print(Me.mensa["ErrorNota"])
                         else:
                             print(Me.mensa["noenc"])
                     elif opc == 3:

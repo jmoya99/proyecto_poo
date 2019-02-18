@@ -104,8 +104,6 @@ class Main:
         n9 = No(34, 3.6, 3, es3, gr2)
         No.registrar(n7, Main.notas)
         No.registrar(n8, Main.notas)
-        No.registrar(n9, Main.notas)
-
     @staticmethod
     def principal():
         while(True):
@@ -246,7 +244,22 @@ class Main:
                         for i in Main.materias:
                             print("__________________________")
                             print(Me.mensa["ideMate"], i.get_id())
-                            print(Es.van_perdiendo(i))
+                            n = i.get_grupos()
+                            if(len(n) != 0):
+                                for j in n:
+                                    m = j.get_matricula()
+                                    if(len(m) != 0):
+                                        for k in m:
+                                            a=Es.van_perdiendo(k,j)
+                                            if(type(a)==list):
+                                                for N in a:
+                                                    print(N)
+                                            else:
+                                                print(a)
+                                    else:
+                                        print(Me.mensa["Nomatric"]+"\n"+"__________________________")
+                            else:
+                                print(Me.mensa["Nogrup"]+"\n"+"__________________________")
             elif(opc == 2):
                 while True:
                     print(Me.mensa["CASE"])

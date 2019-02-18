@@ -40,28 +40,26 @@ class Estudiante(Persona):
     def registrar(list_estu, list_admin, list_profe, estudiante):
         return Persona.registrar(list_estu, list_admin, list_profe, estudiante, 0)
     @staticmethod
-    def van_perdiendo(i):
-         n = i.get_grupos()
-         if(len(n) != 0):
-            for j in n:
-              m = j.get_matricula()
-              if(len(m) != 0):
-                for k in m:
+    def van_perdiendo(k,j):
                     o = k.get_estudiante().get_nota()
                     if(len(o) != 0):
                         sum = 0
                         sum2 = 0
+                        L=[]
                         for l in o:
-                            sum += ((l.get_porcentaje() / 100) *
-                            l.get_valor())
-                            sum2 += (l.get_porcentaje() / 100)
+                            if(l.get_grupo()==j):
+                                sum += ((l.get_porcentaje() / 100) *
+                                l.get_valor())
+                                sum2 += (l.get_porcentaje() / 100)
+                        if(sum2!=0 and sum!=0):
                             prom = sum / sum2
-                            if(prom < 3):
-                                return k.get_estudiante().get_identificacion()+" "+k.get_estudiante().get_nombre()+"\n"+"__________________________"
+                        else:
+                            prom=0
+                        if(prom < 3 and prom!=0):
+                            L.append(k.get_estudiante().get_identificacion()+" "+k.get_estudiante().get_nombre()+"\n"+"__________________________")
+                        if(len(L)!=0):
+                            return L
+                        else:
+                            return(Me.mensa["Ganosinno"]+"\n"+"__________________________")
                     else:
                        return(Me.mensa["Noestnot"]+"\n"+"__________________________")
-                               
-              else:
-                return(Me.mensa["Nomatric"]+"\n"+"__________________________")
-         else:
-            return(Me.mensa["Nogrup"]+"\n"+"__________________________")

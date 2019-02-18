@@ -123,11 +123,12 @@ class Grupo:
         if(len(n) != 0):
             a = {}
             for j in n:
-                m = 0
-                if(len(j.get_notas()) != 0):
-                    for k in j.get_notas():
+                m =0
+                b=j.get_notas()
+                if(len(b) != 0):
+                    for k in b:
                         m += k.get_valor()
-                    a[m / len(j.get_notas())] = j
+                    a[m / len(b)] = j
                 else:
                     a[0] = j
             mayor = max(a.keys())

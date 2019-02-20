@@ -5,7 +5,7 @@ class Mensajes:
            "nom": "Nombre", "cre": "Creditos", "gru": "Grupo", "reg": "Registrado", "mod": "Modificado",
            "err": "Error", "eli": "Eliminado", "num": "Numero", "pro": "Profesor", "notFinal": "Nota final", "fech": "Fecha", "det": "Detalles",
            "usu": "Usuario", "ide": "Identificación", "cor": "Correo", "con": "Contraseña", "Nonotas": "Materia sin notas", "Nogrup": "Materia sin grupos",
-           "not": "Nota", "por": "Porcentaje", "val": "Valor", "ing Usu": "Ingrese su identificación o correo electronico: ","Ganosinno":"El estudiante no va perdiendo o no tiene notas",
+           "not": "Nota", "por": "Porcentaje", "val": "Valor", "ing Usu": "Ingrese su identificación o correo electronico: ", "Ganosinno": "El estudiante no va perdiendo o no tiene notas",
            "opnot": "1. Registrar\n2. Modificar\n3. Borrar\n4. Buscar\n5. Salir\n", "noenc": "No encontrado", "CorrE": "Correo enviado", "Noestnot": "Estudiante sin notas",
            "ing Con": "Ingrese su contraseña: ", "bie": "Bienvenido", "o": "o", "enc": "Encontrad@", "Nomatric": "Grupo sin matricula",
            "opc1": "1. Iniciar sesión\n2. Cerrar aplicación\n3. Recuperar contraseña\n4. Estudiantes que van perdiendo\n5. Mostrar mejor grupo por materia\n", "cambContr": "Cambiar contraseña: ",
@@ -27,7 +27,7 @@ class Mensajes:
            "mejores_notas1": "Esta es la lista de las ", "mejores_notas2": " mejores notas de la asignatura en general",
            1: "Primero. ", 2: "Segundo. ", 3: "Tercero. ", "cuerpo_best": "con la nota de ", "cuerpo_best2": ", lograda por ",
            "No_estudiantes": "No hay notas registradas en esta asignatura todavia", "noSePuede": "El profesor no se puede eliminar, el profesor tiene grupos",
-           "ErrorNota" : "La suma de los porcentajes de esta materia superan el 100%, por favor corrija"}
+           "ErrorNota": "La suma de los porcentajes de esta materia superan el 100%, por favor corrija", "idnewnot": "Nueva identificacion"}
 
     ing = {"mat": "Subject", "idi": "1 for Spanish, 2 for English", "id": "Id", "idePro": "Teacher identification",
            "numGrp": "Group Number: ", "ideNot": "Score Identification: ", "reporte": "Report Generated", "reportErr": "Error unexpected: Permission Denied",
@@ -35,7 +35,7 @@ class Mensajes:
            "nom": "Name", "cre": "Credits", "gru": "Group", "reg": "Inserted", "mod": "Modified",
            "err": "Error", "eli": "Removed", "num": "Number", "pro": "Teacher", "notFinal": "Final note", "fech": "Date", "det": "Details",
            "usu": "User", "ide": "Identification", "cor": "Email", "con": "Password", "Nonotas": "Subject without grades", "Nogrup": "Subject without groups",
-           "not": "Score", "por": "Percentage", "val": "Value", "ing Usu": "Enter your identification or email: ","Ganosinno":"The student isn't losing or doesn't have any grade",
+           "not": "Score", "por": "Percentage", "val": "Value", "ing Usu": "Enter your identification or email: ", "Ganosinno": "The student isn't losing or doesn't have any grade",
            "opnot": "1. Insert\n2. Modify\n3. Delete\n4. Search\n5. Exit\n", "noenc": "Not found", "CorrE": "Email sent", "Noestnot": "Student without grades",
            "ing Con": "Enter your password: ", "bie": "Welcome", "o": "or", "enc": "Found", "Nomatric": "Group without enrollment",
            "opc1": "1. Log in\n2. Close application\n3. Recover password\n4. Students who are losing\n5. Show best group by subject\n ", "nuSem": "New semester", "cambContr": "Change password: ",
@@ -57,6 +57,6 @@ class Mensajes:
            "mejores_notas1": "This is the list of the ", "mejores_notas2": " best scores in the signature",
            1: "First. ", 2: "Second. ", 3: "Third. ", "cuerpo_best": "with the score of ", "cuerpo_best2": ", reached by ",
            "No_estudiantes": "There's no socres registered in this signature yet", "noSePuede": "The teacher can not be eliminated, the teacher has groups",
-           "ErrorNota" : "The sum of the percentages of this signature exceed 100%, please correct"}
+           "ErrorNota": "The sum of the percentages of this signature exceed 100%, please correct", "idnewnot": "New identification"}
 
     mensa = {}

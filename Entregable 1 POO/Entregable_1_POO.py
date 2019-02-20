@@ -89,7 +89,7 @@ class Main:
         # Nota
         n1 = No(33, 5, 1, es1, gr1)
         n2 = No(33, 4, 2, es1, gr1)
-        n3 = No(34, 3, 3, es1, gr1)
+        n3 = No(10, 3, 3, es1, gr1)
         No.registrar(n1, Main.notas)
         No.registrar(n2, Main.notas)
         No.registrar(n3, Main.notas)
@@ -104,6 +104,7 @@ class Main:
         n9 = No(34, 3.6, 3, es3, gr2)
         No.registrar(n7, Main.notas)
         No.registrar(n8, Main.notas)
+
     @staticmethod
     def principal():
         while(True):
@@ -132,27 +133,29 @@ class Main:
                 Main.recuperar_contrasena()
             elif(op == 4):
                 for i in Main.materias:
-                            print("__________________________")
-                            print(Me.mensa["ideMate"], i.get_id())
-                            n = i.get_grupos()
-                            if(len(n) != 0):
-                                for j in n:
-                                    m = j.get_matricula()
-                                    if(len(m) != 0):
-                                        for k in m:
-                                            a=Es.van_perdiendo(k,j)
-                                            if(type(a)==list):
-                                                for N in a:
-                                                    print(N)
-                                            else:
-                                                print(a)
+                    print("__________________________")
+                    print(Me.mensa["ideMate"], i.get_id())
+                    n = i.get_grupos()
+                    if(len(n) != 0):
+                        for j in n:
+                            m = j.get_matricula()
+                            if(len(m) != 0):
+                                for k in m:
+                                    a = Es.van_perdiendo(k, j)
+                                    if(type(a) == list):
+                                        for N in a:
+                                            print(N)
                                     else:
-                                        print(Me.mensa["Nomatric"]+"\n"+"__________________________")
+                                        print(a)
                             else:
-                                print(Me.mensa["Nogrup"]+"\n"+"__________________________")
+                                print(
+                                    Me.mensa["Nomatric"] + "\n" + "__________________________")
+                    else:
+                        print(Me.mensa["Nogrup"] + "\n" +
+                              "__________________________")
             elif (op == 5):
                 for i in Main.materias:
-                            print(Gr.mejores_grupos(i))
+                    print(Gr.mejores_grupos(i))
 
     @staticmethod
     def recuperar_contrasena():
@@ -261,7 +264,7 @@ class Main:
                                           Main.notas, Main.matriculas))
                     elif(op == 5):
                         for est in Main.estudiantes:
-                            print(est.to_string())                       
+                            print(est.to_string())
             elif(opc == 2):
                 while True:
                     print(Me.mensa["CASE"])
@@ -471,9 +474,10 @@ class Main:
                                     + Me.mensa["mat"] + ": ")
                         for gru in Main.grupos:
                             if(gru.get_materia().get_id() == mat):
-                                print(gru.to_string())
+                                print(gru.to_string(1))
                     elif(op == 7):
                         break
+
     @staticmethod
     def menu_estudiante(estu):
         while True:
@@ -597,12 +601,14 @@ class Main:
                                 materia = Ma.buscar_materia(
                                     Main.materias, ideMate).get_nombre()
                                 if (No.porcentaje_diferente_100(Ma.buscar_materia(
-                                    Main.materias, ideMate), numGrp, estudiante, por)):
+                                        Main.materias, ideMate), numGrp, estudiante, por)):
                                     n1 = No(por, val, id, es, grp)
-                                    print(No.registrar(n1, Main.notas))
-                                    No.enviar_correo_actualizar_nota(
-                                    "registro", id, val, por, es, materia)
-                                    print(Me.mensa["emailSatisfactory"])
+                                    men = No.registrar(n1, Main.notas)
+                                    print(men)
+                                    if(men == Me.mensa["reg"]):
+                                        No.enviar_correo_actualizar_nota(
+                                            "registro", id, val, por, es, materia)
+                                        print(Me.mensa["emailSatisfactory"])
                                 else:
                                     print(Me.mensa["ErrorNota"])
 
@@ -622,22 +628,21 @@ class Main:
                             Main.notas, es, ideMate, numgrup, id)
 
                         if n1:
-                            val = float(input(Me.mensa["val"] + ": "))
-                            por = float(input(Me.mensa["por"] + ": "))
+                            id = (input(Me.mensa["idnewnot"] + ": "))
+                            val = (input(Me.mensa["val"] + ": "))
+                            por = (input(Me.mensa["por"] + ": "))
                             if (No.porcentaje_diferente_100(Ma.buscar_materia(
-                                Main.materias, ideMate), numGrp, estudiante, por)):
-                                materia = Ma.buscar_materia(
-                                Main.materias, ideMate).get_nombre()
-                                index = Main.notas.index(n1)
-                                Main.notas[index].set_valor(
-                                n1.get_valor() if val == "" else val)
-                                Main.notas[index].set_porcentaje(n1.get_porcentaje()
-                                                             if por == "" else por)
-                                print(Me.mensa["mod"])
-                                es = Es.buscar_persona(Main.estudiantes, es)
-                                No.enviar_correo_actualizar_nota(
-                                "modifico", id, val, por, es, materia)
-                                print(Me.mensa["emailSatisfactory"])
+                                    Main.materias, ideMate), numgrup, es, por)):
+                                n1.set_porcentaje(por)
+                                if(n1.set_id(n1.get_id() if id == "" else id, Main.notas)
+                                   == Me.mensa["mod"] or n1.set_valor(n1.get_valor() if val == "" else val)
+                                   == Me.mensa["mod"] or n1.set_porcentaje(por) == Me.mensa["mod"]):
+                                    print(Me.mensa["mod"])
+                                    No.enviar_correo_actualizar_nota(
+                                        "modifico", n1.get_id(), n1.get_valor(), n1.get_porcentaje(
+                                        ), n1.get_estudiante(),
+                                        n1.get_grupo().get_materia().get_nombre())
+                                    print(Me.mensa["emailSatisfactory"])
                             else:
                                 print(Me.mensa["ErrorNota"])
                         else:

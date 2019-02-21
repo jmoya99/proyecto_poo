@@ -186,7 +186,7 @@ class Nota:
                         for nota in lista_notas:
                             contador += 1
                             print(Mensajes.mensa[contador] + Mensajes.mensa["cuerpo_best"] +
-                                  str(lista_notas[contad or-1].get_valor()) + Mensajes.mensa["cuerpo_best2"] + lista_notas[contad or-1].get_estudiante().get_nombre())
+                                  str(lista_notas[contador - 1].get_valor()) + Mensajes.mensa["cuerpo_best2"] + lista_notas[contador -1].get_estudiante().get_nombre())
                     elif(len(lista_notas) >= 3):
                         print(Mensajes.mensa["mejores_notas"])
                         for nota in range(0, 3):

@@ -722,7 +722,7 @@ class Main:
                 id_materia = input(Me.mensa["ideMate"])
                 id_grupo = input(Me.mensa["numGrp"])
                 lista_grupos = Main.grupos
-                No.mejores_notas(lista_grupos, id_materia, id_grupo)
+                print(No.mejores_notas(lista_grupos, id_materia, id_grupo))
 
             elif op == 6:
                 # cambiar contraseña

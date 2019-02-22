@@ -180,20 +180,22 @@ class Nota:
                     lista_notas = grupo.get_notas()
                     lista_notas.sort(key=lambda x: x._valor, reverse=True)
                     if (len(lista_notas) < 3 and len(lista_notas) > 0):
-                        print(Mensajes.mensa["mejores_notas1"] + str(
+                        impresion =  (Mensajes.mensa["mejores_notas1"] + str(
                             len(lista_notas)) + Mensajes.mensa["mejores_notas2"])
                         contador = 0
                         for nota in lista_notas:
                             contador += 1
-                            print(Mensajes.mensa[contador] + Mensajes.mensa["cuerpo_best"] +
+                            impresion += "\n" + (Mensajes.mensa[contador] + Mensajes.mensa["cuerpo_best"] +
                                   str(lista_notas[contador - 1].get_valor()) + Mensajes.mensa["cuerpo_best2"] + lista_notas[contador -1].get_estudiante().get_nombre())
+                        return impresion
                     elif(len(lista_notas) >= 3):
-                        print(Mensajes.mensa["mejores_notas"])
+                        impresion = Mensajes.mensa["mejores_notas"]
                         for nota in range(0, 3):
-                            print(Mensajes.mensa[nota + 1] + Mensajes.mensa["cuerpo_best"]
+                            impresion += "\n" + (Mensajes.mensa[nota + 1] + Mensajes.mensa["cuerpo_best"]
                                   + str(lista_notas[nota].get_valor()) + Mensajes.mensa["cuerpo_best2"] + lista_notas[nota].get_estudiante().get_nombre())
+                        return impresion
                     else:
-                        print(Mensajes.mensa["No_estudiantes"])
+                        return Mensajes.mensa["No_estudiantes"]
 
     @staticmethod
     def porcentaje_diferente_100(materia, id_grupo, estudiante, porcentaje=0):
